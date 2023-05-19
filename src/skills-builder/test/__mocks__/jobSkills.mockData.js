@@ -1,4 +1,4 @@
-const mockData = {
+export const mockData = {
   hits: [
     {
       id: 0,

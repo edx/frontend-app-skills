@@ -3,7 +3,7 @@ import React from 'react';
 import { SkillsBuilderModal } from '../skills-builder-modal';
 import { SkillsBuilderContext } from '../skills-builder-context';
 import { skillsInitialState } from '../data/reducer';
-import mockData from './__mocks__/jobSkills.mockData';
+import { mockData } from './__mocks__/jobSkills.mockData';
 import { getProductRecommendations, searchJobs, useAlgoliaSearch } from '../utils/search';
 
 jest.mock('@edx/frontend-platform/logging');
@@ -14,6 +14,11 @@ jest.mock('react-instantsearch-hooks-web', () => ({
   Configure: jest.fn(() => (null)),
   useSearchBox: jest.fn(() => ({ refine: jest.fn() })),
   useHits: jest.fn(() => ({ hits: mockData.hits })),
+}));
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useLocation: jest.fn(() => ({ search: '?query_string=values' })),
 }));
 
 jest.mock('../utils/search', () => ({
