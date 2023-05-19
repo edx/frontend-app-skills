@@ -1,4 +1,4 @@
-export TRANSIFEX_RESOURCE = frontend-template-application
+export TRANSIFEX_RESOURCE = frontend-app-skills
 transifex_langs = "ar,fr,es_419,zh_CN"
 
 intl_imports = ./node_modules/.bin/intl-imports.js
@@ -56,7 +56,7 @@ pull_translations:
 	   && atlas pull --filter=$(transifex_langs) \
 	            translations/frontend-component-footer/src/i18n/messages:frontend-component-footer \
 	            translations/frontend-component-header/src/i18n/messages:frontend-component-header \
-	            translations/frontend-template-application/src/i18n/messages:frontend-template-application
+	            translations/frontend-app-skills/src/i18n/messages:frontend-app-skills
 
-	$(intl_imports) frontend-component-header frontend-component-footer frontend-template-application
+	$(intl_imports) frontend-component-header frontend-component-footer frontend-app-skills
 endif
