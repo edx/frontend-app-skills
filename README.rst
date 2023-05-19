@@ -1,76 +1,76 @@
-|Build Status| |Codecov| |license|
+|Build Status| |license|
 
-frontend-template-application
-=================================
+frontend-app-skills
+==============================
 
-Please tag **@edx/fedx-team** on any PRs or issues.  Thanks.
+Please tag **@edx/edx-aperture** on any PRs or issues.
 
 Introduction
 ------------
 
-This repository is a template for Open edX micro-frontend applications. It is flagged as a Template Repository, meaning it can be used as a basis for new GitHub repositories by clicking the green "Use this template" button above.  The rest of this document describes how to work with your new micro-frontend after you've created a new repository from the template.
+This is a micro-frontend application responsible for displaying and maintaining tools for skills development. This is the home for the B2C Skills Builder. 
 
-After Copying The Template
---------------------------
+Installation and Start up
+-------------------------
 
-You'll want to do a find-and-replace to replace all instances of ``frontend-template-application`` with the name of your new repository.  Also edit index.html to replace "Application Template" with a friendly name for this application that users will see in their browser tab.
+One Time Setup
+^^^^^^^^^^^^^^
+.. code-block::
 
-**Prerequisite**
+   # Clone the repository
+   git clone https://github.com/edx/frontend-app-skills.git
 
-`Devstack <https://edx.readthedocs.io/projects/edx-installing-configuring-and-running/en/latest/installation/index.html>`_.  If you start Devstack with ``make dev.up.ecommerce`` that should give you everything you need as a companion to this frontend.
+   # Install requirements and start the development server by running:
+   cd frontend-app-skills
+   npm install
+   npm start
 
-**Installation and Startup**
+Once the dev server is up visit, http://localhost:1992
 
-In the following steps, replace "frontend-template-application' with the name of the repo you created when copying this template above.
+Developing in this repo
+^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block::
 
-1. Clone your new repo:
+   # Pull the latest code
+     git pull
 
-  ``git clone https://github.com/openedx/frontend-template-application.git``
+   # Make a new branch for your changes
+     git checkout -b <your_github_username>/<short_description>
 
-2. Use node v12.x.
+   # Clean install/update the dev requirements
+     npm ci
 
-   The micro-frontend build scripts support node 12.  Using other major versions of node *may* work, but is unsupported.  For convenience, this repository includes an .nvmrc file to help in setting the correct node version via `nvm <https://github.com/nvm-sh/nvm>`_.
+   # Start the MFE
+     npm start
+   
+   # Make changes in your editor of choice, then run tests and linting
+     npm test
+     npm run lint
 
-3. Install npm dependencies:
+   # Commit your changes and push to your branch
+     git commit -m "<commit_message>"
+     git push
+   
+   # Open a PR and request review after Github CI has passed
 
-  ``cd frontend-template-application && npm install``
+Environment Variables
+^^^^^^^^^^^^^^^^^^^^^
 
-4. Update the application port to use for local development:
-
-   Default port is 8080. If this does not work for you, update the line `PORT=8080` to your port in all .env.* files
-
-5. Start the dev server:
-
-  ``npm start``
-
-The dev server is running at `http://localhost:8080 <http://localhost:8080>`_ or whatever port you setup.
-
-Making Your New Project's README File
--------------------------------------
-
-Move the file ``README-template-frontend-app.rst`` to your project's ``README.rst`` file. Please fill out all
-the sections - this helps out all developers understand your MFE, how to install it, and how to use it.
+In order to run the Skills Builder, you'll need to add Algolia keys to the ``.env.development`` file. If you have access to the `edx-internal repo`_, you can copy the ones for the Skills MFE's stage configuration. Alternatively, reach out to **@edx/edx-aperture**.
 
 Project Structure
------------------
+^^^^^^^^^^^^^^^^^
+The source for this project is organized into nested submodules according to the ADR `Feature-based Application Organization`_.
 
-The source for this project is organized into nested submodules according to the ADR `Feature-based Application Organization <https://github.com/openedx/frontend-template-application/blob/master/docs/decisions/0002-feature-based-application-organization.rst>`_.
-
-Build Process Notes
+Development Roadmap
 -------------------
+  
+* `edX Skills Builder - Development Roadmap`_
 
-**Production Build**
-
-The production build is created with ``npm run build``.
-
-Internationalization
---------------------
-
-Please see `edx/frontend-platform's i18n module <https://edx.github.io/frontend-platform/module-Internationalization.html>`_ for documentation on internationalization.  The documentation explains how to use it, and the `How To <https://github.com/openedx/frontend-i18n/blob/master/docs/how_tos/i18n.rst>`_ has more detail.
-
-.. |Build Status| image:: https://api.travis-ci.com/edx/frontend-template-application.svg?branch=master
-   :target: https://travis-ci.com/edx/frontend-template-application
-.. |Codecov| image:: https://codecov.io/gh/edx/frontend-template-application/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/edx/frontend-template-application
-.. |license| image:: https://img.shields.io/github/license/openedx/frontend-template-application.svg
-   :target: https://github.com/openedx/frontend-template-application/blob/main/LICENSE
+.. _edx-internal repo: https://github.com/edx/edx-internal
+.. _edX Skills Builder - Development Roadmap: https://openedx.atlassian.net/wiki/spaces/COMM/pages/3764944925/Skills+MFE+Development+Roadmap
+.. _Feature-based Application Organization: https://github.com/edx/frontend-app-skills/blob/main/docs/decisions/0002-feature-based-application-organization.rst
+.. |Build Status| image:: https://github.com/edx/frontend-app-skills/workflows/Default%20CI/badge.svg?branch=master
+   :target: https://github.com/edx/frontend-app-skills/actions?query=workflow%3A%22Default+CI%22
+.. |license| image:: https://img.shields.io/badge/license-AGPL-informational
+   :target: https://github.com/openedx/frontend-app-skills/blob/master/LICENSE
