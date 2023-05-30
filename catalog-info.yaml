@@ -5,7 +5,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: "frontend-app-skills"
-  description: "A template for Open edX micro-frontend applications."
+  description: "Micro-frontend for skills related content. Contains views for the B2C Skills Builder."
   links:
     - url: "https://github.com/openedx/frontend-app-skills/blob/master/README.rst"
       title: "README"
