@@ -1,7 +1,7 @@
 {
   "name": "@edx/frontend-app-skills",
   "version": "0.1.0",
-  "description": "Frontend application template",
+  "description": "Micro-frontend for skills related content",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/openedx/frontend-app-skills.git"
@@ -43,10 +43,12 @@
     "@fortawesome/free-regular-svg-icons": "5.15.4",
     "@fortawesome/free-solid-svg-icons": "5.15.4",
     "@fortawesome/react-fontawesome": "0.2.0",
+    "algoliasearch": "4.17.0",
     "core-js": "3.27.2",
     "prop-types": "15.8.1",
     "react": "16.14.0",
     "react-dom": "16.14.0",
+    "react-instantsearch-hooks-web": "^6.40.1",
     "react-redux": "7.2.9",
     "react-router": "5.3.4",
     "react-router-dom": "5.3.4",
@@ -57,6 +59,7 @@
     "@edx/browserslist-config": "^1.1.1",
     "@edx/frontend-build": "12.8.27",
     "@edx/reactifex": "^2.1.1",
+    "@testing-library/react": "11.2.7",
     "glob": "7.2.3",
     "husky": "7.0.4",
     "jest": "29.5.0"
