@@ -7,7 +7,6 @@ import {
 import { AppProvider, ErrorPage, PageRoute } from '@edx/frontend-platform/react';
 import ReactDOM from 'react-dom';
 
-import Header from '@edx/frontend-component-header';
 import Footer from '@edx/frontend-component-footer';
 import { SkillsBuilder } from './skills-builder';
 import messages from './i18n';
@@ -17,7 +16,6 @@ import './index.scss';
 subscribe(APP_READY, () => {
   ReactDOM.render(
     <AppProvider>
-      <Header />
       <PageRoute path="/" component={SkillsBuilder} />
       <Footer />
     </AppProvider>,
