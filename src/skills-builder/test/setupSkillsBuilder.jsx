@@ -3,7 +3,7 @@ import React from 'react';
 import { SkillsBuilderModal } from '../skills-builder-modal';
 import { SkillsBuilderContext } from '../skills-builder-context';
 import { skillsInitialState } from '../data/reducer';
-import { mockData } from './__mocks__/jobSkills.mockData';
+import mockData from './__mocks__/jobSkills.mockData';
 import { getProductRecommendations, searchJobs, useAlgoliaSearch } from '../utils/search';
 
 jest.mock('@edx/frontend-platform/logging');

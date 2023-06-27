@@ -1,12 +1,12 @@
-export const mockData = {
+const mockData = {
   hits: [
     {
       id: 0,
-      name: 'Prospector'
+      name: 'Prospector',
     },
     {
       id: 1,
-      name: 'Mirror Breaker'
+      name: 'Mirror Breaker',
     },
   ],
   searchJobs: [
@@ -14,11 +14,13 @@ export const mockData = {
       id: 0,
       name: 'Prospector',
       skills: [
-        { external_id: 0,
+        {
+          external_id: 0,
           name: 'mining',
           significance: 50,
         },
-        { external_id: 1,
+        {
+          external_id: 1,
           name: 'finding shiny things',
           significance: 100,
         }],
@@ -27,11 +29,13 @@ export const mockData = {
       id: 1,
       name: 'Mirror Breaker',
       skills: [
-        { external_id: 0,
+        {
+          external_id: 0,
           name: 'mining',
           significance: 50,
-        }, 
-        { external_id: 1,
+        },
+        {
+          external_id: 1,
           name: 'finding shiny things',
           significance: 100,
         }],
@@ -48,8 +52,8 @@ export const mockData = {
       owners: [
         {
           logoImageUrl: 'https://thisIsAUrl.ForALogoImage.01.jpeg',
-        }
-      ]
+        },
+      ],
     },
     {
       title: 'The Art of Warren Upkeep',
@@ -61,9 +65,11 @@ export const mockData = {
       owners: [
         {
           logoImageUrl: 'https://thisIsAUrl.ForALogoImage.02.jpeg',
-        }
-      ]
+        },
+      ],
     },
   ],
   useAlgoliaSearch: [{}, {}, {}],
 };
+
+export default mockData;
