@@ -16,7 +16,7 @@ export const useProductTypes = () => {
 
   if (search) {
     // remove the "?" and split the query string at "="
-    const splitString = search.slice(1).split('=');
+    const splitString = search.slice(1).split('&')[0].split('=');
 
     // if the key is not "product_types", use a default setting
     if (splitString[0] !== 'product_types') {

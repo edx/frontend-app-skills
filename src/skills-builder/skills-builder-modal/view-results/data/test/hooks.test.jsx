@@ -43,4 +43,14 @@ describe('useProductTypes', () => {
 
     expect(productTypes).toEqual(['boot_camp', 'course']);
   });
+
+  test('returns a filtered list if additional key-value pairs are provided in the query string', () => {
+    global.query_string = '?product_types=boot_camp,course&external_link=true';
+
+    const { result } = renderHook(() => useProductTypes());
+
+    const productTypes = result.current;
+
+    expect(productTypes).toEqual(['boot_camp', 'course']);
+  });
 });
