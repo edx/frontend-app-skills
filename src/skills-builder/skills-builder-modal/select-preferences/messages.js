@@ -51,16 +51,6 @@ const messages = defineMessages({
     defaultMessage: 'Search and select a job title',
     description: 'Placeholder text for the job title input control.',
   },
-  studentCheckboxPrompt: {
-    id: 'student.checkbox.prompt',
-    defaultMessage: 'I\'m a student',
-    description: 'Label text for the corresponding checkbox',
-  },
-  currentlyLookingCheckboxPrompt: {
-    id: 'currently.looking.checkbox.prompt',
-    defaultMessage: 'I\'m currently looking for work',
-    description: 'Label text for the corresponding checkbox',
-  },
   careerInterestPrompt: {
     id: 'career.interest.prompt',
     defaultMessage: 'What careers are you interested in?',

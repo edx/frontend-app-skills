@@ -13,9 +13,8 @@ import messages from './messages';
 
 const JobTitleSelect = () => {
   const { formatMessage } = useIntl();
-  const { state, dispatch, algolia } = useContext(SkillsBuilderContext);
+  const { dispatch, algolia } = useContext(SkillsBuilderContext);
   const { searchClient } = algolia;
-  const { currentJobTitle } = state;
 
   const handleCurrentJobTitleSelect = (value) => {
     dispatch(setCurrentJobTitle(value));
@@ -27,20 +26,6 @@ const JobTitleSelect = () => {
         learner_data: {
           current_job_title: value,
         },
-      },
-    );
-  };
-
-  const handleCheckboxChange = (e) => {
-    const { value } = e.target;
-    // only setCurrentJobTitle if the user hasn't selected a current job as we don't want to override their selection
-    if (!currentJobTitle) { dispatch(setCurrentJobTitle(value)); }
-
-    sendTrackEvent(
-      `edx.skills_builder.current_job.${value}`,
-      {
-        app_name: 'skills_builder',
-        category: 'skills_builder',
       },
     );
   };
@@ -59,19 +44,6 @@ const JobTitleSelect = () => {
           />
         </InstantSearch>
       </Form.Label>
-      <Form.Group>
-        <Form.CheckboxSet
-          name="other-occupations"
-          onChange={handleCheckboxChange}
-        >
-          <Form.Checkbox value="student">
-            {formatMessage(messages.studentCheckboxPrompt)}
-          </Form.Checkbox>
-          <Form.Checkbox value="looking_for_work">
-            {formatMessage(messages.currentlyLookingCheckboxPrompt)}
-          </Form.Checkbox>
-        </Form.CheckboxSet>
-      </Form.Group>
     </Stack>
   );
 };
