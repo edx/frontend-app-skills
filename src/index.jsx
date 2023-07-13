@@ -2,12 +2,15 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
 import {
-  APP_INIT_ERROR, APP_READY, subscribe, initialize, mergeConfig,
+  APP_INIT_ERROR, APP_READY, subscribe, initialize, mergeConfig, getConfig,
 } from '@edx/frontend-platform';
 import { AppProvider, ErrorPage, PageRoute } from '@edx/frontend-platform/react';
 import ReactDOM from 'react-dom';
 
+import { getLoggingService } from '@edx/frontend-platform/logging';
 import Footer from '@edx/frontend-component-footer';
+import { configure as configureI18n } from '@edx/frontend-platform/i18n/lib';
+import { getLocale } from '@edx/frontend-platform/i18n';
 import { SkillsBuilder } from './skills-builder';
 import messages from './i18n';
 
@@ -24,6 +27,15 @@ subscribe(APP_READY, () => {
 });
 
 subscribe(APP_INIT_ERROR, (error) => {
+  try {
+    getLocale('en');
+  } catch (e) {
+    configureI18n({
+      messages: {},
+      config: getConfig(),
+      loggingService: getLoggingService(),
+    });
+  }
   ReactDOM.render(<ErrorPage message={error.message} />, document.getElementById('root'));
 });
 

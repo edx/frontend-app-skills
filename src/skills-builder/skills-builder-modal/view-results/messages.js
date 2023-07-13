@@ -23,8 +23,18 @@ const messages = defineMessages({
   },
   productRecommendationsHeaderText: {
     id: 'product.recommendations.header.text',
-    defaultMessage: '{productType} recommendations for {jobName}',
+    defaultMessage: '"{jobName}" {productTypeText}',
     description: 'Header text for a carousel of product recommendations.',
+  },
+  productTypeBannerResults: {
+    id: 'product.type.banner.results',
+    defaultMessage: '{numberResults} results on edX',
+    description: 'The number of total results',
+  },
+  productTypeBannerShowAll: {
+    id: 'product.type.banner.show.all',
+    defaultMessage: 'Show all ({numberResults}) {arrowDownIcon}',
+    description: 'Show all button text',
   },
 });
 

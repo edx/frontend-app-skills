@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { productTypes as acceptedProductTypes, COURSE } from './constants';
+import { productTypeNames as acceptedProductTypes, COURSE } from './constants';
 
 const defaultSetting = [COURSE];
 
@@ -37,3 +37,17 @@ export const useProductTypes = () => {
   // if no types were set, use default setting
   return checkedTypes.length > 0 ? checkedTypes : defaultSetting;
 };
+
+export const getProductKeys = (recommendations) => (
+  Object.fromEntries(
+    acceptedProductTypes.map(type => (
+      [
+        type,
+        recommendations[type]?.map(rec => ({
+          title: rec.title,
+          courserun_key: rec.active_run_key,
+        })),
+      ]
+    )),
+  )
+);

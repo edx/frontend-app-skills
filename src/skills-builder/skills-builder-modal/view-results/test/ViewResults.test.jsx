@@ -62,16 +62,18 @@ describe('view-results', () => {
           selected_recommendations: {
             job_id: 0,
             job_name: 'Prospector',
-            courserun_keys: [
-              {
-                title: 'Mining with the Mons',
-                courserun_key: 'MONS101',
-              },
-              {
-                title: 'The Art of Warren Upkeep',
-                courserun_key: 'WAR101',
-              },
-            ],
+            courserun_keys: {
+              course: [
+                {
+                  title: 'Mining with the Mons',
+                  courserun_key: 'MONS101',
+                },
+                {
+                  title: 'The Art of Warren Upkeep',
+                  courserun_key: 'WAR101',
+                },
+              ],
+            },
           },
           is_default: true,
         },
@@ -80,13 +82,16 @@ describe('view-results', () => {
       expect(sendTrackEvent).toHaveBeenCalledTimes(2);
     });
 
-    it('renders a carousel of <Card> components', () => {
-      expect(screen.getByText('Course recommendations for Prospector')).toBeTruthy();
+    // TODO: go over tests and try to find holes
+    // TODO: write tests for other LOBs
+
+    it('renders a grid of <Card> components', () => {
+      expect(screen.getByText('"Prospector" courses')).toBeTruthy();
     });
 
     it('changes the recommendations based on the selected job title', () => {
       fireEvent.click(screen.getByRole('radio', { name: 'Mirror Breaker' }));
-      expect(screen.getByText('Course recommendations for Mirror Breaker')).toBeTruthy();
+      expect(screen.getByText('"Mirror Breaker" courses')).toBeTruthy();
       expect(sendTrackEvent).toHaveBeenCalledWith(
         'edx.skills_builder.recommendation.shown',
         {
@@ -96,16 +101,18 @@ describe('view-results', () => {
           selected_recommendations: {
             job_id: 1,
             job_name: 'Mirror Breaker',
-            courserun_keys: [
-              {
-                title: 'Mining with the Mons',
-                courserun_key: 'MONS101',
-              },
-              {
-                title: 'The Art of Warren Upkeep',
-                courserun_key: 'WAR101',
-              },
-            ],
+            courserun_keys: {
+              course: [
+                {
+                  title: 'Mining with the Mons',
+                  courserun_key: 'MONS101',
+                },
+                {
+                  title: 'The Art of Warren Upkeep',
+                  courserun_key: 'WAR101',
+                },
+              ],
+            },
           },
           is_default: false,
         },
@@ -140,16 +147,18 @@ describe('view-results', () => {
           selected_recommendations: {
             job_id: 0,
             job_name: 'Prospector',
-            courserun_keys: [
-              {
-                title: 'Mining with the Mons',
-                courserun_key: 'MONS101',
-              },
-              {
-                title: 'The Art of Warren Upkeep',
-                courserun_key: 'WAR101',
-              },
-            ],
+            courserun_keys: {
+              course: [
+                {
+                  title: 'Mining with the Mons',
+                  courserun_key: 'MONS101',
+                },
+                {
+                  title: 'The Art of Warren Upkeep',
+                  courserun_key: 'WAR101',
+                },
+              ],
+            },
           },
         },
       );

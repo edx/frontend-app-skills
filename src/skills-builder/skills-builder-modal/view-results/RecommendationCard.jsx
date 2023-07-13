@@ -18,9 +18,9 @@ const RecommendationCard = ({ rec, productType, handleCourseCardClick }) => {
   const { logoImageUrl } = owners[0];
 
   return (
-    <Hyperlink destination={marketingUrl} target="_blank" showLaunchIcon={false}>
+    <Hyperlink destination={marketingUrl} target="_blank" showLaunchIcon={false} className="w-100">
       <Card
-        className="carousel-card"
+        className="product-card"
         onClick={() => handleCourseCardClick(courseKey, productType)}
       >
         <Card.ImageCap
@@ -28,8 +28,9 @@ const RecommendationCard = ({ rec, productType, handleCourseCardClick }) => {
           logoSrc={logoImageUrl}
           fallbackSrc={cardImageCapFallbackSrc}
           fallbackLogoSrc={cardImageCapFallbackSrc}
+          logoSkeleton
         />
-        <Card.Header title={title} />
+        <Card.Header title={title} size="sm" />
         <Card.Section>
           {partner.map((orgName, index) => (
             // eslint-disable-next-line react/no-array-index-key
@@ -53,7 +54,7 @@ RecommendationCard.propTypes = {
       key: PropTypes.string,
       logoImageUrl: PropTypes.string,
     })),
-    active_run_key: PropTypes.string.isRequired,
+    active_run_key: PropTypes.string,
   }).isRequired,
   productType: PropTypes.string.isRequired,
   handleCourseCardClick: PropTypes.func.isRequired,
