@@ -28,7 +28,6 @@ const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
   };
 
   const handleShowAllButtonClick = (type) => {
-    console.log(getProductKeys(recommendations));
     if (showAllButtonClickedList.includes(type)) {
       setShowButtonClickedList(prev => prev.filter(item => item !== type));
       return;
