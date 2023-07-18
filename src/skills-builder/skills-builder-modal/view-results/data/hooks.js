@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { productTypes as acceptedProductTypes, COURSE } from './constants';
+import { productTypeNames as acceptedProductTypes, COURSE } from './constants';
 
 const defaultSetting = [COURSE];
 

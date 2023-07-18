@@ -70,6 +70,28 @@ export const mockData = {
     },
   ],
   useAlgoliaSearch: [{}, {}, {}],
+  productKeys: {
+    course: [
+      { title: 'Mining with the Mons', courserun_key: 'MONS101' },
+      { title: 'The Art of Warren Upkeep', courserun_key: 'WAR101' },
+    ],
+    '2U_degree': [
+      { title: 'Mining with the Mons', courserun_key: 'MONS101' },
+      { title: 'The Art of Warren Upkeep', courserun_key: 'WAR101' },
+    ],
+    program: [
+      { title: 'Mining with the Mons', courserun_key: 'MONS101' },
+      { title: 'The Art of Warren Upkeep', courserun_key: 'WAR101' },
+    ],
+    boot_camp: [
+      { title: 'Mining with the Mons', courserun_key: 'MONS101' },
+      { title: 'The Art of Warren Upkeep', courserun_key: 'WAR101' },
+    ],
+    executive_education: [
+      { title: 'Mining with the Mons', courserun_key: 'MONS101' },
+      { title: 'The Art of Warren Upkeep', courserun_key: 'WAR101' },
+    ],
+  },
 };
 
 export default mockData;

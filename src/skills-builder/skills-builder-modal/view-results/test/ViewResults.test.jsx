@@ -5,9 +5,14 @@ import { mergeConfig } from '@edx/frontend-platform';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { SkillsBuilderWrapperWithContext, contextValue } from '../../../test/setupSkillsBuilder';
 import { getProductRecommendations } from '../../../utils/search';
+import { mockData } from '../../../test/__mocks__/jobSkills.mockData';
 
 jest.mock('@edx/frontend-platform/analytics', () => ({
   sendTrackEvent: jest.fn(),
+}));
+
+jest.mock('../data/hooks', () => ({
+  useProductTypes: () => ['course', 'boot_camp', 'executive_education', '2U_degree', 'program'],
 }));
 
 const renderSkillsBuilderWrapper = (
@@ -25,7 +30,7 @@ const renderSkillsBuilderWrapper = (
 };
 
 describe('view-results', () => {
-  beforeAll(() => {
+  beforeAll(async () => {
     mergeConfig({
       ALGOLIA_JOBS_INDEX_NAME: 'test-job-index-name',
     });
@@ -62,16 +67,7 @@ describe('view-results', () => {
           selected_recommendations: {
             job_id: 0,
             job_name: 'Prospector',
-            courserun_keys: [
-              {
-                title: 'Mining with the Mons',
-                courserun_key: 'MONS101',
-              },
-              {
-                title: 'The Art of Warren Upkeep',
-                courserun_key: 'WAR101',
-              },
-            ],
+            courserun_keys: mockData.productKeys,
           },
           is_default: true,
         },
@@ -80,13 +76,9 @@ describe('view-results', () => {
       expect(sendTrackEvent).toHaveBeenCalledTimes(2);
     });
 
-    it('renders a carousel of <Card> components', () => {
-      expect(screen.getByText('Course recommendations for Prospector')).toBeTruthy();
-    });
-
     it('changes the recommendations based on the selected job title', () => {
       fireEvent.click(screen.getByRole('radio', { name: 'Mirror Breaker' }));
-      expect(screen.getByText('Course recommendations for Mirror Breaker')).toBeTruthy();
+      expect(screen.getByText('"Mirror Breaker" courses')).toBeTruthy();
       expect(sendTrackEvent).toHaveBeenCalledWith(
         'edx.skills_builder.recommendation.shown',
         {
@@ -96,16 +88,7 @@ describe('view-results', () => {
           selected_recommendations: {
             job_id: 1,
             job_name: 'Mirror Breaker',
-            courserun_keys: [
-              {
-                title: 'Mining with the Mons',
-                courserun_key: 'MONS101',
-              },
-              {
-                title: 'The Art of Warren Upkeep',
-                courserun_key: 'WAR101',
-              },
-            ],
+            courserun_keys: mockData.productKeys,
           },
           is_default: false,
         },
@@ -128,7 +111,7 @@ describe('view-results', () => {
     });
 
     it('fires an event when a product recommendation is clicked', () => {
-      fireEvent.click(screen.getByText('Mining with the Mons'));
+      fireEvent.click(screen.getAllByText('Mining with the Mons')[0]);
       expect(sendTrackEvent).toHaveBeenCalledWith(
         'edx.skills_builder.recommendation.click',
         {
@@ -140,19 +123,24 @@ describe('view-results', () => {
           selected_recommendations: {
             job_id: 0,
             job_name: 'Prospector',
-            courserun_keys: [
-              {
-                title: 'Mining with the Mons',
-                courserun_key: 'MONS101',
-              },
-              {
-                title: 'The Art of Warren Upkeep',
-                courserun_key: 'WAR101',
-              },
-            ],
+            courserun_keys: mockData.productKeys,
           },
         },
       );
+    });
+
+    it('expands the list of recommendations when a KeyboardArrow Icon is clicked', () => {
+      expect(screen.queryAllByRole('button', { expanded: true })).toHaveLength(0);
+      fireEvent.click(screen.getByTestId('boot_camp-expand-button'));
+      expect(screen.queryAllByRole('button', { expanded: true })).toHaveLength(1);
+    });
+
+    it('renders a list of recommendations for each line of business', () => {
+      expect(screen.getByText('"Prospector" degrees')).toBeTruthy();
+      expect(screen.getByText('"Prospector" bootcamps')).toBeTruthy();
+      expect(screen.getByText('"Prospector" executive education')).toBeTruthy();
+      expect(screen.getByText('"Prospector" programs')).toBeTruthy();
+      expect(screen.getByText('"Prospector" courses')).toBeTruthy();
     });
   });
 
