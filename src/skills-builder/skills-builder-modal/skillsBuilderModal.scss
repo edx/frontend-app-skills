@@ -19,6 +19,9 @@ $breakpoint-medium: 992px;
       top: 0.5rem;
     }
   }
+  .overflow-scroll-medium {
+    overflow: scroll;
+}
 }
 
 @media (min-width: $breakpoint-medium) {
