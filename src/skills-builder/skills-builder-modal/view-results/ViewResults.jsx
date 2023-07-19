@@ -1,5 +1,5 @@
 import React, {
-  useContext, useEffect, useState,
+  useContext, useEffect, useState, useRef,
 } from 'react';
 import {
   Stack, Row, Alert, Spinner,
@@ -10,10 +10,11 @@ import { CheckCircle, ErrorOutline } from '@edx/paragon/icons';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import RelatedSkillsSelectableBoxSet from './RelatedSkillsSelectableBoxSet';
 import messages from './messages';
-import CarouselStack from './CarouselStack';
+import RecommendationStack from './RecommendationStack';
 
 import { getRecommendations } from './data/service';
 import { useProductTypes } from './data/hooks';
+import { extractProductKeys } from '../../utils/extractProductKeys';
 
 const ViewResults = () => {
   const { formatMessage } = useIntl();
@@ -28,12 +29,12 @@ const ViewResults = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState(false);
 
-  const productTypes = useProductTypes();
+  const productTypes = useRef(useProductTypes());
 
   useEffect(() => {
     const getAllRecommendations = async () => {
       // eslint-disable-next-line max-len
-      const { jobInfo, results } = await getRecommendations(jobSearchIndex, productSearchIndex, careerInterests, productTypes);
+      const { jobInfo, results } = await getRecommendations(jobSearchIndex, productSearchIndex, careerInterests, productTypes.current);
 
       setJobSkillsList(jobInfo);
       setSelectedJobTitle(results[0].name);
@@ -47,10 +48,7 @@ const ViewResults = () => {
           job_id: results[0].id,
           job_name: results[0].name,
           /* We extract the title and course key into an array of objects */
-          courserun_keys: results[0].recommendations.course?.map(rec => ({
-            title: rec.title,
-            courserun_key: rec.active_run_key,
-          })),
+          courserun_keys: extractProductKeys(results[0].recommendations),
         },
         is_default: true,
       });
@@ -73,10 +71,6 @@ const ViewResults = () => {
     setSelectedJobTitle(value);
     const currentSelection = productRecommendations.find(rec => rec.name === value);
     const { id: jobId, name: jobName, recommendations } = currentSelection;
-    const courseKeys = recommendations.course?.map(rec => ({
-      title: rec.title,
-      courserun_key: rec.active_run_key,
-    }));
     /*
       The is_default value will be set to false for any selections made by the user.
       This code is intentionally duplicated from the event that fires in the useEffect for fetching recommendations.
@@ -91,7 +85,7 @@ const ViewResults = () => {
       selected_recommendations: {
         job_id: jobId,
         job_name: jobName,
-        courserun_keys: courseKeys,
+        courserun_keys: extractProductKeys(recommendations),
       },
       is_default: false,
     });
@@ -136,7 +130,10 @@ const ViewResults = () => {
           onChange={handleJobTitleChange}
         />
 
-        <CarouselStack selectedRecommendations={selectedRecommendations} productTypeNames={productTypes} />
+        <RecommendationStack
+          selectedRecommendations={selectedRecommendations}
+          productTypeNames={productTypes.current}
+        />
       </Stack>
     )
   );

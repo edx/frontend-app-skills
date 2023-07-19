@@ -20,7 +20,7 @@ const RecommendationCard = ({ rec, productType, handleCourseCardClick }) => {
   return (
     <Hyperlink destination={marketingUrl} target="_blank" showLaunchIcon={false}>
       <Card
-        className="carousel-card"
+        className="product-card"
         onClick={() => handleCourseCardClick(courseKey, productType)}
       >
         <Card.ImageCap

@@ -23,8 +23,48 @@ const messages = defineMessages({
   },
   productRecommendationsHeaderText: {
     id: 'product.recommendations.header.text',
-    defaultMessage: '{productType} recommendations for {jobName}',
+    defaultMessage: '"{jobName}" {productTypeHeaderText}',
     description: 'Header text for a carousel of product recommendations.',
+  },
+  productTypeBannerResults: {
+    id: 'product.type.banner.results',
+    defaultMessage: '{numberResults} results on edX',
+    description: 'The number of total results',
+  },
+  productTypeBannerShowAll: {
+    id: 'product.type.banner.show.all',
+    defaultMessage: 'Show all ({numberResults}) {arrowIcon}',
+    description: 'Show all button text',
+  },
+  productTypeBannerShowLess: {
+    id: 'product.type.banner.show.less',
+    defaultMessage: 'Show less ({numberResults}) {arrowIcon}',
+    description: 'Show less button text',
+  },
+  productTypeCourseText: {
+    id: 'product.type.course.text',
+    defaultMessage: 'courses',
+    description: 'Header text for courses',
+  },
+  productTypeProgramText: {
+    id: 'product.type.program.text',
+    defaultMessage: 'programs',
+    description: 'Header text for programs',
+  },
+  productTypeBootCampText: {
+    id: 'product.type.boot_camp.text',
+    defaultMessage: 'bootcamps',
+    description: 'Header text for bootcamps',
+  },
+  productTypeExecutiveEducationText: {
+    id: 'product.type.executive_education.text',
+    defaultMessage: 'executive education',
+    description: 'Header text for executive education',
+  },
+  productTypeDegreeText: {
+    id: 'product.type.degree.text',
+    defaultMessage: 'degrees',
+    description: 'Header text for degrees',
   },
 });
 
