@@ -26,9 +26,30 @@ export const useAlgoliaSearch = () => {
         config.ALGOLIA_APP_ID,
         config.ALGOLIA_SEARCH_API_KEY,
       );
+      const searchNotEmptyClient = {
+        ...client,
+        search(requests) {
+          if (requests.every(({ params }) => !params.query)) {
+            return Promise.resolve({
+              results: requests.map(() => ({
+                hits: [],
+                nbHits: 0,
+                nbPages: 0,
+                page: 0,
+                processingTimeMS: 0,
+                hitsPerPage: 0,
+                exhaustiveNbHits: false,
+                query: '',
+                params: '',
+              })),
+            });
+          }
+          return client.search(requests);
+        },
+      };
       const productIndex = client.initIndex(config.ALGOLIA_PRODUCT_INDEX_NAME);
       const jobIndex = client.initIndex(config.ALGOLIA_JOBS_INDEX_NAME);
-      return [client, productIndex, jobIndex];
+      return [searchNotEmptyClient, productIndex, jobIndex];
     },
     [
       config.ALGOLIA_APP_ID,
