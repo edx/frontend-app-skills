@@ -4,7 +4,7 @@ import {
 import { mergeConfig } from '@edx/frontend-platform';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import messages from '../messages';
-import { SkillsBuilderWrapperWithContext, contextValue } from '../../../test/setupSkillsBuilder';
+import { SkillsBuilderWrapperWithContext, contextValue, dispatchMock } from '../../../test/setupSkillsBuilder';
 import { getProductRecommendations } from '../../../utils/search';
 import { mockData } from '../../../test/__mocks__/jobSkills.mockData';
 
@@ -68,7 +68,7 @@ describe('view-results', () => {
           selected_recommendations: {
             job_id: 0,
             job_name: 'Prospector',
-            courserun_keys: mockData.productKeys,
+            product_keys: mockData.productKeys,
           },
           is_default: true,
         },
@@ -89,7 +89,7 @@ describe('view-results', () => {
           selected_recommendations: {
             job_id: 1,
             job_name: 'Mirror Breaker',
-            courserun_keys: mockData.productKeys,
+            product_keys: mockData.productKeys,
           },
           is_default: false,
         },
@@ -120,20 +120,14 @@ describe('view-results', () => {
           category: 'skills_builder',
           page: 'skills_builder',
           courserun_key: 'MONS101',
-          product_type: 'course',
+          product_line: 'course',
           selected_recommendations: {
             job_id: 0,
             job_name: 'Prospector',
-            courserun_keys: mockData.productKeys,
+            product_keys: mockData.productKeys,
           },
         },
       );
-    });
-
-    it('expands the list of recommendations when a KeyboardArrow Icon is clicked', () => {
-      expect(screen.queryAllByRole('button', { expanded: true })).toHaveLength(0);
-      fireEvent.click(screen.getByTestId('boot_camp-expand-button'));
-      expect(screen.queryAllByRole('button', { expanded: true })).toHaveLength(1);
     });
 
     it('renders a list of recommendations for each line of business', () => {
@@ -150,6 +144,59 @@ describe('view-results', () => {
       expect(screen.getByText(messages.productTypeExecutiveEducationDescription.defaultMessage)).toBeTruthy();
       expect(screen.getByText(messages.productTypeProgramDescription.defaultMessage)).toBeTruthy();
       expect(screen.getByText(messages.productTypeCourseDescription.defaultMessage)).toBeTruthy();
+    });
+  });
+
+  describe('show all button', () => {
+    it('adds product type to the list of recommendations when a dropdown is expanded', async () => {
+      renderSkillsBuilderWrapper();
+      await act(async () => {
+        fireEvent.click(screen.getByRole('button', { name: 'Next Step' }));
+      });
+      fireEvent.click(screen.getByTestId('course-expand-button'));
+      expect(dispatchMock).toHaveBeenCalledWith({
+        payload: 'course',
+        type: 'ADD_TO_EXPANDED_LIST',
+      });
+      expect(sendTrackEvent).toHaveBeenCalledWith('edx.skills_builder.show_all.click', {
+        app_name: 'skills_builder',
+        category: 'skills_builder',
+        page: 'skills_builder',
+        product_line: 'course',
+        number_recommendations: 2,
+      });
+      expect(sendTrackEvent).toHaveBeenCalledWith('edx.skills_builder.recommendation.expanded.shown', {
+        app_name: 'skills_builder',
+        category: 'skills_builder',
+        page: 'skills_builder',
+        product_line: 'course',
+        selected_recommendations: {
+          job_id: 0,
+          job_name: 'Prospector',
+          product_keys: mockData.productKeys,
+        },
+      });
+    });
+    it('remove product type from the list of recommendations when a dropdown is minimized', async () => {
+      render(SkillsBuilderWrapperWithContext({
+        ...contextValue,
+        state: {
+          ...contextValue.state,
+          currentGoal: 'I want to start my career',
+          currentJobTitle: 'Goblin Lackey',
+          careerInterests: ['Prospector', 'Mirror Breaker', 'Bombardment'],
+          expandedList: ['course'],
+        },
+      }));
+      await act(async () => {
+        fireEvent.click(screen.getByRole('button', { name: 'Next Step' }));
+      });
+      expect(screen.queryAllByRole('button', { expanded: true })).toHaveLength(1);
+      fireEvent.click(screen.getByTestId('course-expand-button'));
+      expect(dispatchMock).toHaveBeenCalledWith({
+        payload: 'course',
+        type: 'REMOVE_FROM_EXPANDED_LIST',
+      });
     });
   });
 

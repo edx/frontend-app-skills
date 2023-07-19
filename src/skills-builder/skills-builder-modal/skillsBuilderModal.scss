@@ -8,6 +8,12 @@
   max-width: 18rem;
 }
 
+.product-card {
+  .chip-max-width {
+    max-width: 100%;
+  }
+}
+
 $breakpoint-medium: 992px;
 @media (max-width: $breakpoint-medium) {
   .med-min-height {
@@ -21,13 +27,5 @@ $breakpoint-medium: 992px;
   }
   .overflow-scroll-medium {
     overflow: scroll;
-}
-}
-
-@media (min-width: $breakpoint-medium) {
-  .product-card {
-    .chip-max-width {
-      width: 100%;
-    }
   }
 }

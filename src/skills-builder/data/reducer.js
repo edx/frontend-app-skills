@@ -3,6 +3,9 @@ import {
   SET_CURRENT_JOB_TITLE,
   ADD_CAREER_INTEREST,
   REMOVE_CAREER_INTEREST,
+  ADD_TO_EXPANDED_LIST,
+  REMOVE_FROM_EXPANDED_LIST,
+  SET_EXPANDED_LIST,
 } from './constants';
 
 export function skillsReducer(state, action) {
@@ -27,6 +30,21 @@ export function skillsReducer(state, action) {
         ...state,
         careerInterests: state.careerInterests.filter(interest => interest !== action.payload),
       };
+    case ADD_TO_EXPANDED_LIST:
+      return {
+        ...state,
+        expandedList: [...state.expandedList, action.payload],
+      };
+    case REMOVE_FROM_EXPANDED_LIST:
+      return {
+        ...state,
+        expandedList: state.expandedList.filter(item => item !== action.payload),
+      };
+    case SET_EXPANDED_LIST:
+      return {
+        ...state,
+        expandedList: action.payload,
+      };
     default:
       return state;
   }
@@ -36,6 +54,7 @@ export const skillsInitialState = {
   currentGoal: '',
   currentJobTitle: '',
   careerInterests: [],
+  expandedList: [],
 };
 
 export default skillsReducer;

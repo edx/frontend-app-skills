@@ -21,6 +21,7 @@ const ProductTypeBanner = ({
   const isLarge = useMediaQuery({ minWidth: breakpoints.large.minWidth });
 
   const normalizeProductTitle = () => {
+    // construct the title text based on the provided productTypeName
     switch (productTypeName) {
       case COURSE:
         return formatMessage(messages.productTypeCourseText);
@@ -67,6 +68,7 @@ const ProductTypeBanner = ({
   };
 
   const infoStackProps = {
+    // props for the Stack with description, number of results, and "Show all" button
     gap: 2,
     direction: isLarge ? 'horizontal' : 'vertical',
     className: 'justify-content-between align-items-start',
@@ -75,7 +77,7 @@ const ProductTypeBanner = ({
   const showAllButtonProps = {
     variant: 'link',
     className: 'p-0',
-    onClick: () => handleShowAllButtonClick(productTypeName),
+    onClick: () => handleShowAllButtonClick(productTypeName, numberResults),
     'aria-expanded': isExpanded ? 'true' : 'false',
     'aria-controls': `card-grid-${productTypeName}`,
     'data-testid': `${productTypeName}-expand-button`,

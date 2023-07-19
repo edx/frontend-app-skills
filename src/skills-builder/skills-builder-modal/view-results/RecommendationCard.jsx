@@ -5,7 +5,9 @@ import {
 import PropTypes from 'prop-types';
 import cardImageCapFallbackSrc from '../../images/card-imagecap-fallback.png';
 
-const RecommendationCard = ({ rec, productType, handleCourseCardClick }) => {
+const RecommendationCard = ({
+  rec, productType, handleCourseCardClick, indexInList,
+}) => {
   const {
     card_image_url: cardImageUrl,
     marketing_url: marketingUrl,
@@ -19,14 +21,14 @@ const RecommendationCard = ({ rec, productType, handleCourseCardClick }) => {
 
   return (
     <Card
+      as={Hyperlink}
+      target="_blank"
+      showLaunchIcon={false}
+      destination={marketingUrl}
       className="product-card"
-      onClick={() => handleCourseCardClick(courseKey, productType)}
+      onClick={() => handleCourseCardClick(courseKey, productType, indexInList)}
     >
       <Card.ImageCap
-        as={Hyperlink}
-        destination={marketingUrl}
-        target="_blank"
-        showLaunchIcon={false}
         src={cardImageUrl}
         logoSrc={logoImageUrl}
         fallbackSrc={cardImageCapFallbackSrc}
@@ -59,6 +61,11 @@ RecommendationCard.propTypes = {
   }).isRequired,
   productType: PropTypes.string.isRequired,
   handleCourseCardClick: PropTypes.func.isRequired,
+  indexInList: PropTypes.number,
+};
+
+RecommendationCard.defaultProps = {
+  indexInList: 0,
 };
 
 export default RecommendationCard;
