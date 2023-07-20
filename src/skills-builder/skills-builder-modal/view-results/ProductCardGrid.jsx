@@ -12,15 +12,16 @@ const ProductCardGrid = ({
       md: 6,
       lg: 3,
     }}
-    hasEqualColumnHeights
+    hasEqualColumnHeights={false}
   >
     {isExpanded ? (
-      productTypeRecommendations?.map(rec => (
+      productTypeRecommendations?.map((rec, index) => (
         <RecommendationCard
           key={rec.uuid}
           handleCourseCardClick={handleCourseCardClick}
           rec={rec}
           productType={productTypeName}
+          indexInList={index}
         />
       ))
     ) : (

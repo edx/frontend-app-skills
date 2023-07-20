@@ -4,6 +4,9 @@ import {
   SET_CURRENT_JOB_TITLE,
   ADD_CAREER_INTEREST,
   REMOVE_CAREER_INTEREST,
+  ADD_TO_EXPANDED_LIST,
+  REMOVE_FROM_EXPANDED_LIST,
+  SET_EXPANDED_LIST,
 } from '../constants';
 
 describe('skillsReducer', () => {
@@ -55,6 +58,52 @@ describe('skillsReducer', () => {
       // override the 'careerInterests` field and remove 'test-career-interest' from the array
       careerInterests: testStateWithInterest.careerInterests.filter(interest => interest !== newCareerInterestPayload),
     };
+    expect(returnedState).toEqual(finalState);
+  });
+
+  it('adds to the list of expanded recommendations', () => {
+    const newPayload = 'course';
+    const returnedState = skillsReducer(
+      testState,
+      { type: ADD_TO_EXPANDED_LIST, payload: newPayload },
+    );
+    const finalState = {
+      ...testState,
+      expandedList: [newPayload],
+    };
+
+    expect(returnedState).toEqual(finalState);
+  });
+
+  it('removes from the list of expanded recommendations', () => {
+    const newPayload = 'course';
+    const testStateWithPayload = {
+      ...testState,
+      expandedList: [newPayload],
+    };
+    const returnedState = skillsReducer(
+      testStateWithPayload,
+      { type: REMOVE_FROM_EXPANDED_LIST, payload: newPayload },
+    );
+    const finalState = {
+      ...testState,
+      expandedList: [],
+    };
+
+    expect(returnedState).toEqual(finalState);
+  });
+
+  it('modifies the list of expanded recommendations', () => {
+    const newPayload = ['course', 'boot_camp'];
+    const returnedState = skillsReducer(
+      testState,
+      { type: SET_EXPANDED_LIST, payload: newPayload },
+    );
+    const finalState = {
+      ...testState,
+      expandedList: newPayload,
+    };
+
     expect(returnedState).toEqual(finalState);
   });
 });

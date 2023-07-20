@@ -15,10 +15,11 @@ import RecommendationStack from './RecommendationStack';
 import { getRecommendations } from './data/service';
 import { useProductTypes } from './data/hooks';
 import { extractProductKeys } from '../../utils/extractProductKeys';
+import { setExpandedList } from '../../data/actions';
 
 const ViewResults = () => {
   const { formatMessage } = useIntl();
-  const { algolia, state } = useContext(SkillsBuilderContext);
+  const { algolia, state, dispatch } = useContext(SkillsBuilderContext);
   const { jobSearchIndex, productSearchIndex } = algolia;
   const { careerInterests } = state;
 
@@ -48,7 +49,7 @@ const ViewResults = () => {
           job_id: results[0].id,
           job_name: results[0].name,
           /* We extract the title and course key into an array of objects */
-          courserun_keys: extractProductKeys(results[0].recommendations),
+          product_keys: extractProductKeys(results[0].recommendations),
         },
         is_default: true,
       });
@@ -68,27 +69,32 @@ const ViewResults = () => {
 
   const handleJobTitleChange = (e) => {
     const { value } = e.target;
-    setSelectedJobTitle(value);
-    const currentSelection = productRecommendations.find(rec => rec.name === value);
-    const { id: jobId, name: jobName, recommendations } = currentSelection;
-    /*
-      The is_default value will be set to false for any selections made by the user.
-      This code is intentionally duplicated from the event that fires in the useEffect for fetching recommendations.
-      This proved less clunky than refactoring to make things DRY as we have to ensure the first call fires only once.
-      The previous implementation wrapped the event in an additional useEffect that was looping unnecessarily.
-      We have plans to refactor all of the event code as part of APER-2392, where we will revisit this approach.
-    */
-    sendTrackEvent('edx.skills_builder.recommendation.shown', {
-      app_name: 'skills_builder',
-      category: 'skills_builder',
-      page: 'skills_builder',
-      selected_recommendations: {
-        job_id: jobId,
-        job_name: jobName,
-        courserun_keys: extractProductKeys(recommendations),
-      },
-      is_default: false,
-    });
+    // check if the clicked target is different than the currently selected job title box
+    if (selectedJobTitle !== value) {
+      // set the expanded list to an empty array so each grid will render un-expanded
+      dispatch(setExpandedList([]));
+      setSelectedJobTitle(value);
+      const currentSelection = productRecommendations.find(rec => rec.name === value);
+      const { id: jobId, name: jobName, recommendations } = currentSelection;
+      /*
+        The is_default value will be set to false for any selections made by the user.
+        This code is intentionally duplicated from the event that fires in the useEffect for fetching recommendations.
+        This proved less clunky than refactoring to make things DRY as we have to ensure the first call fires only once.
+        The previous implementation wrapped the event in an additional useEffect that was looping unnecessarily.
+        We have plans to refactor all of the event code as part of APER-2392, where we will revisit this approach.
+      */
+      sendTrackEvent('edx.skills_builder.recommendation.shown', {
+        app_name: 'skills_builder',
+        category: 'skills_builder',
+        page: 'skills_builder',
+        selected_recommendations: {
+          job_id: jobId,
+          job_name: jobName,
+          product_keys: extractProductKeys(recommendations),
+        },
+        is_default: false,
+      });
+    }
   };
 
   if (fetchError) {
