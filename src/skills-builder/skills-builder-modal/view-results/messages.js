@@ -66,6 +66,31 @@ const messages = defineMessages({
     defaultMessage: 'degrees',
     description: 'Header text for degrees',
   },
+  productTypeCourseDescription: {
+    id: 'product.type.course.description',
+    defaultMessage: 'Find new interests and advance career opportunities',
+    description: 'Description of courses product',
+  },
+  productTypeProgramDescription: {
+    id: 'product.type.program.description',
+    defaultMessage: 'Series of courses for a deep understanding of a topic',
+    description: 'Description of programs product',
+  },
+  productTypeBootCampDescription: {
+    id: 'product.type.boot_camp.description',
+    defaultMessage: 'Intensive, hands-on, project based learning',
+    description: 'Description of bootcamps product',
+  },
+  productTypeExecutiveEducationDescription: {
+    id: 'product.type.executive_education.description',
+    defaultMessage: 'Expert-led, fully supported courses that build career-critical skills',
+    description: 'Description of executive education product',
+  },
+  productTypeDegreeDescription: {
+    id: 'product.type.degree.description',
+    defaultMessage: 'Online degree programs from top universities',
+    description: 'Description of degrees product',
+  },
 });
 
 export default messages;

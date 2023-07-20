@@ -37,6 +37,23 @@ const ProductTypeBanner = ({
     }
   };
 
+  const normalizeProductDescription = () => {
+    switch (productTypeName) {
+      case COURSE:
+        return formatMessage(messages.productTypeCourseDescription);
+      case BOOT_CAMP:
+        return formatMessage(messages.productTypeBootCampDescription);
+      case EXECUTIVE_EDUCATION:
+        return formatMessage(messages.productTypeExecutiveEducationDescription);
+      case DEGREE:
+        return formatMessage(messages.productTypeDegreeDescription);
+      case PROGRAM:
+        return formatMessage(messages.productTypeProgramDescription);
+      default:
+        return '';
+    }
+  };
+
   const renderTitle = () => {
     const productTypeHeaderText = normalizeProductTitle(productTypeName);
     return (
@@ -67,6 +84,9 @@ const ProductTypeBanner = ({
   return (
     <Stack>
       {renderTitle(productTypeName)}
+      <span>
+        {normalizeProductDescription(productTypeName)}
+      </span>
       <Stack {...infoStackProps}>
         <span>
           {formatMessage(messages.productTypeBannerResults, {
