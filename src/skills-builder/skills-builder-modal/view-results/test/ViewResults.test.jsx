@@ -3,6 +3,7 @@ import {
 } from '@testing-library/react';
 import { mergeConfig } from '@edx/frontend-platform';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
+import messages from '../messages';
 import { SkillsBuilderWrapperWithContext, contextValue } from '../../../test/setupSkillsBuilder';
 import { getProductRecommendations } from '../../../utils/search';
 import { mockData } from '../../../test/__mocks__/jobSkills.mockData';
@@ -141,6 +142,14 @@ describe('view-results', () => {
       expect(screen.getByText('"Prospector" executive education')).toBeTruthy();
       expect(screen.getByText('"Prospector" programs')).toBeTruthy();
       expect(screen.getByText('"Prospector" courses')).toBeTruthy();
+    });
+
+    it('provides subtitles for each line of business', () => {
+      expect(screen.getByText(messages.productTypeDegreeDescription.defaultMessage)).toBeTruthy();
+      expect(screen.getByText(messages.productTypeBootCampDescription.defaultMessage)).toBeTruthy();
+      expect(screen.getByText(messages.productTypeExecutiveEducationDescription.defaultMessage)).toBeTruthy();
+      expect(screen.getByText(messages.productTypeProgramDescription.defaultMessage)).toBeTruthy();
+      expect(screen.getByText(messages.productTypeCourseDescription.defaultMessage)).toBeTruthy();
     });
   });
 

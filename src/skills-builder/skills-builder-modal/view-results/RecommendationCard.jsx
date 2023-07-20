@@ -18,28 +18,30 @@ const RecommendationCard = ({ rec, productType, handleCourseCardClick }) => {
   const { logoImageUrl } = owners[0];
 
   return (
-    <Hyperlink destination={marketingUrl} target="_blank" showLaunchIcon={false}>
-      <Card
-        className="product-card"
-        onClick={() => handleCourseCardClick(courseKey, productType)}
-      >
-        <Card.ImageCap
-          src={cardImageUrl}
-          logoSrc={logoImageUrl}
-          fallbackSrc={cardImageCapFallbackSrc}
-          fallbackLogoSrc={cardImageCapFallbackSrc}
-        />
-        <Card.Header title={title} />
-        <Card.Section>
-          {partner.map((orgName, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <Chip key={index} className="chip-max-width">
-              {orgName}
-            </Chip>
-          ))}
-        </Card.Section>
-      </Card>
-    </Hyperlink>
+    <Card
+      className="product-card"
+      onClick={() => handleCourseCardClick(courseKey, productType)}
+    >
+      <Card.ImageCap
+        as={Hyperlink}
+        destination={marketingUrl}
+        target="_blank"
+        showLaunchIcon={false}
+        src={cardImageUrl}
+        logoSrc={logoImageUrl}
+        fallbackSrc={cardImageCapFallbackSrc}
+        fallbackLogoSrc={cardImageCapFallbackSrc}
+      />
+      <Card.Header title={title} size="sm" />
+      <Card.Section>
+        {partner.map((orgName, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <Chip key={index} className="chip-max-width">
+            {orgName}
+          </Chip>
+        ))}
+      </Card.Section>
+    </Card>
   );
 };
 
