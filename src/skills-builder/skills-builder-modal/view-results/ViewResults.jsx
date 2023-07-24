@@ -4,6 +4,7 @@ import React, {
 import {
   Stack, Row, Alert, Spinner,
 } from '@edx/paragon';
+import { logError } from '@edx/frontend-platform/logging';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { CheckCircle, ErrorOutline } from '@edx/paragon/icons';
@@ -56,7 +57,8 @@ const ViewResults = () => {
     };
 
     getAllRecommendations()
-      .catch(() => {
+      .catch((err) => {
+        logError(err);
         setFetchError(true);
         setIsLoading(false);
       });

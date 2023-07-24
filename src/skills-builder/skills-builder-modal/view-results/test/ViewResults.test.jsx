@@ -7,13 +7,14 @@ import messages from '../messages';
 import { SkillsBuilderWrapperWithContext, contextValue, dispatchMock } from '../../../test/setupSkillsBuilder';
 import { getProductRecommendations } from '../../../utils/search';
 import { mockData } from '../../../test/__mocks__/jobSkills.mockData';
+import { useProductTypes } from '../data/hooks';
 
 jest.mock('@edx/frontend-platform/analytics', () => ({
   sendTrackEvent: jest.fn(),
 }));
 
 jest.mock('../data/hooks', () => ({
-  useProductTypes: () => ['course', 'boot_camp', 'executive_education', '2U_degree', 'program'],
+  useProductTypes: jest.fn(),
 }));
 
 const renderSkillsBuilderWrapper = (
@@ -38,6 +39,10 @@ describe('view-results', () => {
   });
 
   describe('user interface', () => {
+    beforeAll(() => {
+      useProductTypes.mockImplementation(() => (['2U_degree', 'boot_camp', 'executive_education', 'program', 'course']));
+    });
+
     beforeEach(async () => {
       cleanup();
       // Render the form filled out
@@ -120,7 +125,7 @@ describe('view-results', () => {
           category: 'skills_builder',
           page: 'skills_builder',
           courserun_key: 'MONS101',
-          product_line: 'course',
+          product_line: '2U_degree',
           selected_recommendations: {
             job_id: 0,
             job_name: 'Prospector',
@@ -177,6 +182,7 @@ describe('view-results', () => {
         },
       });
     });
+
     it('remove product type from the list of recommendations when a dropdown is minimized', async () => {
       render(SkillsBuilderWrapperWithContext({
         ...contextValue,
@@ -197,6 +203,22 @@ describe('view-results', () => {
         payload: 'course',
         type: 'REMOVE_FROM_EXPANDED_LIST',
       });
+    });
+  });
+
+  describe('Product lines are correctly extracted', () => {
+    beforeAll(() => {
+      useProductTypes.mockImplementation(() => (['boot_camp', 'executive_education', 'course']));
+    });
+    it('extracts only the product lines returned from the hook', async () => {
+      renderSkillsBuilderWrapper();
+      await act(async () => {
+        fireEvent.click(screen.getByRole('button', { name: 'Next Step' }));
+      });
+      expect(screen.getByText('"Prospector" bootcamps')).toBeTruthy();
+      expect(screen.getByText('"Prospector" executive education')).toBeTruthy();
+      expect(screen.getByText('"Prospector" courses')).toBeTruthy();
+      expect(screen.queryByText('"Prospector" programs')).toBeNull();
     });
   });
 
