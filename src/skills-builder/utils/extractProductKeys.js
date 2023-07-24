@@ -26,12 +26,12 @@ export const extractProductKeys = (recommendations, expandedList = []) => (
         // if it is, return all recommendations
         ? recommendations[type]
         // if not, only return the first 4
-        : recommendations[type].slice(0, 4);
+        : recommendations[type]?.slice(0, 4);
       return [
         type,
         // create an array of objects for each product line
         // each object contains a title and product key, rather than the entire response from Algolia (rec)
-        recommendationsRefinedList.map(rec => ({
+        recommendationsRefinedList?.map(rec => ({
           title: rec.title,
           courserun_key: rec.active_run_key,
         })),
