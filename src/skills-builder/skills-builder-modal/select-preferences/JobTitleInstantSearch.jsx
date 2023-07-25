@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Form,
+  Form, Icon,
 } from '@edx/paragon';
 import { useHits, useSearchBox } from 'react-instantsearch-hooks-web';
+import { Search } from '@edx/paragon/icons';
 
 const JobTitleInstantSearch = (props) => {
   const { refine } = useSearchBox(props);
@@ -25,6 +26,12 @@ const JobTitleInstantSearch = (props) => {
       onChange={handleAutosuggestChange}
       name="job-title-suggest"
       autoComplete="off"
+      trailingElement={(
+        <Icon
+          src={Search}
+          className="mr-2"
+        />
+        )}
       {...props}
     >
       {hits.map(job => (
