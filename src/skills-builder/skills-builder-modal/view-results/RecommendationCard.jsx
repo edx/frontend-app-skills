@@ -13,11 +13,17 @@ const RecommendationCard = ({
     marketing_url: marketingUrl,
     active_run_key: courseKey,
     owners,
+    organization_short_code_override: organizationShortCodeOverride,
+    organization_logo_override: organizationLogoOverride,
     partner,
     title,
   } = rec;
 
-  const { logoImageUrl } = owners[0];
+  const schoolName = organizationShortCodeOverride
+  || owners?.[0]?.name
+  || partner?.[0];
+  const schoolLogoUrl = organizationLogoOverride
+  || owners[0].logoImageUrl;
 
   return (
     <Card
@@ -30,18 +36,16 @@ const RecommendationCard = ({
     >
       <Card.ImageCap
         src={cardImageUrl}
-        logoSrc={logoImageUrl}
+        logoSrc={schoolLogoUrl}
         fallbackSrc={cardImageCapFallbackSrc}
         fallbackLogoSrc={cardImageCapFallbackSrc}
+        className="card-image-cap"
       />
       <Card.Header title={title} size="sm" />
       <Card.Section>
-        {partner.map((orgName, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <Chip key={index} className="chip-max-width">
-            {orgName}
-          </Chip>
-        ))}
+        <Chip className="chip-max-width">
+          {schoolName}
+        </Chip>
       </Card.Section>
     </Card>
   );
@@ -56,8 +60,11 @@ RecommendationCard.propTypes = {
     owners: PropTypes.arrayOf(PropTypes.shape({
       key: PropTypes.string,
       logoImageUrl: PropTypes.string,
+      name: PropTypes.string,
     })),
-    active_run_key: PropTypes.string.isRequired,
+    active_run_key: PropTypes.string,
+    organization_short_code_override: PropTypes.string,
+    organization_logo_override: PropTypes.string,
   }).isRequired,
   productType: PropTypes.string.isRequired,
   handleCourseCardClick: PropTypes.func.isRequired,

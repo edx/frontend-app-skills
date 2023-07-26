@@ -1,3 +1,8 @@
+.card-image-cap .pgn__card-logo-cap {
+  // This prevents stretching of the logo image
+  object-fit: contain;
+}
+
 .skills-builder-modal {
   button[aria-label="Close"][type="button"]{
     color: $white;
