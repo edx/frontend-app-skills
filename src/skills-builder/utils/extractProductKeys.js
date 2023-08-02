@@ -15,7 +15,7 @@ import { productTypeNames } from '../skills-builder-modal/view-results/data/cons
 * @return
 *   @typedef productKeys - an object with a key for each product line
 *   @type {object}
-*   @property {array[object]} product_line - each object contains a title and product key
+*   @property {array[object]} product_line - each object contains a title, product label, and its position in the list
 */
 export const extractProductKeys = (recommendations, expandedList = []) => (
   Object.fromEntries(
@@ -30,10 +30,12 @@ export const extractProductKeys = (recommendations, expandedList = []) => (
       return [
         type,
         // create an array of objects for each product line
-        // each object contains a title and product key, rather than the entire response from Algolia (rec)
-        recommendationsRefinedList?.map(rec => ({
+        // each object contains a title, product label, and position - rather than the entire response from Algolia
+        recommendationsRefinedList?.map((rec, index) => ({
           title: rec.title,
-          courserun_key: rec.active_run_key,
+          // If this label changes, make sure to duplicate the change in RecommendationCard.jsx
+          label: rec.active_run_key || `${rec.title} [${rec.uuid}]`,
+          position: index,
         })),
       ];
     }),

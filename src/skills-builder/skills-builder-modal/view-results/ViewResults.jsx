@@ -49,7 +49,7 @@ const ViewResults = () => {
         selected_recommendations: {
           job_id: results[0].id,
           job_name: results[0].name,
-          /* We extract the title and course key into an array of objects */
+          /* Extract a product label, title, and position for each recommendation */
           product_keys: extractProductKeys(results[0].recommendations),
         },
         is_default: true,

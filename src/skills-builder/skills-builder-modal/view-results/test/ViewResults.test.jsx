@@ -124,7 +124,8 @@ describe('view-results', () => {
           app_name: 'skills_builder',
           category: 'skills_builder',
           page: 'skills_builder',
-          courserun_key: 'MONS101',
+          label: 'MONS101',
+          position: 0,
           product_line: '2U_degree',
           selected_recommendations: {
             job_id: 0,

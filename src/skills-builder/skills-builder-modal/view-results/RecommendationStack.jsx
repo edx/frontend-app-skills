@@ -12,7 +12,7 @@ const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
   const { expandedList } = state;
   const { id: jobId, name: jobName, recommendations } = selectedRecommendations;
 
-  const handleCourseCardClick = (courseKey, productTypeName, index) => {
+  const handleCourseCardClick = (productLabel, productTypeName, index) => {
     // check to see if the grid of recommendations for this product line has been expanded
     if (expandedList.includes(productTypeName)) {
       // fire expanded click event
@@ -22,9 +22,9 @@ const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
           app_name: 'skills_builder',
           category: 'skills_builder',
           page: 'skills_builder',
-          courserun_key: courseKey,
+          label: productLabel,
           product_line: productTypeName,
-          index_in_list: index,
+          position: index,
           selected_recommendations: {
             job_id: jobId,
             job_name: jobName,
@@ -41,8 +41,9 @@ const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
         app_name: 'skills_builder',
         category: 'skills_builder',
         page: 'skills_builder',
-        courserun_key: courseKey,
+        label: productLabel,
         product_line: productTypeName,
+        position: index,
         selected_recommendations: {
           job_id: jobId,
           job_name: jobName,

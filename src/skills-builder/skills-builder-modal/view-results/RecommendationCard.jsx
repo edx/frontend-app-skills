@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import cardImageCapFallbackSrc from '../../images/card-imagecap-fallback.png';
 
 const RecommendationCard = ({
-  rec, productType, handleCourseCardClick, indexInList,
+  rec, productType, handleCourseCardClick, position,
 }) => {
   const {
     card_image_url: cardImageUrl,
@@ -17,6 +17,7 @@ const RecommendationCard = ({
     organization_logo_override: organizationLogoOverride,
     partner,
     title,
+    uuid,
   } = rec;
 
   const schoolName = organizationShortCodeOverride
@@ -25,6 +26,9 @@ const RecommendationCard = ({
   const schoolLogoUrl = organizationLogoOverride
   || owners[0].logoImageUrl;
 
+  // If this label changes, make sure to duplicate the change in extractProductKeys.js
+  const productLabel = courseKey || `${title} [${uuid}]`;
+
   return (
     <Card
       as={Hyperlink}
@@ -32,7 +36,7 @@ const RecommendationCard = ({
       showLaunchIcon={false}
       destination={marketingUrl}
       className="product-card"
-      onClick={() => handleCourseCardClick(courseKey, productType, indexInList)}
+      onClick={() => handleCourseCardClick(productLabel, productType, position)}
     >
       <Card.ImageCap
         src={cardImageUrl}
@@ -65,14 +69,11 @@ RecommendationCard.propTypes = {
     active_run_key: PropTypes.string,
     organization_short_code_override: PropTypes.string,
     organization_logo_override: PropTypes.string,
+    uuid: PropTypes.string.isRequired,
   }).isRequired,
   productType: PropTypes.string.isRequired,
   handleCourseCardClick: PropTypes.func.isRequired,
-  indexInList: PropTypes.number,
-};
-
-RecommendationCard.defaultProps = {
-  indexInList: 0,
+  position: PropTypes.number.isRequired,
 };
 
 export default RecommendationCard;
