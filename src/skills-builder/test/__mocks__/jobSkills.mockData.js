@@ -72,24 +72,24 @@ export const mockData = {
   useAlgoliaSearch: [{}, {}, {}],
   productKeys: {
     course: [
-      { title: 'Mining with the Mons', courserun_key: 'MONS101' },
-      { title: 'The Art of Warren Upkeep', courserun_key: 'WAR101' },
+      { title: 'Mining with the Mons', label: 'MONS101', position: 0 },
+      { title: 'The Art of Warren Upkeep', label: 'WAR101', position: 1 },
     ],
     '2U_degree': [
-      { title: 'Mining with the Mons', courserun_key: 'MONS101' },
-      { title: 'The Art of Warren Upkeep', courserun_key: 'WAR101' },
+      { title: 'Mining with the Mons', label: 'MONS101', position: 0 },
+      { title: 'The Art of Warren Upkeep', label: 'WAR101', position: 1 },
     ],
     program: [
-      { title: 'Mining with the Mons', courserun_key: 'MONS101' },
-      { title: 'The Art of Warren Upkeep', courserun_key: 'WAR101' },
+      { title: 'Mining with the Mons', label: 'MONS101', position: 0 },
+      { title: 'The Art of Warren Upkeep', label: 'WAR101', position: 1 },
     ],
     boot_camp: [
-      { title: 'Mining with the Mons', courserun_key: 'MONS101' },
-      { title: 'The Art of Warren Upkeep', courserun_key: 'WAR101' },
+      { title: 'Mining with the Mons', label: 'MONS101', position: 0 },
+      { title: 'The Art of Warren Upkeep', label: 'WAR101', position: 1 },
     ],
     executive_education: [
-      { title: 'Mining with the Mons', courserun_key: 'MONS101' },
-      { title: 'The Art of Warren Upkeep', courserun_key: 'WAR101' },
+      { title: 'Mining with the Mons', label: 'MONS101', position: 0 },
+      { title: 'The Art of Warren Upkeep', label: 'WAR101', position: 1 },
     ],
   },
 };

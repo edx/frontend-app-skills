@@ -21,16 +21,17 @@ const ProductCardGrid = ({
           handleCourseCardClick={handleCourseCardClick}
           rec={rec}
           productType={productTypeName}
-          indexInList={index}
+          position={index}
         />
       ))
     ) : (
-      productTypeRecommendations?.slice(0, 4).map(rec => (
+      productTypeRecommendations?.slice(0, 4).map((rec, index) => (
         <RecommendationCard
           key={rec.uuid}
           handleCourseCardClick={handleCourseCardClick}
           rec={rec}
           productType={productTypeName}
+          position={index}
         />
       ))
     )}

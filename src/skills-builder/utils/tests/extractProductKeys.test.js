@@ -12,15 +12,17 @@ const mockRecommendations = Object.fromEntries(
   )),
 );
 
-// When the values are extracted, each course should only have two values: title and courserun_key
+// When the values are extracted, each course should only have: title, label, and position
 const expectedCourseData = [
   {
     title: 'Mining with the Mons',
-    courserun_key: 'MONS101',
+    label: 'MONS101',
+    position: 0,
   },
   {
     title: 'The Art of Warren Upkeep',
-    courserun_key: 'WAR101',
+    label: 'WAR101',
+    position: 1,
   },
 ];
 
