@@ -40,7 +40,7 @@ describe('view-results', () => {
 
   describe('user interface', () => {
     beforeAll(() => {
-      useProductTypes.mockImplementation(() => (['2U_degree', 'boot_camp', 'executive_education', 'program', 'course']));
+      useProductTypes.mockImplementation(() => (['2U_degrees', 'boot_camp', 'executive_education', 'program', 'course']));
     });
 
     beforeEach(async () => {
@@ -126,7 +126,7 @@ describe('view-results', () => {
           page: 'skills_builder',
           label: 'MONS101',
           position: 0,
-          product_line: '2U_degree',
+          product_line: '2U_degrees',
           selected_recommendations: {
             job_id: 0,
             job_name: 'Prospector',
