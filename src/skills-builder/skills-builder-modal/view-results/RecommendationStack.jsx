@@ -28,7 +28,7 @@ const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
           selected_recommendations: {
             job_id: jobId,
             job_name: jobName,
-            product_keys: extractProductKeys(recommendations, [...expandedList, productTypeName]),
+            product_keys: extractProductKeys(recommendations, expandedList),
           },
         },
       );
@@ -47,7 +47,7 @@ const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
         selected_recommendations: {
           job_id: jobId,
           job_name: jobName,
-          product_keys: extractProductKeys(recommendations, [...expandedList, productTypeName]),
+          product_keys: extractProductKeys(recommendations, expandedList),
         },
       },
     );
