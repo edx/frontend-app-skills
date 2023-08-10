@@ -152,21 +152,29 @@ describe('view-results', () => {
       expect(screen.getByText(messages.productTypeCourseDescription.defaultMessage)).toBeTruthy();
     });
 
-    it('hides a LOB if there are no results', async () => {
-      getProductRecommendations.mockImplementation((productIndex, productType) => {
-        if (productType === 'boot_camp') {
+    describe('Product lines are hidden with no results', () => {
+      beforeAll(() => {
+        getProductRecommendations.mockImplementation((productIndex, productType) => {
+          if (productType === 'boot camp') {
+            return [];
+          }
           return mockData.productRecommendations;
-        }
-        return [];
+        });
+        // Is there a more elegant way to restore the mocK?
+        afterEach(() => {
+          getProductRecommendations.mockImplementation(() => (
+            mockData.productRecommendations
+          ));
+        });
       });
-
-      // This one should not be true - no recommendations provided
-      expect(screen.getByText(messages.productTypeBootCampDescription.defaultMessage)).toBeFalsy();
-      // These should all work.
-      expect(screen.getByText(messages.productTypeDegreeDescription.defaultMessage)).toBeTruthy();
-      expect(screen.getByText(messages.productTypeExecutiveEducationDescription.defaultMessage)).toBeTruthy();
-      expect(screen.getByText(messages.productTypeProgramDescription.defaultMessage)).toBeTruthy();
-      expect(screen.getByText(messages.productTypeCourseDescription.defaultMessage)).toBeTruthy();
+      it('hides a LOB if there are no results', async () => {
+        expect(screen.queryByText(messages.productTypeBootCampDescription.defaultMessage)).toBeNull();
+        // These should all work.
+        expect(screen.getByText(messages.productTypeDegreeDescription.defaultMessage)).toBeTruthy();
+        expect(screen.getByText(messages.productTypeExecutiveEducationDescription.defaultMessage)).toBeTruthy();
+        expect(screen.getByText(messages.productTypeProgramDescription.defaultMessage)).toBeTruthy();
+        expect(screen.getByText(messages.productTypeCourseDescription.defaultMessage)).toBeTruthy();
+      });
     });
   });
 
