@@ -151,6 +151,23 @@ describe('view-results', () => {
       expect(screen.getByText(messages.productTypeProgramDescription.defaultMessage)).toBeTruthy();
       expect(screen.getByText(messages.productTypeCourseDescription.defaultMessage)).toBeTruthy();
     });
+
+    it('hides a LOB if there are no results', async () => {
+      getProductRecommendations.mockImplementation((productIndex, productType) => {
+        if (productType === 'boot_camp') {
+          return mockData.productRecommendations;
+        }
+        return [];
+      });
+
+      // This one should not be true - no recommendations provided
+      expect(screen.getByText(messages.productTypeBootCampDescription.defaultMessage)).toBeFalsy();
+      // These should all work.
+      expect(screen.getByText(messages.productTypeDegreeDescription.defaultMessage)).toBeTruthy();
+      expect(screen.getByText(messages.productTypeExecutiveEducationDescription.defaultMessage)).toBeTruthy();
+      expect(screen.getByText(messages.productTypeProgramDescription.defaultMessage)).toBeTruthy();
+      expect(screen.getByText(messages.productTypeCourseDescription.defaultMessage)).toBeTruthy();
+    });
   });
 
   describe('show all button', () => {
