@@ -160,7 +160,7 @@ describe('view-results', () => {
           }
           return mockData.productRecommendations;
         });
-        // Is there a more elegant way to restore the mocK?
+        // Restore the mock to the expected value for the other tests.
         afterEach(() => {
           getProductRecommendations.mockImplementation(() => (
             mockData.productRecommendations
