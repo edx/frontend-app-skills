@@ -90,6 +90,9 @@ const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
       const numberResults = productTypeRecommendations?.length;
       const isExpanded = expandedList.includes(productTypeName);
 
+      if (numberResults === 0) {
+        return null;
+      }
       return (
         <Stack gap={2.5} key={productTypeName}>
           <ProductTypeBanner

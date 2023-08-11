@@ -151,6 +151,31 @@ describe('view-results', () => {
       expect(screen.getByText(messages.productTypeProgramDescription.defaultMessage)).toBeTruthy();
       expect(screen.getByText(messages.productTypeCourseDescription.defaultMessage)).toBeTruthy();
     });
+
+    describe('Product lines are hidden with no results', () => {
+      beforeAll(() => {
+        getProductRecommendations.mockImplementation((productIndex, productType) => {
+          if (productType === 'boot camp') {
+            return [];
+          }
+          return mockData.productRecommendations;
+        });
+        // Restore the mock to the expected value for the other tests.
+        afterEach(() => {
+          getProductRecommendations.mockImplementation(() => (
+            mockData.productRecommendations
+          ));
+        });
+      });
+      it('hides a LOB if there are no results', async () => {
+        expect(screen.queryByText(messages.productTypeBootCampDescription.defaultMessage)).toBeNull();
+        // These should all work.
+        expect(screen.getByText(messages.productTypeDegreeDescription.defaultMessage)).toBeTruthy();
+        expect(screen.getByText(messages.productTypeExecutiveEducationDescription.defaultMessage)).toBeTruthy();
+        expect(screen.getByText(messages.productTypeProgramDescription.defaultMessage)).toBeTruthy();
+        expect(screen.getByText(messages.productTypeCourseDescription.defaultMessage)).toBeTruthy();
+      });
+    });
   });
 
   describe('show all button', () => {
