@@ -170,12 +170,12 @@ describe('view-results', () => {
           }
           return mockData.productRecommendations;
         });
-        // Restore the mock to the expected value for the other tests.
-        afterEach(() => {
-          getProductRecommendations.mockImplementation(() => (
-            mockData.productRecommendations
-          ));
-        });
+      });
+      // Restore the mock to the expected value for the other tests.
+      afterEach(() => {
+        getProductRecommendations.mockImplementation(() => (
+          mockData.productRecommendations
+        ));
       });
       it('hides a LOB if there are no results', async () => {
         expect(screen.queryByText(messages.productTypeBootCampDescription.defaultMessage)).toBeNull();
@@ -194,13 +194,13 @@ describe('view-results', () => {
 
         // Don't return anything for any LOB
         getProductRecommendations.mockImplementation(() => []);
-        // Restore the mock to the expected value for the other tests.
-        afterEach(() => {
-          getProductRecommendations.mockImplementation(() => (
-            mockData.productRecommendations
-          ));
-          useProductTypes.mockImplementation(() => (['2U_degree', 'boot_camp', 'executive_education', 'program', 'course']));
-        });
+      });
+      // Restore the mock to the expected value for the other tests.
+      afterEach(() => {
+        getProductRecommendations.mockImplementation(() => (
+          mockData.productRecommendations
+        ));
+        useProductTypes.mockImplementation(() => (['2U_degree', 'boot_camp', 'executive_education', 'program', 'course']));
       });
       it('Sends an error if there are no results for any LOB', async () => {
         expect(logError).toHaveBeenCalledTimes(6);

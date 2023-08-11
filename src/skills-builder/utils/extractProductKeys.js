@@ -1,4 +1,4 @@
-import { productTypeNames } from '../skills-builder-modal/view-results/data/constants';
+import { productTypeNames } from '../skills-builder-steps/view-results/data/constants';
 
 /**
 * Utility function for extracting product keys from a list of recommendations.

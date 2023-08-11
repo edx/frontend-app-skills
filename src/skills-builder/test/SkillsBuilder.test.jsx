@@ -5,10 +5,10 @@ import {
 } from '@testing-library/react';
 import { SkillsBuilder } from '..';
 import { SkillsBuilderProvider } from '../skills-builder-context';
-import { useVisibilityFlags } from '../skills-builder-modal/view-results/data/hooks';
-import { DEFAULT_VISIBILITY_FLAGS } from '../skills-builder-modal/view-results/data/constants';
+import { useVisibilityFlags } from '../skills-builder-steps/view-results/data/hooks';
+import { DEFAULT_VISIBILITY_FLAGS } from '../skills-builder-steps/view-results/data/constants';
 
-jest.mock('../skills-builder-modal/view-results/data/hooks', () => ({
+jest.mock('../skills-builder-steps/view-results/data/hooks', () => ({
   useVisibilityFlags: jest.fn(),
 }));
 

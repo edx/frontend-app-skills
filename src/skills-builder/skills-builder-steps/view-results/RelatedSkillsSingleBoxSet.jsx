@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Chip, Card, Container,
+  Chip, Card,
 } from '@edx/paragon';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { useVisibilityFlags } from './data/hooks';
@@ -25,9 +25,8 @@ const RelatedSkillsSingleBoxSet = ({ jobSkillsList }) => {
     return (
       topFiveSkills.map(skill => (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-        <span onClick={() => handleSkillClick(skill)}>
+        <span key={skill.external_id} onClick={() => handleSkillClick(skill)}>
           <Chip
-            key={skill.external_id}
             className="chip-max-width"
           >
             {skill.name}
@@ -48,17 +47,10 @@ const RelatedSkillsSingleBoxSet = ({ jobSkillsList }) => {
       { showSkillsList
         && (
         <Card.Section>
-          <Container
-            gap={2}
-            className="align-items-start"
-            direction="horizontal"
-          >
-            <p className="heading-label x-small">{formatMessage(messages.relatedSkillsHeading)}</p>
-            {renderTopFiveSkills(skills)}
-          </Container>
+          <p className="heading-label x-small">{formatMessage(messages.relatedSkillsHeading)}</p>
+          {renderTopFiveSkills(skills)}
         </Card.Section>
         )}
-
     </Card>
     )
   );
@@ -67,7 +59,7 @@ const RelatedSkillsSingleBoxSet = ({ jobSkillsList }) => {
 RelatedSkillsSingleBoxSet.propTypes = {
   jobSkillsList: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    skills: PropTypes.arrayOf({}),
+    skills: PropTypes.arrayOf(PropTypes.shape({})),
   })).isRequired,
 };
 

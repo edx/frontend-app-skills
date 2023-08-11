@@ -28,6 +28,7 @@ const RelatedSkillsSelectableBoxSet = ({ jobSkillsList, selectedJobTitle, onChan
       onChange={onChange}
       columns={3}
       className="overflow-scroll-medium"
+      ariaLabel="job title select"
     >
       {jobSkillsList.map(job => (
         <SelectableBox
