@@ -75,7 +75,7 @@ export const mockData = {
       { title: 'Mining with the Mons', label: 'MONS101', position: 0 },
       { title: 'The Art of Warren Upkeep', label: 'WAR101', position: 1 },
     ],
-    '2U_degrees': [
+    '2U_degree': [
       { title: 'Mining with the Mons', label: 'MONS101', position: 0 },
       { title: 'The Art of Warren Upkeep', label: 'WAR101', position: 1 },
     ],

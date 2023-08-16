@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { productTypeNames as acceptedProductTypes, COURSE } from './constants';
+import { productTypeParams, COURSE } from './constants';
 
 const defaultSetting = [COURSE];
 
@@ -13,27 +13,18 @@ const defaultSetting = [COURSE];
 export const useProductTypes = () => {
   const { search } = useLocation();
   const checkedTypes = [];
+  const searchParams = new URLSearchParams(search);
+  const productTypes = searchParams.get('product_types');
 
-  if (search) {
-    // remove the "?" and split the query string at "="
-    const splitString = search.slice(1).split('&')[0].split('=');
-
-    // if the key is not "product_types", use a default setting
-    if (splitString[0] !== 'product_types') {
-      return defaultSetting;
-    }
-
-    // split productTypes string into an array at ","
-    const queryProductTypes = splitString[1]?.split(',');
-
+  if (productTypes) {
+    const productTypesArray = productTypes.split(',');
     // compare each product type from the query string with a list of accepted product types
-    queryProductTypes.forEach(productType => {
-      if (acceptedProductTypes.includes(productType)) {
-        checkedTypes.push(productType);
+    productTypesArray.forEach(productParam => {
+      if (productParam in productTypeParams) {
+        checkedTypes.push(productTypeParams[productParam]);
       }
     });
   }
-
   // if no types were set, use default setting
   return checkedTypes.length > 0 ? checkedTypes : defaultSetting;
 };
