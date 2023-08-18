@@ -54,6 +54,21 @@ const ViewResults = () => {
         },
         is_default: true,
       });
+
+      // Check if any LOB doesn't have a recommendation for a job
+      results.forEach((jobResult) => {
+        let hasAnyRecommendations = false;
+        productTypes.current.forEach((lob) => {
+          if (jobResult.recommendations[lob].length === 0) {
+            logError(`Job [${jobResult.name}] has no recommendations for ${lob}`);
+          } else {
+            hasAnyRecommendations = true;
+          }
+        });
+        if (!hasAnyRecommendations) {
+          logError(`Job [${jobResult.name}] has no recommendations for any LOB in [${productTypes.current}]`);
+        }
+      });
     };
 
     getAllRecommendations()
