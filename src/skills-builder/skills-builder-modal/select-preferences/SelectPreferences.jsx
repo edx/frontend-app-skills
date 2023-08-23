@@ -13,6 +13,9 @@ const SelectPreferences = () => {
   const { formatMessage } = useIntl();
   const { state } = useContext(SkillsBuilderContext);
   const { currentGoal, currentJobTitle } = state;
+  const showGoal = false;
+  const showCurrentJobTitle = false;
+  const alwaysShowCareerInterest = true;
 
   return (
     <Stack gap={4}>
@@ -20,14 +23,15 @@ const SelectPreferences = () => {
         {formatMessage(messages.skillsBuilderDescription)}
       </p>
       <Stack gap={4}>
+        { showGoal && (
+          <GoalSelect />
+        )}
 
-        <GoalSelect />
-
-        {currentGoal && (
+        {currentGoal && showCurrentJobTitle && (
           <JobTitleSelect />
         )}
 
-        {currentGoal && currentJobTitle && (
+        {(alwaysShowCareerInterest || (currentGoal && currentJobTitle)) && (
           <CareerInterestSelect />
         )}
       </Stack>

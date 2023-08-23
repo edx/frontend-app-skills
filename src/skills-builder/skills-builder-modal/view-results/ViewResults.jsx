@@ -30,6 +30,7 @@ const ViewResults = () => {
   const [selectedRecommendations, setSelectedRecommendations] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState(false);
+  const showMatchesFoundAlert = false;
 
   const productTypes = useRef(useProductTypes());
 
@@ -138,14 +139,16 @@ const ViewResults = () => {
       </Row>
     ) : (
       <Stack gap={4.5} className="pb-4.5">
-        <Alert
-          variant="success"
-          icon={CheckCircle}
-        >
-          <Alert.Heading>
-            {formatMessage(messages.matchesFoundSuccessAlert)}
-          </Alert.Heading>
-        </Alert>
+        { showMatchesFoundAlert && (
+          <Alert
+            variant="success"
+            icon={CheckCircle}
+          >
+            <Alert.Heading>
+              {formatMessage(messages.matchesFoundSuccessAlert)}
+            </Alert.Heading>
+          </Alert>
+        )}
 
         <RelatedSkillsSelectableBoxSet
           jobSkillsList={jobSkillsList}

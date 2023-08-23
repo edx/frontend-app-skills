@@ -17,6 +17,7 @@ const CareerInterestSelect = () => {
   const { state, dispatch, algolia } = useContext(SkillsBuilderContext);
   const { careerInterests } = state;
   const { searchClient } = algolia;
+  const showCareerInterestCards = false;
 
   const handleCareerInterestSelect = (value) => {
     if (!careerInterests.includes(value) && careerInterests.length < 3) {
@@ -50,14 +51,17 @@ const CareerInterestSelect = () => {
           />
         </InstantSearch>
       </Form.Label>
-      <Row>
-        {careerInterests.map((interest, index) => (
+      { showCareerInterestCards && (
+        <Row>
+          {careerInterests.map((interest, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <Col key={index} xs={12} sm={4} className="mb-4">
-            <CareerInterestCard interest={interest} />
-          </Col>
-        ))}
-      </Row>
+            <Col key={index} xs={12} sm={4} className="mb-4">
+              <CareerInterestCard interest={interest} />
+            </Col>
+          ))}
+        </Row>
+      )}
+
     </Stack>
   );
 };
