@@ -3,6 +3,7 @@ import {
 } from '@testing-library/react';
 import { mergeConfig } from '@edx/frontend-platform';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
+import { logError } from '@edx/frontend-platform/logging';
 import messages from '../messages';
 import { SkillsBuilderWrapperWithContext, contextValue, dispatchMock } from '../../../test/setupSkillsBuilder';
 import { getProductRecommendations } from '../../../utils/search';
@@ -15,6 +16,10 @@ jest.mock('@edx/frontend-platform/analytics', () => ({
 
 jest.mock('../data/hooks', () => ({
   useProductTypes: jest.fn(),
+}));
+
+jest.mock('@edx/frontend-platform/logging', () => ({
+  logError: jest.fn(),
 }));
 
 const renderSkillsBuilderWrapper = (
@@ -169,11 +174,37 @@ describe('view-results', () => {
       });
       it('hides a LOB if there are no results', async () => {
         expect(screen.queryByText(messages.productTypeBootCampDescription.defaultMessage)).toBeNull();
+        expect(logError).toHaveBeenCalledTimes(2);
         // These should all work.
         expect(screen.getByText(messages.productTypeDegreeDescription.defaultMessage)).toBeTruthy();
         expect(screen.getByText(messages.productTypeExecutiveEducationDescription.defaultMessage)).toBeTruthy();
         expect(screen.getByText(messages.productTypeProgramDescription.defaultMessage)).toBeTruthy();
         expect(screen.getByText(messages.productTypeCourseDescription.defaultMessage)).toBeTruthy();
+      });
+    });
+
+    describe('Product lines are hidden with no results', () => {
+      beforeAll(() => {
+        useProductTypes.mockImplementation(() => (['boot_camp', 'course']));
+
+        // Don't return anything for any LOB
+        getProductRecommendations.mockImplementation(() => []);
+        // Restore the mock to the expected value for the other tests.
+        afterEach(() => {
+          getProductRecommendations.mockImplementation(() => (
+            mockData.productRecommendations
+          ));
+          useProductTypes.mockImplementation(() => (['2U_degree', 'boot_camp', 'executive_education', 'program', 'course']));
+        });
+      });
+      it('Sends an error if there are no results for any LOB', async () => {
+        expect(logError).toHaveBeenCalledTimes(6);
+        expect(logError).toHaveBeenCalledWith('Job [Prospector] has no recommendations for boot_camp');
+        expect(logError).toHaveBeenCalledWith('Job [Prospector] has no recommendations for course');
+        expect(logError).toHaveBeenCalledWith('Job [Prospector] has no recommendations for any LOB in [boot_camp,course]');
+        expect(logError).toHaveBeenCalledWith('Job [Mirror Breaker] has no recommendations for boot_camp');
+        expect(logError).toHaveBeenCalledWith('Job [Mirror Breaker] has no recommendations for course');
+        expect(logError).toHaveBeenCalledWith('Job [Mirror Breaker] has no recommendations for any LOB in [boot_camp,course]');
       });
     });
   });
