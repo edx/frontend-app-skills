@@ -10,11 +10,12 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 import { CheckCircle, ErrorOutline } from '@edx/paragon/icons';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import RelatedSkillsSelectableBoxSet from './RelatedSkillsSelectableBoxSet';
+import RelatedSkillsInteractiveBoxSet from './RelatedSkillsInteractiveBoxSet';
 import messages from './messages';
 import RecommendationStack from './RecommendationStack';
 
 import { getRecommendations } from './data/service';
-import { useProductTypes } from './data/hooks';
+import { useProductTypes, useVisibilityFlags } from './data/hooks';
 import { extractProductKeys } from '../../utils/extractProductKeys';
 import { setExpandedList } from '../../data/actions';
 
@@ -23,16 +24,16 @@ const ViewResults = () => {
   const { algolia, state, dispatch } = useContext(SkillsBuilderContext);
   const { jobSearchIndex, productSearchIndex } = algolia;
   const { careerInterests } = state;
-
   const [selectedJobTitle, setSelectedJobTitle] = useState('');
   const [jobSkillsList, setJobSkillsList] = useState([]);
   const [productRecommendations, setProductRecommendations] = useState([]);
   const [selectedRecommendations, setSelectedRecommendations] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState(false);
-  const showMatchesFoundAlert = false;
 
   const productTypes = useRef(useProductTypes());
+  const visibilityFlags = useRef(useVisibilityFlags());
+  const { showMatchesFoundAlert, useInteractiveBoxSet } = visibilityFlags.current;
 
   useEffect(() => {
     const getAllRecommendations = async () => {
@@ -149,17 +150,29 @@ const ViewResults = () => {
             </Alert.Heading>
           </Alert>
         )}
+        { /* This should just pass the useInteractiveBoxSet flag to the component */ }
+        { useInteractiveBoxSet ? (
+          <RelatedSkillsInteractiveBoxSet
+            jobSkillsList={jobSkillsList}
+            selectedJobTitle={selectedJobTitle}
+            onChange={handleJobTitleChange}
+            useInteractiveBoxSet={useInteractiveBoxSet}
+          />
+        ) : (
+          <RelatedSkillsSelectableBoxSet
+            jobSkillsList={jobSkillsList}
+            selectedJobTitle={selectedJobTitle}
+            onChange={handleJobTitleChange}
+          />
+        )}
 
-        <RelatedSkillsSelectableBoxSet
-          jobSkillsList={jobSkillsList}
-          selectedJobTitle={selectedJobTitle}
-          onChange={handleJobTitleChange}
-        />
-
+        {selectedRecommendations
+        && (
         <RecommendationStack
           selectedRecommendations={selectedRecommendations}
           productTypeNames={productTypes.current}
         />
+        )}
       </Stack>
     )
   );
