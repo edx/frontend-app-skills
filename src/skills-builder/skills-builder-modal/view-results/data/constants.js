@@ -31,21 +31,21 @@ productTypeParams[PROGRAM_PARAM] = PROGRAM;
 // Default visibility flags - the version that appears if no special flags are set
 export const DEFAULT_VISIBILITY_FLAGS = {
   showMatchesFoundAlert: true,
-  useInteractiveBoxSet: false,
+  isInteractiveBoxSet: false,
   showCareerInterestCards: true,
   showGoal: true,
   showCurrentJobTitle: true,
   alwaysShowCareerInterest: false,
-  useProgressive: false,
+  isProgressive: false,
 };
 
 // Show a single question, and go right to the recommendations
 export const ONE_QUESTION_VISIBILITY_FLAGS = {
   showMatchesFoundAlert: false,
-  useInteractiveBoxSet: true,
+  isInteractiveBoxSet: true,
   showCareerInterestCards: false,
   showGoal: false,
   showCurrentJobTitle: false,
   alwaysShowCareerInterest: true,
-  useProgressive: true,
+  isProgressive: true,
 };

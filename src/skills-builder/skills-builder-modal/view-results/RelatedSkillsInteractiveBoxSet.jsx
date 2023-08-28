@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Card, CardDeck, SelectableBox, Chip, Stack,
+  Card, CardDeck, Chip, Stack,
 } from '@edx/paragon';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
@@ -18,7 +18,7 @@ import messages from './messages';
   This component needs to be like a CardDeck, but also behave like a radio group.
 */
 const RelatedSkillsInteractiveBoxSet = ({
-  jobSkillsList, selectedJobTitle, onChange, useInteractiveBoxSet,
+  jobSkillsList, //  selectedJobTitle, onChange, // we will need these
 }) => {
   const { formatMessage } = useIntl();
   const { state, dispatch } = useContext(SkillsBuilderContext);
@@ -91,37 +91,8 @@ const RelatedSkillsInteractiveBoxSet = ({
     </CardDeck>
   ));
 
-  const selectableBox = (() => (
-    <SelectableBox.Set
-      name="selected job title"
-      type="radio"
-      value={selectedJobTitle}
-      onChange={onChange}
-      columns={3}
-      className="overflow-scroll-medium"
-    >
-      {jobSkillsList.map(job => (
-        <SelectableBox
-          key={job.id}
-          type="radio"
-          value={job.name}
-          aria-label={job.name}
-          inputHidden={false}
-        >
-          <p>{job.name}</p>
-          <Stack gap={2} className="align-items-start">
-            <p className="heading-label x-small">{formatMessage(messages.relatedSkillsHeading)}</p>
-            {renderTopFiveSkills(job.skills)}
-          </Stack>
-        </SelectableBox>
-      ))}
-    </SelectableBox.Set>
-  ));
-
   return (
-
-    useInteractiveBoxSet ? interactiveBox() : selectableBox()
-
+    interactiveBox()
   );
 };
 
@@ -129,7 +100,6 @@ RelatedSkillsInteractiveBoxSet.propTypes = {
   jobSkillsList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   selectedJobTitle: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  useInteractiveBoxSet: PropTypes.bool.isRequired,
 };
 
 export default RelatedSkillsInteractiveBoxSet;

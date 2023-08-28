@@ -33,7 +33,7 @@ const ViewResults = () => {
 
   const productTypes = useRef(useProductTypes());
   const visibilityFlags = useRef(useVisibilityFlags());
-  const { showMatchesFoundAlert, useInteractiveBoxSet } = visibilityFlags.current;
+  const { showMatchesFoundAlert, isInteractiveBoxSet } = visibilityFlags.current;
 
   useEffect(() => {
     const getAllRecommendations = async () => {
@@ -150,13 +150,13 @@ const ViewResults = () => {
             </Alert.Heading>
           </Alert>
         )}
-        { /* This should just pass the useInteractiveBoxSet flag to the component */ }
-        { useInteractiveBoxSet ? (
+        { /* This should just pass the isInteractiveBoxSet flag to the component */ }
+        { isInteractiveBoxSet ? (
           <RelatedSkillsInteractiveBoxSet
             jobSkillsList={jobSkillsList}
             selectedJobTitle={selectedJobTitle}
             onChange={handleJobTitleChange}
-            useInteractiveBoxSet={useInteractiveBoxSet}
+            isInteractiveBoxSet={isInteractiveBoxSet}
           />
         ) : (
           <RelatedSkillsSelectableBoxSet

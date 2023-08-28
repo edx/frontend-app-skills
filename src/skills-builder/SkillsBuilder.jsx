@@ -6,11 +6,11 @@ import SkillsBuilderProgressive from './skills-builder-modal/SkillsBuilderProgre
 
 const SkillsBuilder = () => {
   const visibilityFlags = useRef(useVisibilityFlags());
-  const { useProgressive } = visibilityFlags.current;
+  const { isProgressive } = visibilityFlags.current;
 
   return (
     <SkillsBuilderProvider>
-      { useProgressive ? (
+      { isProgressive ? (
         <SkillsBuilderProgressive />
       ) : (
         <SkillsBuilderModal />
