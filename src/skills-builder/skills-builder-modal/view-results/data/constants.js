@@ -26,3 +26,26 @@ productTypeParams[BOOT_CAMP_PARAM] = BOOT_CAMP;
 productTypeParams[EXECUTIVE_EDUCATION_PARAM] = EXECUTIVE_EDUCATION;
 productTypeParams[DEGREE_PARAM] = DEGREE;
 productTypeParams[PROGRAM_PARAM] = PROGRAM;
+
+// visibility flag sets
+// Default visibility flags - the version that appears if no special flags are set
+export const DEFAULT_VISIBILITY_FLAGS = {
+  showMatchesFoundAlert: true,
+  isInteractiveBoxSet: false,
+  showCareerInterestCards: true,
+  showGoal: true,
+  showCurrentJobTitle: true,
+  alwaysShowCareerInterest: false,
+  isProgressive: false,
+};
+
+// Show a single question, and go right to the recommendations
+export const ONE_QUESTION_VISIBILITY_FLAGS = {
+  showMatchesFoundAlert: false,
+  isInteractiveBoxSet: true,
+  showCareerInterestCards: false,
+  showGoal: false,
+  showCurrentJobTitle: false,
+  alwaysShowCareerInterest: true,
+  isProgressive: true,
+};

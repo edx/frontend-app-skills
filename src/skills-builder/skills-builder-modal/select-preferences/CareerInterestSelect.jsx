@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { getConfig } from '@edx/frontend-platform';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
@@ -10,6 +10,7 @@ import JobTitleInstantSearch from './JobTitleInstantSearch';
 import CareerInterestCard from './CareerInterestCard';
 import { addCareerInterest } from '../../data/actions';
 import { SkillsBuilderContext } from '../../skills-builder-context';
+import { useVisibilityFlags } from '../view-results/data/hooks';
 import messages from './messages';
 
 const CareerInterestSelect = () => {
@@ -17,6 +18,8 @@ const CareerInterestSelect = () => {
   const { state, dispatch, algolia } = useContext(SkillsBuilderContext);
   const { careerInterests } = state;
   const { searchClient } = algolia;
+  const visibilityFlags = useRef(useVisibilityFlags());
+  const { showCareerInterestCards } = visibilityFlags.current;
 
   const handleCareerInterestSelect = (value) => {
     if (!careerInterests.includes(value) && careerInterests.length < 3) {
@@ -50,14 +53,17 @@ const CareerInterestSelect = () => {
           />
         </InstantSearch>
       </Form.Label>
-      <Row>
-        {careerInterests.map((interest, index) => (
+      { showCareerInterestCards && (
+        <Row>
+          {careerInterests.map((interest, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <Col key={index} xs={12} sm={4} className="mb-4">
-            <CareerInterestCard interest={interest} />
-          </Col>
-        ))}
-      </Row>
+            <Col key={index} xs={12} sm={4} className="mb-4">
+              <CareerInterestCard interest={interest} />
+            </Col>
+          ))}
+        </Row>
+      )}
+
     </Stack>
   );
 };
