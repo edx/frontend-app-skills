@@ -35,7 +35,7 @@ export const DEFAULT_VISIBILITY_FLAGS = {
   showCareerInterestCards: true,
   showGoal: true,
   showCurrentJobTitle: true,
-  alwaysShowCareerInterest: false,
+  showCareerInterest: true,
   isProgressive: false,
 };
 
@@ -46,6 +46,6 @@ export const ONE_QUESTION_VISIBILITY_FLAGS = {
   showCareerInterestCards: false,
   showGoal: false,
   showCurrentJobTitle: false,
-  alwaysShowCareerInterest: true,
+  showCareerInterest: true,
   isProgressive: true,
 };
