@@ -15,8 +15,6 @@ import { SkillsBuilderHeader } from '../skills-builder-header';
 import { SelectPreferences } from './select-preferences';
 import ViewResults from './view-results/ViewResults';
 
-import headerImage from '../images/headerImage.png';
-
 const SkillsBuilderModal = () => {
   const { formatMessage } = useIntl();
   const isMedium = useMediaQuery({ maxWidth: breakpoints.medium.maxWidth });
@@ -60,20 +58,8 @@ const SkillsBuilderModal = () => {
         isOpen
         onClose={closeButtonHandle}
       >
-        {/* <ModalDialog.Hero className="med-min-height">
-          <ModalDialog.Hero.Background className="bg-primary-500">
-            { !isMedium && <img src={headerImage} alt="" className="h-100" /> }
-          </ModalDialog.Hero.Background>
-          <ModalDialog.Hero.Content>
-          */}
-
         <SkillsBuilderHeader isMedium={isMedium} />
-
-        {/* </ModalDialog.Hero.Content>
-        </ModalDialog.Hero> */}
-
         <Stepper.Header compactWidth="md" />
-
         <ModalDialog.Body>
           <Container size="md" className="p-4.5">
             <Form>

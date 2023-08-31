@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
-  SelectableBox, Chip, Stack, Card, Container, Alert,
+  SelectableBox, Chip, Stack, Card, Container,
 } from '@edx/paragon';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { useVisibilityFlags } from './data/hooks';

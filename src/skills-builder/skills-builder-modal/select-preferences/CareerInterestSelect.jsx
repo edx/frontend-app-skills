@@ -40,8 +40,6 @@ const CareerInterestSelect = () => {
         },
       );
     }
-
-    
   };
 
   return (

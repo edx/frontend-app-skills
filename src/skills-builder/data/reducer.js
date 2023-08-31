@@ -35,7 +35,7 @@ export function skillsReducer(state, action) {
       return {
         ...state,
         careerInterests: [],
-      }
+      };
     case ADD_TO_EXPANDED_LIST:
       return {
         ...state,
