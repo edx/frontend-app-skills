@@ -3,6 +3,7 @@ import {
   SET_CURRENT_JOB_TITLE,
   ADD_CAREER_INTEREST,
   REMOVE_CAREER_INTEREST,
+  CLEAR_ALL_CAREER_INTERESTS,
   ADD_TO_EXPANDED_LIST,
   REMOVE_FROM_EXPANDED_LIST,
   SET_EXPANDED_LIST,
@@ -30,6 +31,11 @@ export function skillsReducer(state, action) {
         ...state,
         careerInterests: state.careerInterests.filter(interest => interest !== action.payload),
       };
+    case CLEAR_ALL_CAREER_INTERESTS:
+      return {
+        ...state,
+        careerInterests: [],
+      }
     case ADD_TO_EXPANDED_LIST:
       return {
         ...state,

@@ -10,7 +10,7 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 import { CheckCircle, ErrorOutline } from '@edx/paragon/icons';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import RelatedSkillsSelectableBoxSet from './RelatedSkillsSelectableBoxSet';
-import RelatedSkillsInteractiveBoxSet from './RelatedSkillsInteractiveBoxSet';
+import RelatedSkillsSingleBoxSet from './RelatedSkillsSingleBoxSet';
 import messages from './messages';
 import RecommendationStack from './RecommendationStack';
 
@@ -33,7 +33,7 @@ const ViewResults = () => {
 
   const productTypes = useRef(useProductTypes());
   const visibilityFlags = useRef(useVisibilityFlags());
-  const { showMatchesFoundAlert, isInteractiveBoxSet } = visibilityFlags.current;
+  const { showMatchesFoundAlert, allowMultipleCareerInterests } = visibilityFlags.current;
 
   useEffect(() => {
     const getAllRecommendations = async () => {
@@ -150,16 +150,14 @@ const ViewResults = () => {
             </Alert.Heading>
           </Alert>
         )}
-        { /* This should just pass the isInteractiveBoxSet flag to the component */ }
-        { isInteractiveBoxSet ? (
-          <RelatedSkillsInteractiveBoxSet
+        { allowMultipleCareerInterests ? (
+          <RelatedSkillsSelectableBoxSet
             jobSkillsList={jobSkillsList}
             selectedJobTitle={selectedJobTitle}
             onChange={handleJobTitleChange}
-            isInteractiveBoxSet={isInteractiveBoxSet}
           />
         ) : (
-          <RelatedSkillsSelectableBoxSet
+          <RelatedSkillsSingleBoxSet
             jobSkillsList={jobSkillsList}
             selectedJobTitle={selectedJobTitle}
             onChange={handleJobTitleChange}

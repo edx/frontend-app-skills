@@ -8,7 +8,7 @@ import {
 import { Configure, InstantSearch } from 'react-instantsearch-hooks-web';
 import JobTitleInstantSearch from './JobTitleInstantSearch';
 import CareerInterestCard from './CareerInterestCard';
-import { addCareerInterest } from '../../data/actions';
+import { addCareerInterest, clearAllCareerInterests } from '../../data/actions';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import { useVisibilityFlags } from '../view-results/data/hooks';
 import messages from './messages';
@@ -19,9 +19,13 @@ const CareerInterestSelect = () => {
   const { careerInterests } = state;
   const { searchClient } = algolia;
   const visibilityFlags = useRef(useVisibilityFlags());
-  const { showCareerInterestCards } = visibilityFlags.current;
+  const { showCareerInterestCards, allowMultipleCareerInterests } = visibilityFlags.current;
 
   const handleCareerInterestSelect = (value) => {
+    if (!allowMultipleCareerInterests && careerInterests.length > 0) {
+      dispatch(clearAllCareerInterests(value));
+    }
+
     if (!careerInterests.includes(value) && careerInterests.length < 3) {
       dispatch(addCareerInterest(value));
 
@@ -36,6 +40,8 @@ const CareerInterestSelect = () => {
         },
       );
     }
+
+    
   };
 
   return (
@@ -48,7 +54,11 @@ const CareerInterestSelect = () => {
           <Configure filters="b2c_opt_in:true" />
           <JobTitleInstantSearch
             onSelected={handleCareerInterestSelect}
-            placeholder={formatMessage(messages.careerInterestInputPlaceholderText)}
+            placeholder={
+              allowMultipleCareerInterests
+                ? (formatMessage(messages.careerInterestInputPlaceholderText))
+                : (formatMessage(messages.singleCareerInterestInputPlaceholderText))
+            }
             data-testid="career-interest-select"
           />
         </InstantSearch>
