@@ -159,8 +159,6 @@ const ViewResults = () => {
         ) : (
           <RelatedSkillsSingleBoxSet
             jobSkillsList={jobSkillsList}
-            selectedJobTitle={selectedJobTitle}
-            onChange={handleJobTitleChange}
           />
         )}
 

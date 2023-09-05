@@ -40,7 +40,7 @@ export const DEFAULT_VISIBILITY_FLAGS = {
   allowMultipleCareerInterests: true,
   showSkillsBox: true,
   showSkillsList: true,
-  alwaysSmallHeader: false,
+  showSmallHeader: true,
 };
 
 // Show a single question, and go right to the recommendations
@@ -55,5 +55,5 @@ export const ONE_QUESTION_VISIBILITY_FLAGS = {
   allowMultipleCareerInterests: false,
   showSkillsBox: true,
   showSkillsList: true,
-  alwaysSmallHeader: true,
+  showSmallHeader: true,
 };

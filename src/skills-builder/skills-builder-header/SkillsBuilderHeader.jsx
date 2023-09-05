@@ -8,9 +8,9 @@ import messages from './messages';
 const SkillsBuilderHeader = ({ isMedium }) => {
   const { formatMessage } = useIntl();
   const visibilityFlags = useRef(useVisibilityFlags());
-  const { alwaysSmallHeader } = visibilityFlags.current;
+  const { showSmallHeader } = visibilityFlags.current;
 
-  if (alwaysSmallHeader || isMedium) {
+  if (showSmallHeader || isMedium) {
     return (
 
       <div className="d-flex bg-primary-500 little-hero">
