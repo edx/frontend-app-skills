@@ -37,6 +37,10 @@ export const DEFAULT_VISIBILITY_FLAGS = {
   showCurrentJobTitle: true,
   showCareerInterest: true,
   isProgressive: false,
+  allowMultipleCareerInterests: true,
+  showSkillsBox: true,
+  showSkillsList: true,
+  showSmallHeader: true,
 };
 
 // Show a single question, and go right to the recommendations
@@ -48,4 +52,8 @@ export const ONE_QUESTION_VISIBILITY_FLAGS = {
   showCurrentJobTitle: false,
   showCareerInterest: true,
   isProgressive: true,
+  allowMultipleCareerInterests: false,
+  showSkillsBox: true,
+  showSkillsList: true,
+  showSmallHeader: true,
 };

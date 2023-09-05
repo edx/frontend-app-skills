@@ -61,6 +61,12 @@ const messages = defineMessages({
     defaultMessage: 'Select up to 3 new job titles',
     description: 'Placeholder text for the career interest input control.',
   },
+  singleCareerInterestInputPlaceholderText: {
+    id: 'single.career.interest.input.placeholder.text',
+    defaultMessage: 'Select a new job title',
+    description: 'Placeholder text for the career interest input control for one choice.',
+  },
+
   removeCareerInterestButtonAltText: {
     id: 'career.interest.remove.button.alt.text',
     defaultMessage: 'Remove career interest: ',

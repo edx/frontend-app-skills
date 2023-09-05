@@ -3,6 +3,7 @@ import {
   SET_CURRENT_JOB_TITLE,
   ADD_CAREER_INTEREST,
   REMOVE_CAREER_INTEREST,
+  CLEAR_ALL_CAREER_INTERESTS,
   ADD_TO_EXPANDED_LIST,
   REMOVE_FROM_EXPANDED_LIST,
   SET_EXPANDED_LIST,
@@ -26,6 +27,11 @@ export const addCareerInterest = (payload) => ({
 export const removeCareerInterest = (payload) => ({
   type: REMOVE_CAREER_INTEREST,
   payload,
+});
+
+export const clearAllCareerInterests = () => ({
+  type: CLEAR_ALL_CAREER_INTERESTS,
+  payload: [],
 });
 
 export const addToExpandedList = (payload) => ({

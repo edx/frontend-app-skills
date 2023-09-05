@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import edXLogo from '../images/edX-logo.svg';
+import { useVisibilityFlags } from '../skills-builder-modal/view-results/data/hooks';
 import messages from './messages';
 
 const SkillsBuilderHeader = ({ isMedium }) => {
   const { formatMessage } = useIntl();
+  const visibilityFlags = useRef(useVisibilityFlags());
+  const { showSmallHeader } = visibilityFlags.current;
 
-  if (isMedium) {
+  if (showSmallHeader || isMedium) {
     return (
-      <div className="d-flex">
-        <h1 className="h3 mb-0 text-white">
-          {formatMessage(messages.skillsBuilderHeaderTitleIsMedium)}
-        </h1>
+
+      <div className="d-flex bg-primary-500 little-hero">
+        <img src={edXLogo} alt="edx-logo" className="mt-2 edx-logo" />
+        <div className="ml-3 vertical-line" />
+        <div className="d-flex align-items-center w-100 ml-3">
+          <h1 className="h2 m-0 text-warning-300">
+            {formatMessage(messages.skillsBuilderHeaderTitle)}
+          </h1>
+        </div>
       </div>
+
     );
   }
   return (
