@@ -1,6 +1,6 @@
 import { extractProductKeys } from '../extractProductKeys';
 import { mockData } from '../../test/__mocks__/jobSkills.mockData';
-import { productTypeNames } from '../../skills-builder-modal/view-results/data/constants';
+import { productTypeNames } from '../../skills-builder-steps/view-results/data/constants';
 
 // Create mock recommendations object with product types as keys and the recommendations as values
 const mockRecommendations = Object.fromEntries(

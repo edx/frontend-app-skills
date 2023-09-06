@@ -16,7 +16,9 @@ import './index.scss';
 subscribe(APP_READY, () => {
   ReactDOM.render(
     <AppProvider>
-      <PageRoute path="/" component={SkillsBuilder} />
+      <main>
+        <PageRoute path="/" component={SkillsBuilder} />
+      </main>
       <Footer />
     </AppProvider>,
     document.getElementById('root'),

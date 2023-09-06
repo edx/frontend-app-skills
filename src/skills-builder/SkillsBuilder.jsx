@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-import { SkillsBuilderModal } from './skills-builder-modal';
+import { SkillsBuilderDefault } from './skills-builder-steps';
 import { SkillsBuilderProvider } from './skills-builder-context';
-import { useVisibilityFlags } from './skills-builder-modal/view-results/data/hooks';
-import SkillsBuilderProgressive from './skills-builder-modal/SkillsBuilderProgressive';
+import { useVisibilityFlags } from './skills-builder-steps/view-results/data/hooks';
+import SkillsBuilderProgressive from './skills-builder-steps/SkillsBuilderProgressive';
 
 const SkillsBuilder = () => {
   const visibilityFlags = useRef(useVisibilityFlags());
@@ -13,7 +13,7 @@ const SkillsBuilder = () => {
       { isProgressive ? (
         <SkillsBuilderProgressive />
       ) : (
-        <SkillsBuilderModal />
+        <SkillsBuilderDefault />
       )}
 
     </SkillsBuilderProvider>

@@ -1,6 +1,6 @@
 import { IntlProvider } from '@edx/frontend-platform/i18n';
 import React from 'react';
-import { SkillsBuilderModal } from '../skills-builder-modal';
+import { SkillsBuilderDefault } from '../skills-builder-steps';
 import { SkillsBuilderContext } from '../skills-builder-context';
 import { skillsInitialState } from '../data/reducer';
 import { mockData } from './__mocks__/jobSkills.mockData';
@@ -49,7 +49,7 @@ export const contextValue = {
 export const SkillsBuilderWrapperWithContext = (value = contextValue) => (
   <IntlProvider locale="en">
     <SkillsBuilderContext.Provider value={value}>
-      <SkillsBuilderModal />
+      <SkillsBuilderDefault />
     </SkillsBuilderContext.Provider>
   </IntlProvider>
 );

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import {
-  Button, Container, ModalDialog, Form, Hyperlink, useMediaQuery, breakpoints,
+  Button, Container, Form, Hyperlink, useMediaQuery, breakpoints,
 } from '@edx/paragon';
 import { getConfig } from '@edx/frontend-platform';
 import { useIntl } from '@edx/frontend-platform/i18n';
@@ -36,42 +36,28 @@ const SkillsBuilderProgressive = () => {
   const exitButtonHandle = () => {
     sendActionButtonEvent('exit');
   };
-  const closeButtonHandle = () => {
-    sendActionButtonEvent('close');
-    window.location.href = getConfig().MARKETING_SITE_SEARCH_URL;
-  };
 
   return (
-    <ModalDialog
-      title="Skills Builder"
-      size="fullscreen"
-      className="skills-builder-modal bg-light-200"
-      isOpen
-      onClose={closeButtonHandle}
-    >
+    <>
       <SkillsBuilderHeader isMedium={isMedium} />
-      <ModalDialog.Body>
-        <Container size="md" className="p-4.5">
-          <Form>
+      <Container size="md" className="p-4.5 d-flex flex-column">
+        <Form className="min-vh-100">
 
-            <SelectPreferences />
+          <SelectPreferences />
 
-            { careerInterests.length > 0 && (
-              <ViewResults />
-            )}
+          {careerInterests.length > 0 && (
+            <ViewResults />
+          )}
 
-          </Form>
-        </Container>
-      </ModalDialog.Body>
-
-      <ModalDialog.Footer>
-        <Hyperlink destination={getConfig().MARKETING_SITE_SEARCH_URL}>
+        </Form>
+        <Hyperlink destination={getConfig().MARKETING_SITE_SEARCH_URL} className="align-self-end">
           <Button onClick={exitButtonHandle}>
             {formatMessage(messages.exitButton)}
           </Button>
         </Hyperlink>
-      </ModalDialog.Footer>
-    </ModalDialog>
+      </Container>
+    </>
+
   );
 };
 
