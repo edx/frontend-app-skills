@@ -41,6 +41,7 @@ export const DEFAULT_VISIBILITY_FLAGS = {
   showSkillsBox: true,
   showSkillsList: true,
   showSmallHeader: true,
+  showCategorizinator: false,
 };
 
 // Show a single question, and go right to the recommendations
@@ -56,4 +57,5 @@ export const ONE_QUESTION_VISIBILITY_FLAGS = {
   showSkillsBox: true,
   showSkillsList: true,
   showSmallHeader: true,
+  showCategorizinator: true,
 };

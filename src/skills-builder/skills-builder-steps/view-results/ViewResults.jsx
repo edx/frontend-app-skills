@@ -139,7 +139,7 @@ const ViewResults = () => {
         />
       </Row>
     ) : (
-      <Stack gap={4.5} className="pb-4.5">
+      <Stack gap={4.5} className="py-4.5">
         { showMatchesFoundAlert && (
           <Alert
             variant="success"
