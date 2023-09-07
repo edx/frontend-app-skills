@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import {
   Form, Icon,
 } from '@edx/paragon';
-import { useHits, useSearchBox } from 'react-instantsearch-hooks-web';
+import { useSearchBox, useInstantSearch } from 'react-instantsearch';
 import { Search } from '@edx/paragon/icons';
 
 const JobTitleInstantSearch = (props) => {
   const { refine } = useSearchBox(props);
-  const { hits } = useHits(props);
+  const { results, status } = useInstantSearch();
+  const { hits } = results;
 
   const [jobInput, setJobInput] = useState('');
 
@@ -26,6 +27,7 @@ const JobTitleInstantSearch = (props) => {
       onChange={handleAutosuggestChange}
       name="job-title-suggest"
       autoComplete="off"
+      isLoading={status === 'loading' || status === 'stalled'}
       trailingElement={(
         <Icon
           src={Search}

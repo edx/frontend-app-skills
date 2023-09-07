@@ -46,7 +46,7 @@ describe('select-preferences', () => {
       fireEvent.change(jobTitleInput, { target: { value: 'Prospector' } });
       fireEvent.click(screen.getByRole('button', { name: 'Prospector' }));
 
-      expect(screen.getByText('Next, search and select your current job title')).toBeTruthy();
+      expect(screen.getByText('Next, search and select your current job title (optional)')).toBeTruthy();
       expect(dispatchMock).toHaveBeenCalledWith(expectedGoal);
       expect(dispatchMock).toHaveBeenCalledWith(expectedJobTitle);
       expect(sendTrackEvent).toHaveBeenCalledWith(

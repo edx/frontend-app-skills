@@ -21,7 +21,7 @@ describe('skills-builder', () => {
     jest.clearAllMocks();
   });
 
-  it('should render a Skills Builder modal with a prompt for the user', () => {
+  it('should render a Skills Builder with a prompt for the user', () => {
     act(() => {
       render(
         <IntlProvider locale="en">
@@ -32,6 +32,6 @@ describe('skills-builder', () => {
       );
     });
     expect(screen.getByText('Skills Builder')).toBeTruthy();
-    expect(screen.getByText('First, tell us what you want to achieve')).toBeTruthy();
+    expect(screen.getByText('First, tell us what you want to achieve (optional)')).toBeTruthy();
   });
 });
