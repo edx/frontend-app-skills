@@ -39,10 +39,9 @@ const RelatedSkillsSingleBoxSet = ({ jobSkillsList }) => {
   return (
     showSkillsBox
     && (
-    <Card>
+    <Card className="mt-4.5">
       <Card.Header
         title={name}
-        size="sm"
       />
       { showSkillsList
         && (

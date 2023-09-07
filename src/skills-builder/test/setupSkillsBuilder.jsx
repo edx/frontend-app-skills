@@ -8,12 +8,12 @@ import { getProductRecommendations, searchJobs, useAlgoliaSearch } from '../util
 
 jest.mock('@edx/frontend-platform/logging');
 
-jest.mock('react-instantsearch-hooks-web', () => ({
+jest.mock('react-instantsearch', () => ({
   // eslint-disable-next-line react/prop-types
   InstantSearch: ({ children }) => (<div>{children}</div>),
   Configure: jest.fn(() => (null)),
   useSearchBox: jest.fn(() => ({ refine: jest.fn() })),
-  useHits: jest.fn(() => ({ hits: mockData.hits })),
+  useInstantSearch: jest.fn(() => ({ results: { hits: mockData.hits } })),
 }));
 
 jest.mock('react-router-dom', () => ({

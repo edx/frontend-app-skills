@@ -1,7 +1,7 @@
 import { defineMessages } from '@edx/frontend-platform/i18n';
 
 const messages = defineMessages({
-  /* Modal Action Row Buttons */
+  /* Action Row Buttons */
   goBackButton: {
     id: 'go.back.button',
     defaultMessage: 'Go Back',

@@ -16,7 +16,7 @@ const CareerInterestCategorizinator = () => {
   const { state, dispatch } = useContext(SkillsBuilderContext);
   const { careerInterests } = state;
   const visibilityFlags = useRef(useVisibilityFlags());
-  const { showCareerInterestCards, allowMultipleCareerInterests } = visibilityFlags.current;
+  const { showCareerInterestCards, allowMultipleCareerInterests, isProgressive } = visibilityFlags.current;
 
   const handleCareerInterestSelect = (value) => {
     if (!allowMultipleCareerInterests && careerInterests.length > 0) {
@@ -61,11 +61,17 @@ const CareerInterestCategorizinator = () => {
   };
 
   return (
-    <Stack gap={2}>
+    <Stack>
       <Form.Label>
-        <h4 className="mb-3">
-          {formatMessage(messages.careerInterestPrompt)}
-        </h4>
+        {isProgressive ? (
+          <p className="lead">
+            {formatMessage(messages.careerInterestPromptProgressive)}
+          </p>
+        ) : (
+          <h4 className="mb-3">
+            {formatMessage(messages.careerInterestPrompt)}
+          </h4>
+        )}
       </Form.Label>
       <Stack
         direction="horizontal"

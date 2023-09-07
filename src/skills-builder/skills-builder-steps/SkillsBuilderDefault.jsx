@@ -46,13 +46,12 @@ const SkillsBuilderDefault = () => {
   };
 
   return (
-    <div className="min-vh-100">
+    <div className="min-vh-100 bg-light-200">
       <SkillsBuilderHeader isMedium={isMedium} />
       <Stepper activeKey={currentStep}>
 
-        <Stepper.Header compactWidth="md" />
-
-        <Container size="md" className="p-4.5">
+        <Stepper.Header compactWidth="md" className="bg-white mb-4.5" />
+        <Container size="md">
           <Form>
             <Stepper.Step eventKey={STEP1} title={formatMessage(messages.selectPreferences)}>
               <SelectPreferences />
@@ -71,7 +70,7 @@ const SkillsBuilderDefault = () => {
               </Button>
             </Stepper.ActionRow>
 
-            <Stepper.ActionRow eventKey={STEP2}>
+            <Stepper.ActionRow eventKey={STEP2} className="py-4.5">
               <Button variant="outline-primary" onClick={() => setCurrentStep(STEP1)}>
                 {formatMessage(messages.goBackButton)}
               </Button>

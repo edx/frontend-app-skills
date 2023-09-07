@@ -5,7 +5,7 @@ import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import {
   Stack, Row, Col, Form,
 } from '@edx/paragon';
-import { Configure, InstantSearch } from 'react-instantsearch-hooks-web';
+import { Configure, InstantSearch } from 'react-instantsearch';
 import JobTitleInstantSearch from './JobTitleInstantSearch';
 import CareerInterestCard from './CareerInterestCard';
 import { addCareerInterest, clearAllCareerInterests } from '../../data/actions';

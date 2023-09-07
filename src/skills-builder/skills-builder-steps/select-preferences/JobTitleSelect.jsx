@@ -5,7 +5,7 @@ import {
 } from '@edx/paragon';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
-import { InstantSearch } from 'react-instantsearch-hooks-web';
+import { InstantSearch } from 'react-instantsearch';
 import { setCurrentJobTitle } from '../../data/actions';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import JobTitleInstantSearch from './JobTitleInstantSearch';

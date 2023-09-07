@@ -8,7 +8,7 @@ const messages = defineMessages({
   },
   learningGoalPrompt: {
     id: 'learning.goal.prompt',
-    defaultMessage: 'First, tell us what you want to achieve',
+    defaultMessage: 'First, tell us what you want to achieve (optional)',
     description: 'Prompts the user to select their current goal.',
   },
   selectLearningGoal: {
@@ -43,7 +43,7 @@ const messages = defineMessages({
   },
   jobTitlePrompt: {
     id: 'job.title.prompt',
-    defaultMessage: 'Next, search and select your current job title',
+    defaultMessage: 'Next, search and select your current job title (optional)',
     description: 'Prompts the user to select their current job title or occupation.',
   },
   jobTitleInputPlaceholderText: {
@@ -56,6 +56,11 @@ const messages = defineMessages({
     defaultMessage: 'What careers are you interested in?',
     description: 'Prompts the user to select careers they are interested in pursuing.',
   },
+  careerInterestPromptProgressive: {
+    id: 'career.interest.prompt.progressive',
+    defaultMessage: 'Select a job from the categories below to see related skills and courses',
+    description: 'Prompts the user to select careers they are interested in pursuing for the "Progressive" view.',
+  },
   careerInterestInputPlaceholderText: {
     id: 'career.interest.input.placeholder.text',
     defaultMessage: 'Select up to 3 new job titles',
@@ -66,7 +71,6 @@ const messages = defineMessages({
     defaultMessage: 'Select a new job title',
     description: 'Placeholder text for the career interest input control for one choice.',
   },
-
   removeCareerInterestButtonAltText: {
     id: 'career.interest.remove.button.alt.text',
     defaultMessage: 'Remove career interest: ',

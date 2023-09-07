@@ -131,7 +131,7 @@ const ViewResults = () => {
 
   return (
     isLoading ? (
-      <Row>
+      <Row className="vh-100">
         <Spinner
           animation="border"
           screenReaderText="loading"
@@ -139,7 +139,7 @@ const ViewResults = () => {
         />
       </Row>
     ) : (
-      <Stack gap={4.5} className="py-4.5">
+      <Stack gap={4.5}>
         { showMatchesFoundAlert && (
           <Alert
             variant="success"

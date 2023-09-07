@@ -30,7 +30,8 @@ productTypeParams[PROGRAM_PARAM] = PROGRAM;
 // visibility flag sets
 // Default visibility flags - the version that appears if no special flags are set
 export const DEFAULT_VISIBILITY_FLAGS = {
-  showMatchesFoundAlert: true,
+  // TODO: we can probably deprecate this setting entirely as we don't intend to use this alert again
+  showMatchesFoundAlert: false,
   isInteractiveBoxSet: false,
   showCareerInterestCards: true,
   showGoal: true,
@@ -46,6 +47,7 @@ export const DEFAULT_VISIBILITY_FLAGS = {
 
 // Show a single question, and go right to the recommendations
 export const ONE_QUESTION_VISIBILITY_FLAGS = {
+  // TODO: we can probably deprecate this setting entirely as we don't intend to use this alert again
   showMatchesFoundAlert: false,
   isInteractiveBoxSet: true,
   showCareerInterestCards: false,
