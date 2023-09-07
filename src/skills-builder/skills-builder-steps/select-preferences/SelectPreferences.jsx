@@ -7,12 +7,13 @@ import { useVisibilityFlags } from '../view-results/data/hooks';
 import GoalSelect from './GoalSelect';
 import JobTitleSelect from './JobTitleSelect';
 import CareerInterestSelect from './CareerInterestSelect';
+import CareerInterestCategorizinator from './CareerInterestCategorizinator';
 import messages from './messages';
 
 const SelectPreferences = () => {
   const { formatMessage } = useIntl();
   const visibilityFlags = useRef(useVisibilityFlags());
-  const { showGoal, showCurrentJobTitle, showCareerInterest } = visibilityFlags.current;
+  const { showGoal, showCurrentJobTitle, showCategorizinator } = visibilityFlags.current;
 
   return (
     <Stack gap={4}>
@@ -28,7 +29,9 @@ const SelectPreferences = () => {
           <JobTitleSelect />
         )}
 
-        {showCareerInterest && (
+        {showCategorizinator ? (
+          <CareerInterestCategorizinator />
+        ) : (
           <CareerInterestSelect />
         )}
       </Stack>
