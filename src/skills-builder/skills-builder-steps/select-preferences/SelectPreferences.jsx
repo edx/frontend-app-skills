@@ -1,16 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useContext } from 'react';
 import {
   Stack,
 } from '@edx/paragon';
-import { useVisibilityFlags } from '../view-results/data/hooks';
+import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import GoalSelect from './GoalSelect';
 import JobTitleSelect from './JobTitleSelect';
 import CareerInterestSelect from './CareerInterestSelect';
 import CareerInterestCategorizinator from './CareerInterestCategorizinator';
 
 const SelectPreferences = () => {
-  const visibilityFlags = useRef(useVisibilityFlags());
-  const { showGoal, showCurrentJobTitle, showCategorizinator } = visibilityFlags.current;
+  const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
+  const { showGoal, showCurrentJobTitle, showCategorizinator } = visibilityFlagsState;
 
   return (
     <Stack gap={4}>

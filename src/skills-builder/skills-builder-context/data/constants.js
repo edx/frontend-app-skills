@@ -7,7 +7,3 @@ export const CLEAR_ALL_CAREER_INTERESTS = 'CLEAR_ALL_CAREER_INTERESTS';
 export const ADD_TO_EXPANDED_LIST = 'ADD_TO_EXPANDED_LIST';
 export const REMOVE_FROM_EXPANDED_LIST = 'REMOVE_FROM_EXPANDED_LIST';
 export const SET_EXPANDED_LIST = 'SET_EXPANDED_LIST';
-
-// Stepper keys
-export const STEP1 = 'select-your-preferences';
-export const STEP2 = 'review-your-results';

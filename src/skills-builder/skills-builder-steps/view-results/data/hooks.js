@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import {
-  productTypeParams, COURSE, DEFAULT_VISIBILITY_FLAGS, ONE_QUESTION_VISIBILITY_FLAGS,
+  productTypeParams, COURSE,
 } from './constants';
 
 const defaultSetting = [COURSE];
@@ -29,19 +29,4 @@ export const useProductTypes = () => {
   }
   // if no types were set, use default setting
   return checkedTypes.length > 0 ? checkedTypes : defaultSetting;
-};
-
-/*
-  Fetch any params indicating changes to the way the UI behaves.
-  All of these checks should be consolidated into something that sets the state.
-*/
-export const useVisibilityFlags = () => {
-  const { search } = useLocation();
-  const searchParams = new URLSearchParams(search);
-  const visibilityFlag = searchParams.get('viz');
-
-  if (visibilityFlag === '1q') {
-    return ONE_QUESTION_VISIBILITY_FLAGS;
-  }
-  return DEFAULT_VISIBILITY_FLAGS;
 };

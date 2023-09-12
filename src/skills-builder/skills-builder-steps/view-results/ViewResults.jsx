@@ -9,15 +9,16 @@ import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { CheckCircle, ErrorOutline } from '@edx/paragon/icons';
 import { SkillsBuilderContext } from '../../skills-builder-context';
+import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import RelatedSkillsSelectableBoxSet from './RelatedSkillsSelectableBoxSet';
 import RelatedSkillsSingleBoxSet from './RelatedSkillsSingleBoxSet';
 import messages from './messages';
 import RecommendationStack from './RecommendationStack';
 
 import { getRecommendations } from './data/service';
-import { useProductTypes, useVisibilityFlags } from './data/hooks';
+import { useProductTypes } from './data/hooks';
 import { extractProductKeys } from '../../utils/extractProductKeys';
-import { setExpandedList } from '../../data/actions';
+import { setExpandedList } from '../../skills-builder-context/data/actions';
 
 const ViewResults = () => {
   const { formatMessage } = useIntl();
@@ -32,30 +33,35 @@ const ViewResults = () => {
   const [fetchError, setFetchError] = useState(false);
 
   const productTypes = useRef(useProductTypes());
-  const visibilityFlags = useRef(useVisibilityFlags());
-  const { showMatchesFoundAlert, allowMultipleCareerInterests } = visibilityFlags.current;
+  const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
+  const { showMatchesFoundAlert, allowMultipleCareerInterests } = visibilityFlagsState;
 
   useEffect(() => {
     const getAllRecommendations = async () => {
       // eslint-disable-next-line max-len
       const { jobInfo, results } = await getRecommendations(jobSearchIndex, productSearchIndex, careerInterests, productTypes.current);
-
-      setJobSkillsList(jobInfo);
-      setSelectedJobTitle(results[0].name);
-      setProductRecommendations(results);
+      if (results[0]) {
+        setFetchError(false);
+        setJobSkillsList(jobInfo);
+        setSelectedJobTitle(results[0]?.name);
+        setProductRecommendations(results);
+        sendTrackEvent('edx.skills_builder.recommendation.shown', {
+          app_name: 'skills_builder',
+          category: 'skills_builder',
+          page: 'skills_builder',
+          selected_recommendations: {
+            job_id: results[0]?.id,
+            job_name: results[0]?.name,
+            /* Extract a product label, title, and position for each recommendation */
+            product_keys: extractProductKeys(results[0]?.recommendations),
+          },
+          is_default: true,
+        });
+      } else {
+        logError(`No results for ${careerInterests[0]}`);
+        setFetchError(true);
+      }
       setIsLoading(false);
-      sendTrackEvent('edx.skills_builder.recommendation.shown', {
-        app_name: 'skills_builder',
-        category: 'skills_builder',
-        page: 'skills_builder',
-        selected_recommendations: {
-          job_id: results[0].id,
-          job_name: results[0].name,
-          /* Extract a product label, title, and position for each recommendation */
-          product_keys: extractProductKeys(results[0].recommendations),
-        },
-        is_default: true,
-      });
 
       // Check if any LOB doesn't have a recommendation for a job
       results.forEach((jobResult) => {
@@ -150,16 +156,18 @@ const ViewResults = () => {
             </Alert.Heading>
           </Alert>
         )}
-        { allowMultipleCareerInterests ? (
-          <RelatedSkillsSelectableBoxSet
-            jobSkillsList={jobSkillsList}
-            selectedJobTitle={selectedJobTitle}
-            onChange={handleJobTitleChange}
-          />
-        ) : (
-          <RelatedSkillsSingleBoxSet
-            jobSkillsList={jobSkillsList}
-          />
+        { jobSkillsList.length > 0 && (
+          allowMultipleCareerInterests ? (
+            <RelatedSkillsSelectableBoxSet
+              jobSkillsList={jobSkillsList}
+              selectedJobTitle={selectedJobTitle}
+              onChange={handleJobTitleChange}
+            />
+          ) : (
+            <RelatedSkillsSingleBoxSet
+              jobSkillsList={jobSkillsList}
+            />
+          )
         )}
 
         {selectedRecommendations

@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import reducer, { skillsInitialState } from '../data/reducer';
+import reducer, { skillsInitialState } from './data/reducer';
 import { useAlgoliaSearch } from '../utils/search';
 
 export const SkillsBuilderContext = createContext();

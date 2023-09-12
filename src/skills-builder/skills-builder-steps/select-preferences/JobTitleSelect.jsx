@@ -6,7 +6,7 @@ import {
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { InstantSearch } from 'react-instantsearch';
-import { setCurrentJobTitle } from '../../data/actions';
+import { setCurrentJobTitle } from '../../skills-builder-context/data/actions';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import JobTitleInstantSearch from './JobTitleInstantSearch';
 import messages from './messages';

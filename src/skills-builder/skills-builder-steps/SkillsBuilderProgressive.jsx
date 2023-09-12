@@ -50,7 +50,7 @@ const SkillsBuilderProgressive = () => {
           )}
 
         </Form>
-        <Hyperlink destination={getConfig().MARKETING_SITE_SEARCH_URL} className="align-self-end">
+        <Hyperlink destination={getConfig().MARKETING_SITE_SEARCH_URL} className="align-self-end pt-4.5">
           <Button onClick={exitButtonHandle}>
             {formatMessage(messages.exitButton)}
           </Button>
