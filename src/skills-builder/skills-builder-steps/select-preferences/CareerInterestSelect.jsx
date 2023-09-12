@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import { getConfig } from '@edx/frontend-platform';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
@@ -8,9 +8,9 @@ import {
 import { Configure, InstantSearch } from 'react-instantsearch';
 import JobTitleInstantSearch from './JobTitleInstantSearch';
 import CareerInterestCard from './CareerInterestCard';
-import { addCareerInterest, clearAllCareerInterests } from '../../data/actions';
+import { addCareerInterest, clearAllCareerInterests } from '../../skills-builder-context/data/actions';
 import { SkillsBuilderContext } from '../../skills-builder-context';
-import { useVisibilityFlags } from '../view-results/data/hooks';
+import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import messages from './messages';
 
 const CareerInterestSelect = () => {
@@ -18,8 +18,8 @@ const CareerInterestSelect = () => {
   const { state, dispatch, algolia } = useContext(SkillsBuilderContext);
   const { careerInterests } = state;
   const { searchClient } = algolia;
-  const visibilityFlags = useRef(useVisibilityFlags());
-  const { showCareerInterestCards, allowMultipleCareerInterests } = visibilityFlags.current;
+  const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
+  const { showCareerInterestCards, allowMultipleCareerInterests } = visibilityFlagsState;
 
   const handleCareerInterestSelect = (value) => {
     if (!allowMultipleCareerInterests && careerInterests.length > 0) {

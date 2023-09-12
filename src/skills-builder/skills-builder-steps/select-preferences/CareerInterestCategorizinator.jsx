@@ -1,22 +1,22 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import {
-  Stack, Row, Col, Form, Dropdown, DropdownButton,
+  Stack, Row, Col, Form, Dropdown, DropdownButton, MenuItem, SelectMenu,
 } from '@edx/paragon';
 import CareerInterestCard from './CareerInterestCard';
-import { addCareerInterest, clearAllCareerInterests } from '../../data/actions';
+import { addCareerInterest, clearAllCareerInterests } from '../../skills-builder-context/data/actions';
 import { SkillsBuilderContext } from '../../skills-builder-context';
-import { useVisibilityFlags } from '../view-results/data/hooks';
 import messages from './messages';
 import { careerList } from '../../utils/jobsByCategory';
+import { VisibilityFlagsContext } from '../../visibility-flags-context';
 
 const CareerInterestCategorizinator = () => {
   const { formatMessage } = useIntl();
   const { state, dispatch } = useContext(SkillsBuilderContext);
   const { careerInterests } = state;
-  const visibilityFlags = useRef(useVisibilityFlags());
-  const { showCareerInterestCards, allowMultipleCareerInterests, isProgressive } = visibilityFlags.current;
+  const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
+  const { showCareerInterestCards, allowMultipleCareerInterests, isProgressive } = visibilityFlagsState;
 
   const handleCareerInterestSelect = (value) => {
     if (!allowMultipleCareerInterests && careerInterests.length > 0) {
@@ -42,6 +42,10 @@ const CareerInterestCategorizinator = () => {
   const populateDropdown = (category, title = category) => {
     const currentCategory = careerList[category];
 
+    // const filteredTitle = currentCategory.find(item => careerInterests.includes(item));
+
+    // console.log(filteredTitle);
+
     return (
       <DropdownButton
         id={category}
@@ -58,6 +62,16 @@ const CareerInterestCategorizinator = () => {
         ))}
       </DropdownButton>
     );
+    // return (
+    //   <SelectMenu defaultMessage={title}>
+    //     {currentCategory.map((job, idx) => (
+    //       // eslint-disable-next-line react/no-array-index-key
+    //       <MenuItem key={idx} onClick={() => handleCareerInterestSelect(job.JobTitle)}>
+    //         {job.JobTitle}
+    //       </MenuItem>
+    //     ))}
+    //   </SelectMenu>
+    // );
   };
 
   return (

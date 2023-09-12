@@ -3,7 +3,7 @@ import { Stack } from '@edx/paragon';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import ProductCardGrid from './ProductCardGrid';
 import ProductTypeBanner from './ProductTypeBanner';
-import { addToExpandedList, removeFromExpandedList } from '../../data/actions';
+import { addToExpandedList, removeFromExpandedList } from '../../skills-builder-context/data/actions';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import { extractProductKeys } from '../../utils/extractProductKeys';
 

@@ -7,7 +7,7 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { Close } from '@edx/paragon/icons';
 import { SkillsBuilderContext } from '../../skills-builder-context';
-import { removeCareerInterest } from '../../data/actions';
+import { removeCareerInterest } from '../../skills-builder-context/data/actions';
 import messages from './messages';
 
 const CareerInterestCard = ({ interest }) => {

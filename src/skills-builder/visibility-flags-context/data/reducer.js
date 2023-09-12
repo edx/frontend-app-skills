@@ -1,0 +1,56 @@
+import {
+  SET_ALL_FLAGS,
+  SET_DEFAULT_FLAGS,
+} from './constants';
+
+// visibility flag sets
+// Default visibility flags - the version that appears if no special flags are set
+export const DEFAULT_VISIBILITY_FLAGS = {
+  // TODO: we can probably deprecate `showMatchesFoundAlert` entirely as we don't intend to use this alert again
+  showMatchesFoundAlert: false,
+  isInteractiveBoxSet: false,
+  showCareerInterestCards: true,
+  showGoal: true,
+  showCurrentJobTitle: true,
+  showCareerInterest: true,
+  isProgressive: false,
+  allowMultipleCareerInterests: true,
+  showSkillsBox: true,
+  showSkillsList: true,
+  showSmallHeader: true,
+  showCategorizinator: false,
+};
+
+// Show a single question, and go right to the recommendations
+export const ONE_QUESTION_VISIBILITY_FLAGS = {
+  // TODO: we can probably deprecate `showMatchesFoundAlert` entirely as we don't intend to use this alert again
+  showMatchesFoundAlert: false,
+  isInteractiveBoxSet: true,
+  showCareerInterestCards: false,
+  showGoal: false,
+  showCurrentJobTitle: false,
+  showCareerInterest: true,
+  isProgressive: true,
+  allowMultipleCareerInterests: false,
+  showSkillsBox: true,
+  showSkillsList: true,
+  showSmallHeader: true,
+  showCategorizinator: true,
+};
+
+export function visibilityFlagsReducer(state, action) {
+  switch (action.type) {
+    case SET_ALL_FLAGS:
+      return {
+        ...action.payload,
+      };
+    case SET_DEFAULT_FLAGS:
+      return {
+        ...DEFAULT_VISIBILITY_FLAGS,
+      };
+    default:
+      return state;
+  }
+}
+
+export default visibilityFlagsReducer;

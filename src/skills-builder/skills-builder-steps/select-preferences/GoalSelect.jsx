@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import {
-  Form,
+  Form, MenuItem,
 } from '@edx/paragon';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
-import { setGoal } from '../../data/actions';
+import { setGoal } from '../../skills-builder-context/data/actions';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import messages from './messages';
 
@@ -43,7 +43,7 @@ const GoalDropdown = () => {
         data-testid="goal-select-dropdown"
       >
         <option value="" disabled={currentGoal}>{formatMessage(messages.selectLearningGoal)}</option>
-        <option>{formatMessage(messages.learningGoalStartCareer)}</option>
+        <MenuItem as="option">hello</MenuItem>
         <option>{formatMessage(messages.learningGoalAdvanceCareer)}</option>
         <option>{formatMessage(messages.learningGoalChangeCareer)}</option>
         <option>{formatMessage(messages.learningGoalSomethingNew)}</option>

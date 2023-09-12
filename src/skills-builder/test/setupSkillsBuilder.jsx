@@ -2,7 +2,7 @@ import { IntlProvider } from '@edx/frontend-platform/i18n';
 import React from 'react';
 import { SkillsBuilderDefault } from '../skills-builder-steps';
 import { SkillsBuilderContext } from '../skills-builder-context';
-import { skillsInitialState } from '../data/reducer';
+import { skillsInitialState } from '../skills-builder-context/data/reducer';
 import { mockData } from './__mocks__/jobSkills.mockData';
 import { getProductRecommendations, searchJobs, useAlgoliaSearch } from '../utils/search';
 

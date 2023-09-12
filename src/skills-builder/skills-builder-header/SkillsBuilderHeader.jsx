@@ -1,14 +1,14 @@
-import React, { useRef } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import edXLogo from '../images/edX-logo.svg';
-import { useVisibilityFlags } from '../skills-builder-steps/view-results/data/hooks';
+import { VisibilityFlagsContext } from '../visibility-flags-context';
 import messages from './messages';
 
 const SkillsBuilderHeader = ({ isMedium }) => {
   const { formatMessage } = useIntl();
-  const visibilityFlags = useRef(useVisibilityFlags());
-  const { showSmallHeader } = visibilityFlags.current;
+  const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
+  const { showSmallHeader } = visibilityFlagsState;
 
   if (showSmallHeader || isMedium) {
     return (

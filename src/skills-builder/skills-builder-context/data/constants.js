@@ -9,5 +9,6 @@ export const REMOVE_FROM_EXPANDED_LIST = 'REMOVE_FROM_EXPANDED_LIST';
 export const SET_EXPANDED_LIST = 'SET_EXPANDED_LIST';
 
 // Stepper keys
+// TODO: these should probably live in the 'skills-builder-steps' directory under it's own 'constants.js' file
 export const STEP1 = 'select-your-preferences';
 export const STEP2 = 'review-your-results';

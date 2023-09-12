@@ -1,18 +1,19 @@
-import React, { useRef } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   Chip, Card,
 } from '@edx/paragon';
 import { useIntl } from '@edx/frontend-platform/i18n';
-import { useVisibilityFlags } from './data/hooks';
+import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import messages from './messages';
 
 const RelatedSkillsSingleBoxSet = ({ jobSkillsList }) => {
   const { formatMessage } = useIntl();
-  const visibilityFlags = useRef(useVisibilityFlags());
-  const { showSkillsBox, showSkillsList } = visibilityFlags.current;
-  const job = jobSkillsList[0];
-  const { name, skills } = job;
+  const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
+  const { showSkillsBox, showSkillsList } = visibilityFlagsState;
+
+  // TODO: this will throw an error to the page but the user won't be able to reselect
+  const { name, skills } = jobSkillsList[0];
 
   // just a no-op for now.
   // eslint-disable-next-line no-unused-vars
