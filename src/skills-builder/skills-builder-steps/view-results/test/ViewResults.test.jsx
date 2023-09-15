@@ -8,8 +8,7 @@ import messages from '../messages';
 import { SkillsBuilderWrapperWithContext, contextValue, dispatchMock } from '../../../test/setupSkillsBuilder';
 import { getProductRecommendations } from '../../../utils/search';
 import { mockData } from '../../../test/__mocks__/jobSkills.mockData';
-import { useProductTypes, useVisibilityFlags } from '../data/hooks';
-import { DEFAULT_VISIBILITY_FLAGS } from '../data/constants';
+import { useProductTypes } from '../data/hooks';
 
 jest.mock('@edx/frontend-platform/analytics', () => ({
   sendTrackEvent: jest.fn(),
@@ -17,7 +16,6 @@ jest.mock('@edx/frontend-platform/analytics', () => ({
 
 jest.mock('../data/hooks', () => ({
   useProductTypes: jest.fn(),
-  useVisibilityFlags: jest.fn(),
 }));
 
 jest.mock('@edx/frontend-platform/logging', () => ({
@@ -43,17 +41,14 @@ describe('view-results', () => {
     mergeConfig({
       ALGOLIA_JOBS_INDEX_NAME: 'test-job-index-name',
     });
-    useVisibilityFlags.mockImplementation(() => (DEFAULT_VISIBILITY_FLAGS));
   });
 
   describe('user interface', () => {
     beforeAll(() => {
       useProductTypes.mockImplementation(() => (['2U_degree', 'boot_camp', 'executive_education', 'program', 'course']));
-      useVisibilityFlags.mockImplementation(() => (DEFAULT_VISIBILITY_FLAGS));
     });
 
     beforeEach(async () => {
-      useVisibilityFlags.mockImplementation(() => (DEFAULT_VISIBILITY_FLAGS));
       cleanup();
       // Render the form filled out
       renderSkillsBuilderWrapper();
@@ -271,7 +266,6 @@ describe('view-results', () => {
   describe('Product lines are correctly extracted', () => {
     beforeAll(() => {
       useProductTypes.mockImplementation(() => (['boot_camp', 'executive_education', 'course']));
-      useVisibilityFlags.mockImplementation(() => (DEFAULT_VISIBILITY_FLAGS));
     });
     it('extracts only the product lines returned from the hook', async () => {
       renderSkillsBuilderWrapper();

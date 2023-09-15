@@ -7,7 +7,7 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import {
   STEP1, STEP2,
-} from '../data/constants';
+} from './data/constants';
 import messages from './messages';
 
 import { SkillsBuilderContext } from '../skills-builder-context';

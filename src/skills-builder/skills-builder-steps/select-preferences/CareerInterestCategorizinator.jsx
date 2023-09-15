@@ -1,22 +1,24 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useState } from 'react';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import {
-  Stack, Row, Col, Form, Dropdown, DropdownButton,
+  Stack, Row, Col, Form, Icon,
 } from '@edx/paragon';
+import { Verified } from '@edx/paragon/icons';
 import CareerInterestCard from './CareerInterestCard';
-import { addCareerInterest, clearAllCareerInterests } from '../../data/actions';
+import { addCareerInterest, clearAllCareerInterests } from '../../skills-builder-context/data/actions';
 import { SkillsBuilderContext } from '../../skills-builder-context';
-import { useVisibilityFlags } from '../view-results/data/hooks';
 import messages from './messages';
 import { careerList } from '../../utils/jobsByCategory';
+import { VisibilityFlagsContext } from '../../visibility-flags-context';
+import { FORM_VALUES } from './data/constants';
 
 const CareerInterestCategorizinator = () => {
   const { formatMessage } = useIntl();
   const { state, dispatch } = useContext(SkillsBuilderContext);
   const { careerInterests } = state;
-  const visibilityFlags = useRef(useVisibilityFlags());
-  const { showCareerInterestCards, allowMultipleCareerInterests, isProgressive } = visibilityFlags.current;
+  const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
+  const { showCareerInterestCards, allowMultipleCareerInterests, isProgressive } = visibilityFlagsState;
 
   const handleCareerInterestSelect = (value) => {
     if (!allowMultipleCareerInterests && careerInterests.length > 0) {
@@ -39,24 +41,37 @@ const CareerInterestCategorizinator = () => {
     }
   };
 
+  // state for controlling every dropdown menu
+  const [dropdownState, setDropdownState] = useState(FORM_VALUES);
+
   const populateDropdown = (category, title = category) => {
     const currentCategory = careerList[category];
+    const controlState = dropdownState[category];
+
+    const handleSelectChange = (e) => {
+      const { value } = e.target;
+      setDropdownState({
+        ...FORM_VALUES,
+        [category]: value,
+      });
+      handleCareerInterestSelect(value);
+    };
 
     return (
-      <DropdownButton
-        id={category}
-        title={title}
-        variant="light"
+      <Form.Control
+        as="select"
+        value={controlState}
+        onChange={handleSelectChange}
+        className="select-width"
+        leadingElement={controlState && (<Icon src={Verified} />)}
+        floatingLabel={controlState && title}
       >
-        {currentCategory.map((job) => (
-          <Dropdown.Item
-            key={job.JobTitle}
-            onClick={() => handleCareerInterestSelect(job.JobTitle)}
-          >
-            {job.JobTitle}
-          </Dropdown.Item>
+        <option disabled={controlState}>{title}</option>
+        {currentCategory.map((job, idx) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <option key={idx}>{job.JobTitle}</option>
         ))}
-      </DropdownButton>
+      </Form.Control>
     );
   };
 
@@ -75,15 +90,15 @@ const CareerInterestCategorizinator = () => {
       </Form.Label>
       <Stack
         direction="horizontal"
-        gap={2}
+        gap={3}
         className="flex-wrap"
       >
-        {populateDropdown('Coding')}
-        {populateDropdown('Business')}
-        {populateDropdown('ProductManagement', 'Product Management')}
-        {populateDropdown('Data')}
         {populateDropdown('ArtificialIntelligence', 'Artificial Intelligence')}
+        {populateDropdown('Business')}
+        {populateDropdown('Coding')}
         {populateDropdown('Communications')}
+        {populateDropdown('Data')}
+        {populateDropdown('ProductManagement', 'Product Management')}
       </Stack>
       { showCareerInterestCards && (
         <Row>

@@ -2,7 +2,9 @@ import { IntlProvider } from '@edx/frontend-platform/i18n';
 import React from 'react';
 import { SkillsBuilderDefault } from '../skills-builder-steps';
 import { SkillsBuilderContext } from '../skills-builder-context';
-import { skillsInitialState } from '../data/reducer';
+import { VisibilityFlagsContext } from '../visibility-flags-context';
+import { DEFAULT_VISIBILITY_FLAGS } from '../visibility-flags-context/data/constants';
+import { skillsInitialState } from '../skills-builder-context/data/reducer';
 import { mockData } from './__mocks__/jobSkills.mockData';
 import { getProductRecommendations, searchJobs, useAlgoliaSearch } from '../utils/search';
 
@@ -46,10 +48,19 @@ export const contextValue = {
   },
 };
 
+const visibilityContextValue = {
+  state: {
+    ...DEFAULT_VISIBILITY_FLAGS,
+  },
+  dispatch: dispatchMock,
+};
+
 export const SkillsBuilderWrapperWithContext = (value = contextValue) => (
   <IntlProvider locale="en">
     <SkillsBuilderContext.Provider value={value}>
-      <SkillsBuilderDefault />
+      <VisibilityFlagsContext.Provider value={visibilityContextValue}>
+        <SkillsBuilderDefault />
+      </VisibilityFlagsContext.Provider>
     </SkillsBuilderContext.Provider>
   </IntlProvider>
 );
