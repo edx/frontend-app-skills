@@ -46,8 +46,7 @@ const GoalDropdown = () => {
         <option>{formatMessage(messages.learningGoalStartCareer)}</option>
         <option>{formatMessage(messages.learningGoalAdvanceCareer)}</option>
         <option>{formatMessage(messages.learningGoalChangeCareer)}</option>
-        <option>{formatMessage(messages.learningGoalSomethingNew)}</option>
-        <option>{formatMessage(messages.learningGoalSomethingElse)}</option>
+        <option>{formatMessage(messages.learningGoalExplore)}</option>
       </Form.Control>
     </Form.Group>
   );

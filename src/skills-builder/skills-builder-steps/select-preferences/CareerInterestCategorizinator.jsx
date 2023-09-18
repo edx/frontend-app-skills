@@ -6,7 +6,7 @@ import {
 } from '@edx/paragon';
 import { Verified } from '@edx/paragon/icons';
 import CareerInterestCard from './CareerInterestCard';
-import { addCareerInterest, clearAllCareerInterests } from '../../skills-builder-context/data/actions';
+import { addCareerInterest, clearAllCareerInterests, setExpandedList } from '../../skills-builder-context/data/actions';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import messages from './messages';
 import { careerList } from '../../utils/jobsByCategory';
@@ -21,6 +21,8 @@ const CareerInterestCategorizinator = () => {
   const { showCareerInterestCards, allowMultipleCareerInterests, isProgressive } = visibilityFlagsState;
 
   const handleCareerInterestSelect = (value) => {
+    // TODO: test event payload
+    dispatch(setExpandedList([]));
     if (!allowMultipleCareerInterests && careerInterests.length > 0) {
       dispatch(clearAllCareerInterests(value));
     }

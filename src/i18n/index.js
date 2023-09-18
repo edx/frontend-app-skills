@@ -1,4 +1,4 @@
-import { messages as footerMessages } from '@edx/frontend-component-footer';
+import { messages as footerMessages } from '@edx/frontend-component-footer-edx';
 
 import arMessages from './messages/ar.json';
 import caMessages from './messages/ca.json';
