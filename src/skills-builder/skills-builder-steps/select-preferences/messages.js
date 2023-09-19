@@ -31,6 +31,11 @@ const messages = defineMessages({
     defaultMessage: 'I want to change careers',
     description: 'Selected by user if their goal is to change careers.',
   },
+  learningGoalExplore: {
+    id: 'learning.goal.explore',
+    defaultMessage: 'I want to explore',
+    description: 'Selected by user if their goal is to explore.',
+  },
   learningGoalSomethingNew: {
     id: 'learning.goal.something.new',
     defaultMessage: 'I want to learn something new',

@@ -38,6 +38,7 @@ const ViewResults = () => {
 
   useEffect(() => {
     const getAllRecommendations = async () => {
+      setIsLoading(true);
       // eslint-disable-next-line max-len
       const { jobInfo, results } = await getRecommendations(jobSearchIndex, productSearchIndex, careerInterests, productTypes.current);
       if (results[0]) {

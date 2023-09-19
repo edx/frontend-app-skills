@@ -7,7 +7,7 @@ import {
 import { AppProvider, ErrorPage, PageRoute } from '@edx/frontend-platform/react';
 import ReactDOM from 'react-dom';
 
-import Footer from '@edx/frontend-component-footer';
+import Footer from '@edx/frontend-component-footer-edx';
 import { SkillsBuilder } from './skills-builder';
 import messages from './i18n';
 
