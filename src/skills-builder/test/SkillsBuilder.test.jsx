@@ -32,6 +32,6 @@ describe('skills-builder', () => {
       );
     });
     expect(screen.getByText('Skills Builder')).toBeTruthy();
-    expect(screen.getByText('First, tell us what you want to achieve (optional)')).toBeTruthy();
+    expect(screen.getByText('What is the next step for you? (optional)')).toBeTruthy();
   });
 });

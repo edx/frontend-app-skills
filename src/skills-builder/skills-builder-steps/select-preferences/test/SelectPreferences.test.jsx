@@ -46,7 +46,7 @@ describe('select-preferences', () => {
       fireEvent.change(jobTitleInput, { target: { value: 'Prospector' } });
       fireEvent.click(screen.getByRole('button', { name: 'Prospector' }));
 
-      expect(screen.getByText('Next, search and select your current job title (optional)')).toBeTruthy();
+      expect(screen.getByText('What careers interest you? This will focus our recommendations on relevant skills (required)')).toBeTruthy();
       expect(dispatchMock).toHaveBeenCalledWith(expectedGoal);
       expect(dispatchMock).toHaveBeenCalledWith(expectedJobTitle);
       expect(sendTrackEvent).toHaveBeenCalledWith(
@@ -84,7 +84,7 @@ describe('select-preferences', () => {
           },
         ),
       );
-      expect(screen.getByText('What careers are you interested in?')).toBeTruthy();
+      expect(screen.getByText('What careers interest you? This will focus our recommendations on relevant skills (required)')).toBeTruthy();
     });
 
     it('should render a <CareerInterestCard> for each career interest', () => {
