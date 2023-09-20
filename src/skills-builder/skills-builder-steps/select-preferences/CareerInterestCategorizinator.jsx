@@ -9,7 +9,7 @@ import CareerInterestCard from './CareerInterestCard';
 import { addCareerInterest, clearAllCareerInterests, setExpandedList } from '../../skills-builder-context/data/actions';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import messages from './messages';
-import { careerList } from '../../utils/jobsByCategory';
+import careerList from '../data/jobsByCategory.json';
 import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import { FORM_VALUES } from './data/constants';
 
@@ -21,7 +21,6 @@ const CareerInterestCategorizinator = () => {
   const { showCareerInterestCards, allowMultipleCareerInterests, isProgressive } = visibilityFlagsState;
 
   const handleCareerInterestSelect = (value) => {
-    // TODO: test event payload
     dispatch(setExpandedList([]));
     if (!allowMultipleCareerInterests && careerInterests.length > 0) {
       dispatch(clearAllCareerInterests(value));
@@ -71,7 +70,7 @@ const CareerInterestCategorizinator = () => {
         <option disabled={controlState}>{title}</option>
         {currentCategory.map((job, idx) => (
           // eslint-disable-next-line react/no-array-index-key
-          <option key={idx}>{job.JobTitle}</option>
+          <option key={idx}>{job.job_title}</option>
         ))}
       </Form.Control>
     );
@@ -93,14 +92,14 @@ const CareerInterestCategorizinator = () => {
       <Stack
         direction="horizontal"
         gap={3}
-        className="flex-wrap"
+        className="flex-wrap mb-4.5"
       >
-        {populateDropdown('ArtificialIntelligence', 'Artificial Intelligence')}
-        {populateDropdown('Business')}
-        {populateDropdown('Coding')}
-        {populateDropdown('Communications')}
-        {populateDropdown('Data')}
-        {populateDropdown('ProductManagement', 'Product Management')}
+        {populateDropdown('artificial_intelligence', 'Artificial Intelligence')}
+        {populateDropdown('business', 'Business')}
+        {populateDropdown('coding', 'Coding')}
+        {populateDropdown('communications', 'Communications')}
+        {populateDropdown('data', 'Data')}
+        {populateDropdown('product_management', 'Product Management')}
       </Stack>
       { showCareerInterestCards && (
         <Row>
@@ -112,7 +111,6 @@ const CareerInterestCategorizinator = () => {
           ))}
         </Row>
       )}
-
     </Stack>
   );
 };

@@ -1,0 +1,308 @@
+{
+   "coding": [
+      {
+         "job_title": "Android Developer"
+      },
+      {
+         "job_title": "Application Developer"
+      },
+      {
+         "job_title": "Back End Developer"
+      },
+      {
+         "job_title": "Business Systems Analyst"
+      },
+      {
+         "job_title": "Coding Instructor"
+      },
+      {
+         "job_title": "Cybersecurity Analyst"
+      },
+      {
+         "job_title": "DevOps Engineer"
+      },
+      {
+         "job_title": "Digital Marketing Consultant"
+      },
+      {
+         "job_title": "Front End Developer"
+      },
+      {
+         "job_title": "Front End Software Engineer"
+      },
+      {
+         "job_title": "Full Stack Developer"
+      },
+      {
+         "job_title": "Full Stack Software Engineer"
+      },
+      {
+         "job_title": "IT Support Specialist"
+      },
+      {
+         "job_title": "Java Developer"
+      },
+      {
+         "job_title": "Lead Software Engineer"
+      },
+      {
+         "job_title": "Mobile Developer"
+      },
+      {
+         "job_title": "Principal Software Engineer"
+      },
+      {
+         "job_title": "Quality Assurance Analyst"
+      },
+      {
+         "job_title": "Software Developer"
+      },
+      {
+         "job_title": "Software Development Engineer"
+      },
+      {
+         "job_title": "Software Engineer"
+      },
+      {
+         "job_title": "Software Engineering Intern"
+      },
+      {
+         "job_title": "Technical Program Manager"
+      },
+      {
+         "job_title": "UI Designer"
+      },
+      {
+         "job_title": "UX Designer"
+      },
+      {
+         "job_title": "Web Developer"
+      },
+      {
+         "job_title": "iOS Developer"
+      }
+   ],
+   "business": [
+      {
+         "job_title": "Account Executive"
+      },
+      {
+         "job_title": "Account Manager"
+      },
+      {
+         "job_title": "Accountant"
+      },
+      {
+         "job_title": "Administrative Assistant"
+      },
+      {
+         "job_title": "Agile Coach"
+      },
+      {
+         "job_title": "Agile Project Manager"
+      },
+      {
+         "job_title": "Appraiser"
+      },
+      {
+         "job_title": "Bookkeeper"
+      },
+      {
+         "job_title": "Budget Analyst"
+      },
+      {
+         "job_title": "Business Analyst"
+      },
+      {
+         "job_title": "Business Development Manager"
+      },
+      {
+         "job_title": "Business Risk Manager"
+      },
+      {
+         "job_title": "Business Support Analyst"
+      },
+      {
+         "job_title": "Business Systems Administrator"
+      },
+      {
+         "job_title": "Buyer"
+      },
+      {
+         "job_title": "Chief Executive Officer"
+      },
+      {
+         "job_title": "Chief Financial Officer"
+      },
+      {
+         "job_title": "Chief Operations Officer/General Manager"
+      },
+      {
+         "job_title": "Commercial Insurance Broker"
+      },
+      {
+         "job_title": "Compensation Analyst"
+      },
+      {
+         "job_title": "Finance Manager"
+      },
+      {
+         "job_title": "Financial Analyst"
+      },
+      {
+         "job_title": "Fundraiser"
+      },
+      {
+         "job_title": "Growth Marketing Manager"
+      },
+      {
+         "job_title": "Human Resources Consultant"
+      },
+      {
+         "job_title": "Human Resources Project Manager"
+      },
+      {
+         "job_title": "IT Project Manager"
+      },
+      {
+         "job_title": "Investment Banking Analyst"
+      },
+      {
+         "job_title": "Loan Officer"
+      },
+      {
+         "job_title": "Procurement Specialist"
+      },
+      {
+         "job_title": "Program Manager"
+      },
+      {
+         "job_title": "Project Manager"
+      },
+      {
+         "job_title": "Senior Business Analyst"
+      },
+      {
+         "job_title": "Senior Project Manager"
+      },
+      {
+         "job_title": "Student Success Coach"
+      },
+      {
+         "job_title": "Technical Project Manager"
+      },
+      {
+         "job_title": "Technology Consultant"
+      }
+   ],
+   "product_management": [
+      {
+         "job_title": "Associate Product Manager"
+      },
+      {
+         "job_title": "Digital Product Manager"
+      },
+      {
+         "job_title": "Director of Product Management"
+      },
+      {
+         "job_title": "Lead Product Manager"
+      },
+      {
+         "job_title": "Marketing Product Manager"
+      },
+      {
+         "job_title": "Product Analyst"
+      },
+      {
+         "job_title": "Product Owner"
+      }
+   ],
+   "data": [
+      {
+         "job_title": "Analytics Manager"
+      },
+      {
+         "job_title": "Business Intelligence Analyst"
+      },
+      {
+         "job_title": "Data Analyst"
+      },
+      {
+         "job_title": "Data Analytics Scientist"
+      },
+      {
+         "job_title": "Data Architect"
+      },
+      {
+         "job_title": "Data Engineer"
+      },
+      {
+         "job_title": "Data Entry Clerk"
+      },
+      {
+         "job_title": "Data Quality Analyst"
+      },
+      {
+         "job_title": "Data Science Manager"
+      },
+      {
+         "job_title": "Data Scientist"
+      },
+      {
+         "job_title": "Database Developer"
+      },
+      {
+         "job_title": "Director of Data Science"
+      },
+      {
+         "job_title": "Machine Learning Engineer"
+      },
+      {
+         "job_title": "Manager/Data Scientist"
+      },
+      {
+         "job_title": "Research Scientist"
+      }
+   ],
+   "artificial_intelligence": [
+      {
+         "job_title": "Artificial Intelligence Engineer"
+      }
+   ],
+   "communications": [
+      {
+         "job_title": "Communications Coordinator"
+      },
+      {
+         "job_title": "Director of Communications"
+      },
+      {
+         "job_title": "Marketing Analyst"
+      },
+      {
+         "job_title": "Marketing Manager"
+      },
+      {
+         "job_title": "Media Planner"
+      },
+      {
+         "job_title": "Public Relations Specialist"
+      },
+      {
+         "job_title": "Sales Development Representative"
+      },
+      {
+         "job_title": "Sales Operations Specialist"
+      },
+      {
+         "job_title": "Sales Representative"
+      },
+      {
+         "job_title": "Social Media Manager"
+      },
+      {
+         "job_title": "Technical Writer"
+      }
+   ]
+}
