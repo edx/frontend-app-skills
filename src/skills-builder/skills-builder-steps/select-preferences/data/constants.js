@@ -2,8 +2,8 @@
 export const FORM_VALUES = {
   coding: '',
   business: '',
-  product_management: '',
+  productManagement: '',
   data: '',
-  artificial_intelligence: '',
+  artificialIntelligence: '',
   communications: '',
 };

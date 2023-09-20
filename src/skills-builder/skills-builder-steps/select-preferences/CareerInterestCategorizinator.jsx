@@ -70,7 +70,7 @@ const CareerInterestCategorizinator = () => {
         <option disabled={controlState}>{title}</option>
         {currentCategory.map((job, idx) => (
           // eslint-disable-next-line react/no-array-index-key
-          <option key={idx}>{job.job_title}</option>
+          <option key={idx}>{job.jobTitle}</option>
         ))}
       </Form.Control>
     );
@@ -94,12 +94,12 @@ const CareerInterestCategorizinator = () => {
         gap={3}
         className="flex-wrap mb-4.5"
       >
-        {populateDropdown('artificial_intelligence', 'Artificial Intelligence')}
+        {populateDropdown('artificialIntelligence', 'Artificial Intelligence')}
         {populateDropdown('business', 'Business')}
         {populateDropdown('coding', 'Coding')}
         {populateDropdown('communications', 'Communications')}
         {populateDropdown('data', 'Data')}
-        {populateDropdown('product_management', 'Product Management')}
+        {populateDropdown('productManagement', 'Product Management')}
       </Stack>
       { showCareerInterestCards && (
         <Row>
