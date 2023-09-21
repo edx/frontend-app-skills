@@ -3,7 +3,9 @@ import {
 } from '@testing-library/react';
 import { mergeConfig } from '@edx/frontend-platform';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
-import { SkillsBuilderWrapperWithContext, dispatchMock, contextValue } from '../../../test/setupSkillsBuilder';
+import {
+  SkillsBuilderWrapperWithContext, dispatchMock, contextValue, messages,
+} from '../../../test/setupSkillsBuilder';
 
 jest.mock('@edx/frontend-platform/analytics', () => ({
   sendTrackEvent: jest.fn(),
@@ -25,13 +27,13 @@ describe('select-preferences', () => {
             ...contextValue,
             state: {
               ...contextValue.state,
-              currentGoal: 'I want to start my career',
+              currentGoal: messages.learningGoalStartCareer.defaultMessage,
             },
           },
         ),
       );
       const expectedGoal = {
-        payload: 'I want to advance my career',
+        payload: messages.learningGoalAdvanceCareer.defaultMessage,
         type: 'SET_GOAL',
       };
       const expectedJobTitle = {
@@ -40,13 +42,13 @@ describe('select-preferences', () => {
       };
 
       const goalSelect = screen.getByTestId('goal-select-dropdown');
-      fireEvent.change(goalSelect, { target: { value: 'I want to advance my career' } });
+      fireEvent.change(goalSelect, { target: { value: messages.learningGoalAdvanceCareer.defaultMessage } });
 
       const jobTitleInput = screen.getByTestId('job-title-select');
       fireEvent.change(jobTitleInput, { target: { value: 'Prospector' } });
       fireEvent.click(screen.getByRole('button', { name: 'Prospector' }));
 
-      expect(screen.getByText('What careers interest you? This will focus our recommendations on relevant skills (required)')).toBeTruthy();
+      expect(screen.getByText(messages.careerInterestPrompt.defaultMessage)).toBeTruthy();
       expect(dispatchMock).toHaveBeenCalledWith(expectedGoal);
       expect(dispatchMock).toHaveBeenCalledWith(expectedJobTitle);
       expect(sendTrackEvent).toHaveBeenCalledWith(
@@ -55,7 +57,7 @@ describe('select-preferences', () => {
           app_name: 'skills_builder',
           category: 'skills_builder',
           learner_data: {
-            current_goal: 'I want to advance my career',
+            current_goal: messages.learningGoalAdvanceCareer.defaultMessage,
           },
         },
       );
@@ -78,13 +80,13 @@ describe('select-preferences', () => {
             ...contextValue,
             state: {
               ...contextValue.state,
-              currentGoal: 'I want to start my career',
+              currentGoal: messages.learningGoalStartCareer.defaultMessage,
               currentJobTitle: 'Goblin Guide',
             },
           },
         ),
       );
-      expect(screen.getByText('What careers interest you? This will focus our recommendations on relevant skills (required)')).toBeTruthy();
+      expect(screen.getByText(messages.careerInterestPrompt.defaultMessage)).toBeTruthy();
     });
 
     it('should render a <CareerInterestCard> for each career interest', () => {
@@ -94,7 +96,7 @@ describe('select-preferences', () => {
             ...contextValue,
             state: {
               ...contextValue.state,
-              currentGoal: 'I want to start my career',
+              currentGoal: messages.learningGoalStartCareer.defaultMessage,
               currentJobTitle: 'Goblin Lackey',
               careerInterests: ['Prospector'],
             },
@@ -134,7 +136,7 @@ describe('select-preferences', () => {
             ...contextValue,
             state: {
               ...contextValue.state,
-              currentGoal: 'I want to start my career',
+              currentGoal: messages.learningGoalStartCareer.defaultMessage,
               currentJobTitle: 'Goblin Lackey',
               careerInterests: ['Prospector', 'Mirror Breaker', 'Bombardment'],
             },

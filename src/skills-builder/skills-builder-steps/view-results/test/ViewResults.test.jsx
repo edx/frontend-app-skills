@@ -4,8 +4,9 @@ import {
 import { mergeConfig } from '@edx/frontend-platform';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { logError } from '@edx/frontend-platform/logging';
-import messages from '../messages';
-import { SkillsBuilderWrapperWithContext, contextValue, dispatchMock } from '../../../test/setupSkillsBuilder';
+import {
+  SkillsBuilderWrapperWithContext, contextValue, dispatchMock, messages,
+} from '../../../test/setupSkillsBuilder';
 import { getProductRecommendations } from '../../../utils/search';
 import { mockData } from '../../../test/__mocks__/jobSkills.mockData';
 import { useProductTypes } from '../data/hooks';
@@ -54,7 +55,7 @@ describe('view-results', () => {
       renderSkillsBuilderWrapper();
       // Click the next button to trigger "fetching" the data
       await act(async () => {
-        fireEvent.click(screen.getByRole('button', { name: 'Show Recommendations' }));
+        fireEvent.click(screen.getByRole('button', { name: messages.showRecommendationsButton.defaultMessage }));
       });
     });
 
@@ -213,7 +214,7 @@ describe('view-results', () => {
     it('adds product type to the list of recommendations when a dropdown is expanded', async () => {
       renderSkillsBuilderWrapper();
       await act(async () => {
-        fireEvent.click(screen.getByRole('button', { name: 'Show Recommendations' }));
+        fireEvent.click(screen.getByRole('button', { name: messages.showRecommendationsButton.defaultMessage }));
       });
       fireEvent.click(screen.getByTestId('course-expand-button'));
       expect(dispatchMock).toHaveBeenCalledWith({
@@ -252,7 +253,7 @@ describe('view-results', () => {
         },
       }));
       await act(async () => {
-        fireEvent.click(screen.getByRole('button', { name: 'Show Recommendations' }));
+        fireEvent.click(screen.getByRole('button', { name: messages.showRecommendationsButton.defaultMessage }));
       });
       expect(screen.queryAllByRole('button', { expanded: true })).toHaveLength(1);
       fireEvent.click(screen.getByTestId('course-expand-button'));
@@ -270,7 +271,7 @@ describe('view-results', () => {
     it('extracts only the product lines returned from the hook', async () => {
       renderSkillsBuilderWrapper();
       await act(async () => {
-        fireEvent.click(screen.getByRole('button', { name: 'Show Recommendations' }));
+        fireEvent.click(screen.getByRole('button', { name: messages.showRecommendationsButton.defaultMessage }));
       });
       expect(screen.getByText('"Prospector" bootcamps')).toBeTruthy();
       expect(screen.getByText('"Prospector" executive education')).toBeTruthy();
@@ -293,7 +294,7 @@ describe('view-results', () => {
 
       // Click the next button to trigger "fetching" the data
       await act(async () => {
-        fireEvent.click(screen.getByRole('button', { name: 'Show Recommendations' }));
+        fireEvent.click(screen.getByRole('button', { name: messages.showRecommendationsButton.defaultMessage }));
       });
 
       expect(screen.getByText('We were not able to retrieve recommendations at this time. Please try again later.')).toBeTruthy();
