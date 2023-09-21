@@ -7,6 +7,10 @@ import { DEFAULT_VISIBILITY_FLAGS } from '../visibility-flags-context/data/const
 import { skillsInitialState } from '../skills-builder-context/data/reducer';
 import { mockData } from './__mocks__/jobSkills.mockData';
 import { getProductRecommendations, searchJobs, useAlgoliaSearch } from '../utils/search';
+import headerMessages from '../skills-builder-header/messages';
+import stepsMessages from '../skills-builder-steps/messages';
+import preferencesMessages from '../skills-builder-steps/select-preferences/messages';
+import resultsMessages from '../skills-builder-steps/view-results/messages';
 
 jest.mock('@edx/frontend-platform/logging');
 
@@ -53,6 +57,13 @@ const visibilityContextValue = {
     ...DEFAULT_VISIBILITY_FLAGS,
   },
   dispatch: dispatchMock,
+};
+
+export const messages = {
+  ...headerMessages,
+  ...stepsMessages,
+  ...preferencesMessages,
+  ...resultsMessages,
 };
 
 export const SkillsBuilderWrapperWithContext = (value = contextValue) => (

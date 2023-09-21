@@ -51,7 +51,7 @@ const SkillsBuilderDefault = () => {
       <Stepper activeKey={currentStep}>
 
         <Stepper.Header compactWidth="md" className="bg-white mb-4.5" />
-        <Container size="md">
+        <Container size="md" className="mb-4.5">
           <Form>
             <Stepper.Step eventKey={STEP1} title={formatMessage(messages.selectPreferences)}>
               <SelectPreferences />
@@ -66,7 +66,7 @@ const SkillsBuilderDefault = () => {
                 onClick={nextStepHandle}
                 disabled={careerInterests.length === 0}
               >
-                {formatMessage(messages.nextStepButton)}
+                {formatMessage(messages.showRecommendationsButton)}
               </Button>
             </Stepper.ActionRow>
 

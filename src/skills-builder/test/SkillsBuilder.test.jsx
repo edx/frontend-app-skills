@@ -7,6 +7,7 @@ import { SkillsBuilder } from '..';
 import { SkillsBuilderProvider } from '../skills-builder-context';
 import { useVisibilityFlags } from '../visibility-flags-context/data/hooks';
 import { DEFAULT_VISIBILITY_FLAGS } from '../visibility-flags-context/data/constants';
+import { messages } from './setupSkillsBuilder';
 
 jest.mock('../visibility-flags-context/data/hooks', () => ({
   useVisibilityFlags: jest.fn(),
@@ -31,7 +32,7 @@ describe('skills-builder', () => {
         </IntlProvider>,
       );
     });
-    expect(screen.getByText('Skills Builder')).toBeTruthy();
-    expect(screen.getByText('First, tell us what you want to achieve (optional)')).toBeTruthy();
+    expect(screen.getByText(messages.skillsBuilderHeaderTitle.defaultMessage)).toBeTruthy();
+    expect(screen.getByText(messages.learningGoalPrompt.defaultMessage)).toBeTruthy();
   });
 });

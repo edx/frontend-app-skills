@@ -12,6 +12,11 @@ const messages = defineMessages({
     defaultMessage: 'Next Step',
     description: 'Button that sends the user to the next step in the skills builder.',
   },
+  showRecommendationsButton: {
+    id: 'show.recommmendations.button',
+    defaultMessage: 'Show Recommendations',
+    description: 'Button that sends the user to the next step in the skills builder.',
+  },
   exitButton: {
     id: 'exit.button',
     defaultMessage: 'Exit',

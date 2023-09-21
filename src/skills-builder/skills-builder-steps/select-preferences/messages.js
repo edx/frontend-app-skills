@@ -8,7 +8,7 @@ const messages = defineMessages({
   },
   learningGoalPrompt: {
     id: 'learning.goal.prompt',
-    defaultMessage: 'First, tell us what you want to achieve (optional)',
+    defaultMessage: 'What is the next step for you? (optional)',
     description: 'Prompts the user to select their current goal.',
   },
   selectLearningGoal: {
@@ -36,19 +36,9 @@ const messages = defineMessages({
     defaultMessage: 'I want to explore',
     description: 'Selected by user if their goal is to explore.',
   },
-  learningGoalSomethingNew: {
-    id: 'learning.goal.something.new',
-    defaultMessage: 'I want to learn something new',
-    description: 'Selected by user if their goal is to learn something new.',
-  },
-  learningGoalSomethingElse: {
-    id: 'learning.goal.something.else',
-    defaultMessage: 'Something else',
-    description: 'Selected by user if their goal is not described by the other choices.',
-  },
   jobTitlePrompt: {
     id: 'job.title.prompt',
-    defaultMessage: 'Next, search and select your current job title (optional)',
+    defaultMessage: 'Find the career title that best matches your current role (optional)',
     description: 'Prompts the user to select their current job title or occupation.',
   },
   jobTitleInputPlaceholderText: {
@@ -58,12 +48,12 @@ const messages = defineMessages({
   },
   careerInterestPrompt: {
     id: 'career.interest.prompt',
-    defaultMessage: 'What careers are you interested in?',
+    defaultMessage: 'What careers interest you? This will focus our recommendations on relevant skills (required)',
     description: 'Prompts the user to select careers they are interested in pursuing.',
   },
   careerInterestPromptProgressive: {
     id: 'career.interest.prompt.progressive',
-    defaultMessage: 'Select a job from the categories below to see related skills and courses',
+    defaultMessage: 'Choose a job from the categories for related skills and course recommendations',
     description: 'Prompts the user to select careers they are interested in pursuing for the "Progressive" view.',
   },
   careerInterestInputPlaceholderText: {

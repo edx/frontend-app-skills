@@ -7,7 +7,7 @@ import {
 import { logError } from '@edx/frontend-platform/logging';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { useIntl } from '@edx/frontend-platform/i18n';
-import { CheckCircle, ErrorOutline } from '@edx/paragon/icons';
+import { ErrorOutline } from '@edx/paragon/icons';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import RelatedSkillsSelectableBoxSet from './RelatedSkillsSelectableBoxSet';
@@ -34,7 +34,7 @@ const ViewResults = () => {
 
   const productTypes = useRef(useProductTypes());
   const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
-  const { showMatchesFoundAlert, allowMultipleCareerInterests } = visibilityFlagsState;
+  const { allowMultipleCareerInterests } = visibilityFlagsState;
 
   useEffect(() => {
     const getAllRecommendations = async () => {
@@ -147,16 +147,6 @@ const ViewResults = () => {
       </Row>
     ) : (
       <Stack gap={4.5}>
-        { showMatchesFoundAlert && (
-          <Alert
-            variant="success"
-            icon={CheckCircle}
-          >
-            <Alert.Heading>
-              {formatMessage(messages.matchesFoundSuccessAlert)}
-            </Alert.Heading>
-          </Alert>
-        )}
         { jobSkillsList.length > 0 && (
           allowMultipleCareerInterests ? (
             <RelatedSkillsSelectableBoxSet
