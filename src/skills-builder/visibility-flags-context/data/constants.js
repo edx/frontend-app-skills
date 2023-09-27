@@ -16,6 +16,11 @@ export const DEFAULT_VISIBILITY_FLAGS = {
   showSkillsList: true,
   showSmallHeader: true,
   showCategorizinator: false,
+  sortSkillsByUniquePostings: false,
+  filterSkillsWithResults: false,
+  showAllSkills: false,
+  isClickableSkills: false,
+  isClickableSkillsDevMode: false,
 };
 
 // Show a single question, and go right to the recommendations
@@ -31,4 +36,9 @@ export const ONE_QUESTION_VISIBILITY_FLAGS = {
   showSkillsList: true,
   showSmallHeader: true,
   showCategorizinator: true,
+  sortSkillsByUniquePostings: false,
+  filterSkillsWithResults: false,
+  showAllSkills: true,
+  isClickableSkills: true,
+  isClickableSkillsDevMode: false,
 };

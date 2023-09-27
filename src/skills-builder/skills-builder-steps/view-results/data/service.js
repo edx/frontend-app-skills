@@ -12,6 +12,7 @@ export async function getRecommendations(jobSearchIndex, productSearchIndex, car
       id: job.id,
       name: job.name,
       recommendations: {},
+      matchedSkills: [],
     };
 
     // get recommendations for each product type based on the skills for the current job
@@ -22,6 +23,21 @@ export async function getRecommendations(jobSearchIndex, productSearchIndex, car
 
       // add a new key to the recommendations object and set the value to the response
       data.recommendations[productType] = response;
+
+      // Get the list of skills for this job that intersect with the skills for the products returned
+      const productSkillsList = {};
+      response.forEach(product => {
+        const skills = product?.skills;
+        if (skills) {
+          skills.forEach((skill) => {
+            const jobSkill = skill?.skill;
+            if (jobSkill) {
+              productSkillsList[jobSkill] = (productSkillsList[jobSkill] || 0) + 1;
+            }
+          });
+        }
+      });
+      data.matchedSkills = formattedSkills.filter((skillName) => skillName in productSkillsList);
     }));
 
     return data;
