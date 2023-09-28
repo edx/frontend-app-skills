@@ -82,6 +82,7 @@ describe('view-results', () => {
             product_keys: mockData.productKeys,
           },
           is_default: true,
+          variation: 'improved_v1.0',
         },
       );
       // called once when "Show Recommendations" button is clicked and then again for above event
@@ -103,6 +104,7 @@ describe('view-results', () => {
             product_keys: mockData.productKeys,
           },
           is_default: false,
+          variation: 'improved_v1.0',
         },
       );
     });
@@ -118,6 +120,7 @@ describe('view-results', () => {
             current_job_title: 'Goblin Lackey',
             career_interests: ['Prospector', 'Mirror Breaker', 'Bombardment'],
           },
+          variation: 'improved_v1.0',
         },
       );
     });
@@ -138,6 +141,7 @@ describe('view-results', () => {
             job_name: 'Prospector',
             product_keys: mockData.productKeys,
           },
+          variation: 'improved_v1.0',
         },
       );
     });
@@ -227,6 +231,7 @@ describe('view-results', () => {
         page: 'skills_builder',
         product_line: 'course',
         number_recommendations: 2,
+        variation: 'improved_v1.0',
       });
       expect(sendTrackEvent).toHaveBeenCalledWith('edx.skills_builder.recommendation.expanded.shown', {
         app_name: 'skills_builder',
@@ -238,6 +243,7 @@ describe('view-results', () => {
           job_name: 'Prospector',
           product_keys: mockData.productKeys,
         },
+        variation: 'improved_v1.0',
       });
     });
 

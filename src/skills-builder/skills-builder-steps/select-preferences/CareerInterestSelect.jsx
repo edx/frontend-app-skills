@@ -19,7 +19,7 @@ const CareerInterestSelect = () => {
   const { careerInterests } = state;
   const { searchClient } = algolia;
   const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
-  const { showCareerInterestCards, allowMultipleCareerInterests } = visibilityFlagsState;
+  const { showCareerInterestCards, allowMultipleCareerInterests, isProgressive } = visibilityFlagsState;
 
   const handleCareerInterestSelect = (value) => {
     if (!allowMultipleCareerInterests && careerInterests.length > 0) {
@@ -37,6 +37,7 @@ const CareerInterestSelect = () => {
           learner_data: {
             career_interest: value,
           },
+          variation: isProgressive ? 'glide_path' : 'improved_v1.0',
         },
       );
     }

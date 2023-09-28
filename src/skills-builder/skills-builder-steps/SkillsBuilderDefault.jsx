@@ -9,7 +9,7 @@ import {
   STEP1, STEP2,
 } from './data/constants';
 import messages from './messages';
-
+import { VisibilityFlagsContext } from '../visibility-flags-context';
 import { SkillsBuilderContext } from '../skills-builder-context';
 import { SkillsBuilderHeader } from '../skills-builder-header';
 import { SelectPreferences } from './select-preferences';
@@ -20,6 +20,8 @@ const SkillsBuilderDefault = () => {
   const isMedium = useMediaQuery({ maxWidth: breakpoints.medium.maxWidth });
   const { state } = useContext(SkillsBuilderContext);
   const { currentGoal, currentJobTitle, careerInterests } = state;
+  const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
+  const { isProgressive } = visibilityFlagsState;
   const [currentStep, setCurrentStep] = useState(STEP1);
 
   const sendActionButtonEvent = (eventSuffix) => {
@@ -33,6 +35,7 @@ const SkillsBuilderDefault = () => {
           current_job_title: currentJobTitle,
           career_interests: careerInterests,
         },
+        variation: isProgressive ? 'glide_path' : 'improved_v1.0',
       },
     );
   };

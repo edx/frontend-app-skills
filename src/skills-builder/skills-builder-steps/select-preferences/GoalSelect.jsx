@@ -5,6 +5,7 @@ import {
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { setGoal } from '../../skills-builder-context/data/actions';
+import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import messages from './messages';
 
@@ -12,6 +13,8 @@ const GoalDropdown = () => {
   const { formatMessage } = useIntl();
   const { state, dispatch } = useContext(SkillsBuilderContext);
   const { currentGoal } = state;
+  const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
+  const { isProgressive } = visibilityFlagsState;
 
   const handleGoalSelect = (e) => {
     const { value } = e.target;
@@ -25,6 +28,7 @@ const GoalDropdown = () => {
         learner_data: {
           current_goal: value,
         },
+        variation: isProgressive ? 'glide_path' : 'improved_v1.0',
       },
     );
   };

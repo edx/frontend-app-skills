@@ -13,6 +13,10 @@ jest.mock('../visibility-flags-context/data/hooks', () => ({
   useVisibilityFlags: jest.fn(),
 }));
 
+jest.mock('@edx/frontend-platform/analytics', () => ({
+  sendTrackEvent: jest.fn(),
+}));
+
 describe('skills-builder', () => {
   beforeAll(() => {
     useVisibilityFlags.mockImplementation(() => (DEFAULT_VISIBILITY_FLAGS));

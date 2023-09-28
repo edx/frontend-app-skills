@@ -7,6 +7,7 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { InstantSearch } from 'react-instantsearch';
 import { setCurrentJobTitle } from '../../skills-builder-context/data/actions';
+import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import JobTitleInstantSearch from './JobTitleInstantSearch';
 import messages from './messages';
@@ -15,6 +16,8 @@ const JobTitleSelect = () => {
   const { formatMessage } = useIntl();
   const { dispatch, algolia } = useContext(SkillsBuilderContext);
   const { searchClient } = algolia;
+  const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
+  const { isProgressive } = visibilityFlagsState;
 
   const handleCurrentJobTitleSelect = (value) => {
     dispatch(setCurrentJobTitle(value));
@@ -26,6 +29,7 @@ const JobTitleSelect = () => {
         learner_data: {
           current_job_title: value,
         },
+        variation: isProgressive ? 'glide_path' : 'improved_v1.0',
       },
     );
   };

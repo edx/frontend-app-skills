@@ -6,6 +6,7 @@ import {
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { addCareerInterest } from '../../skills-builder-context/data/actions';
+import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import messages from './messages';
 
@@ -23,6 +24,8 @@ const RelatedSkillsInteractiveBoxSet = ({
   const { formatMessage } = useIntl();
   const { state, dispatch } = useContext(SkillsBuilderContext);
   const { careerInterests } = state;
+  const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
+  const { isProgressive } = visibilityFlagsState;
 
   const renderTopFiveSkills = (skills) => {
     const topFiveSkills = skills.sort((a, b) => b.significance - a.significance).slice(0, 5);
@@ -47,6 +50,7 @@ const RelatedSkillsInteractiveBoxSet = ({
           learner_data: {
             career_interest: value,
           },
+          variation: isProgressive ? 'glide_path' : 'improved_v1.0',
         },
       );
     }
