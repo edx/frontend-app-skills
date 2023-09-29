@@ -37,6 +37,7 @@ const CareerInterestCategorizinator = () => {
           learner_data: {
             career_interest: value,
           },
+          variation: isProgressive ? 'glide_path' : 'improved_v1.0',
         },
       );
     }
@@ -58,6 +59,18 @@ const CareerInterestCategorizinator = () => {
       handleCareerInterestSelect(value);
     };
 
+    const handleSelectClick = () => {
+      sendTrackEvent(
+        'edx.skills_builder.category.clicked',
+        {
+          app_name: 'skills_builder',
+          category: 'skills_builder',
+          dropdownCategory: title,
+          variation: isProgressive ? 'glide_path' : 'improved_v1.0',
+        },
+      );
+    };
+
     return (
       <Form.Control
         as="select"
@@ -66,6 +79,7 @@ const CareerInterestCategorizinator = () => {
         className="select-width"
         leadingElement={controlState && (<Icon src={Verified} />)}
         floatingLabel={controlState && title}
+        onClick={handleSelectClick}
       >
         <option disabled={controlState}>{title}</option>
         {currentCategory.map((job, idx) => (

@@ -34,7 +34,7 @@ const ViewResults = () => {
 
   const productTypes = useRef(useProductTypes());
   const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
-  const { allowMultipleCareerInterests } = visibilityFlagsState;
+  const { allowMultipleCareerInterests, isProgressive } = visibilityFlagsState;
 
   useEffect(() => {
     const getAllRecommendations = async () => {
@@ -57,6 +57,7 @@ const ViewResults = () => {
             product_keys: extractProductKeys(results[0]?.recommendations),
           },
           is_default: true,
+          variation: isProgressive ? 'glide_path' : 'improved_v1.0',
         });
       } else {
         logError(`No results for ${careerInterests[0]}`);
@@ -119,6 +120,7 @@ const ViewResults = () => {
           product_keys: extractProductKeys(recommendations),
         },
         is_default: false,
+        variation: isProgressive ? 'glide_path' : 'improved_v1.0',
       });
     }
   };

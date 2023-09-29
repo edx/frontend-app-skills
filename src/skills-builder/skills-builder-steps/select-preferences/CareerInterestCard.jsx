@@ -6,6 +6,7 @@ import {
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { Close } from '@edx/paragon/icons';
+import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import { removeCareerInterest } from '../../skills-builder-context/data/actions';
 import messages from './messages';
@@ -13,6 +14,8 @@ import messages from './messages';
 const CareerInterestCard = ({ interest }) => {
   const { formatMessage } = useIntl();
   const { dispatch } = useContext(SkillsBuilderContext);
+  const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
+  const { isProgressive } = visibilityFlagsState;
 
   const handleRemoveCareerInterest = () => {
     dispatch(removeCareerInterest(interest));
@@ -25,6 +28,7 @@ const CareerInterestCard = ({ interest }) => {
         learner_data: {
           career_interest: interest,
         },
+        variation: isProgressive ? 'glide_path' : 'improved_v1.0',
       },
     );
   };

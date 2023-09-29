@@ -5,11 +5,14 @@ import ProductCardGrid from './ProductCardGrid';
 import ProductTypeBanner from './ProductTypeBanner';
 import { addToExpandedList, removeFromExpandedList } from '../../skills-builder-context/data/actions';
 import { SkillsBuilderContext } from '../../skills-builder-context';
+import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import { extractProductKeys } from '../../utils/extractProductKeys';
 
 const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
   const { state, dispatch } = useContext(SkillsBuilderContext);
   const { expandedList } = state;
+  const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
+  const { isProgressive } = visibilityFlagsState;
   const { id: jobId, name: jobName, recommendations } = selectedRecommendations;
 
   const handleCourseCardClick = (productLabel, productTypeName, index) => {
@@ -30,6 +33,7 @@ const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
             job_name: jobName,
             product_keys: extractProductKeys(recommendations, expandedList),
           },
+          variation: isProgressive ? 'glide_path' : 'improved_v1.0',
         },
       );
       return;
@@ -49,6 +53,7 @@ const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
           job_name: jobName,
           product_keys: extractProductKeys(recommendations, expandedList),
         },
+        variation: isProgressive ? 'glide_path' : 'improved_v1.0',
       },
     );
   };
@@ -68,6 +73,7 @@ const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
       page: 'skills_builder',
       product_line: type,
       number_recommendations: numberResults,
+      variation: isProgressive ? 'glide_path' : 'improved_v1.0',
     });
     // fire separate event for the recommendations that were shown when expanded
     sendTrackEvent('edx.skills_builder.recommendation.expanded.shown', {
@@ -80,6 +86,7 @@ const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
         job_name: jobName,
         product_keys: extractProductKeys(recommendations, [...expandedList, type]),
       },
+      variation: isProgressive ? 'glide_path' : 'improved_v1.0',
     });
   };
 

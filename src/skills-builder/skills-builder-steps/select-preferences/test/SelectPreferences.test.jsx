@@ -59,6 +59,7 @@ describe('select-preferences', () => {
           learner_data: {
             current_goal: messages.learningGoalAdvanceCareer.defaultMessage,
           },
+          variation: 'improved_v1.0',
         },
       );
       expect(sendTrackEvent).toHaveBeenCalledWith(
@@ -69,6 +70,7 @@ describe('select-preferences', () => {
           learner_data: {
             current_job_title: 'Prospector',
           },
+          variation: 'improved_v1.0',
         },
       );
     });
@@ -117,6 +119,7 @@ describe('select-preferences', () => {
           learner_data: {
             career_interest: 'Mirror Breaker',
           },
+          variation: 'improved_v1.0',
         },
       );
       expect(dispatchMock).toHaveBeenCalledWith(
@@ -159,6 +162,7 @@ describe('select-preferences', () => {
           learner_data: {
             career_interest: 'Prospector',
           },
+          variation: 'improved_v1.0',
         },
       );
     });
