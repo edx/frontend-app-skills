@@ -12,8 +12,9 @@ const RelatedSkillsSingleBoxSet = ({
 }) => {
   const { formatMessage } = useIntl();
   const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
-  const { showSkillsBox, showSkillsList } = visibilityFlagsState;
   const {
+    showSkillsBox,
+    showSkillsList,
     sortSkillsByUniquePostings,
     filterSkillsWithResults,
     showAllSkills,
@@ -35,7 +36,7 @@ const RelatedSkillsSingleBoxSet = ({
 
   // Display the skill as a button that will set the display to
   // related products for that skill
-  const skillButton = (displayedSkills) => (
+  const renderSkillButton = (displayedSkills) => (
     displayedSkills.map(skill => {
       const text = isClickableSkillsDevMode
         ? `${skill.name} (${skill.significance}) [${skill.unique_postings}]`
@@ -57,7 +58,7 @@ const RelatedSkillsSingleBoxSet = ({
   );
 
   // Display the skill as a non-interactive chip
-  const skillChip = (displayedSkills) => (
+  const renderSkillChip = (displayedSkills) => (
     displayedSkills.map(skill => (
       <span key={skill.external_id}>
         <Chip
@@ -99,9 +100,9 @@ const RelatedSkillsSingleBoxSet = ({
     const displayedSkills = getSortedAndFilteredSkills();
     return (
       isClickableSkills ? (
-        skillButton(displayedSkills)
+        renderSkillButton(displayedSkills)
       ) : (
-        skillChip(displayedSkills)
+        renderSkillChip(displayedSkills)
       )
     );
   };

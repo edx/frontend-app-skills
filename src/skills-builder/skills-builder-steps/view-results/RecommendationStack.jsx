@@ -83,15 +83,15 @@ const RecommendationStack = ({ selectedRecommendations, productTypeNames, skillF
     });
   };
 
-  const filterBySkill = (currRecommendations) => {
+  const filterBySkill = (currentRecommendations) => {
     if (skillFilter) {
-      const filteredRecommendations = currRecommendations.filter((recommendation) => {
+      const filteredRecommendations = currentRecommendations.filter((recommendation) => {
         const filteredSkills = recommendation.skills.filter((currSkill) => currSkill.skill === skillFilter);
         return filteredSkills.length > 0;
       });
       return filteredRecommendations;
     }
-    return currRecommendations;
+    return currentRecommendations;
   };
 
   return (

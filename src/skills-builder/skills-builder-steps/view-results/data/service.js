@@ -32,6 +32,8 @@ export async function getRecommendations(jobSearchIndex, productSearchIndex, car
           skills.forEach((skill) => {
             const jobSkill = skill?.skill;
             if (jobSkill) {
+              // Upsert an entry with the skill name and update the number
+              // of times the skill is found in the results
               productSkillsList[jobSkill] = (productSkillsList[jobSkill] || 0) + 1;
             }
           });
