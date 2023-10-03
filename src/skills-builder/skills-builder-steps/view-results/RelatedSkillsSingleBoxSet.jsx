@@ -34,9 +34,9 @@ const RelatedSkillsSingleBoxSet = ({
     // TODO send segment event
   };
 
-  // Display the skill as a button that will set the display to
+  // Display the skills as buttons that will set the display to
   // related products for that skill
-  const renderSkillButton = (displayedSkills) => (
+  const renderSkillButtons = (displayedSkills) => (
     displayedSkills.map(skill => {
       const text = isClickableSkillsDevMode
         ? `${skill.name} (${skill.significance}) [${skill.unique_postings}]`
@@ -57,8 +57,8 @@ const RelatedSkillsSingleBoxSet = ({
     })
   );
 
-  // Display the skill as a non-interactive chip
-  const renderSkillChip = (displayedSkills) => (
+  // Display the skills as non-interactive chips
+  const renderSkillChips = (displayedSkills) => (
     displayedSkills.map(skill => (
       <span key={skill.external_id}>
         <Chip
@@ -100,9 +100,9 @@ const RelatedSkillsSingleBoxSet = ({
     const displayedSkills = getSortedAndFilteredSkills();
     return (
       isClickableSkills ? (
-        renderSkillButton(displayedSkills)
+        renderSkillButtons(displayedSkills)
       ) : (
-        renderSkillChip(displayedSkills)
+        renderSkillChips(displayedSkills)
       )
     );
   };
