@@ -31,6 +31,8 @@ const ViewResults = () => {
   const [selectedRecommendations, setSelectedRecommendations] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState(false);
+  // String that is set to only show products related to a specific skill
+  const [skillFilter, setSkillFilter] = useState('');
 
   const productTypes = useRef(useProductTypes());
   const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
@@ -46,6 +48,7 @@ const ViewResults = () => {
         setJobSkillsList(jobInfo);
         setSelectedJobTitle(results[0]?.name);
         setProductRecommendations(results);
+        setSkillFilter('');
         sendTrackEvent('edx.skills_builder.recommendation.shown', {
           app_name: 'skills_builder',
           category: 'skills_builder',
@@ -98,6 +101,10 @@ const ViewResults = () => {
     const { value } = e.target;
     // check if the clicked target is different than the currently selected job title box
     if (selectedJobTitle !== value) {
+      // clear the skill filter
+      if (skillFilter) {
+        setSkillFilter('');
+      }
       // set the expanded list to an empty array so each grid will render un-expanded
       dispatch(setExpandedList([]));
       setSelectedJobTitle(value);
@@ -159,6 +166,9 @@ const ViewResults = () => {
           ) : (
             <RelatedSkillsSingleBoxSet
               jobSkillsList={jobSkillsList}
+              matchedSkills={selectedRecommendations?.matchedSkills}
+              handleSelectSkill={setSkillFilter}
+              selectedSkill={skillFilter}
             />
           )
         )}
@@ -168,6 +178,7 @@ const ViewResults = () => {
         <RecommendationStack
           selectedRecommendations={selectedRecommendations}
           productTypeNames={productTypes.current}
+          skillFilter={skillFilter}
         />
         )}
       </Stack>

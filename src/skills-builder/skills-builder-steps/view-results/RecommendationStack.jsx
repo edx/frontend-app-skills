@@ -8,7 +8,7 @@ import { SkillsBuilderContext } from '../../skills-builder-context';
 import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import { extractProductKeys } from '../../utils/extractProductKeys';
 
-const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
+const RecommendationStack = ({ selectedRecommendations, productTypeNames, skillFilter }) => {
   const { state, dispatch } = useContext(SkillsBuilderContext);
   const { expandedList } = state;
   const { state: visibilityFlagsState } = useContext(VisibilityFlagsContext);
@@ -90,10 +90,21 @@ const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
     });
   };
 
+  const filterBySkill = (currentRecommendations) => {
+    if (skillFilter) {
+      const filteredRecommendations = currentRecommendations.filter((recommendation) => {
+        const filteredSkills = recommendation.skills.filter((currSkill) => currSkill.skill === skillFilter);
+        return filteredSkills.length > 0;
+      });
+      return filteredRecommendations;
+    }
+    return currentRecommendations;
+  };
+
   return (
     productTypeNames.map(productTypeName => {
       // the recommendations object has a key for each productTypeName
-      const productTypeRecommendations = recommendations[productTypeName];
+      const productTypeRecommendations = filterBySkill(recommendations[productTypeName]);
       const numberResults = productTypeRecommendations?.length;
       const isExpanded = expandedList.includes(productTypeName);
 
@@ -104,7 +115,7 @@ const RecommendationStack = ({ selectedRecommendations, productTypeNames }) => {
         <Stack gap={2.5} key={productTypeName}>
           <ProductTypeBanner
             productTypeName={productTypeName}
-            jobName={jobName}
+            jobName={skillFilter || jobName}
             numberResults={numberResults}
             handleShowAllButtonClick={handleShowAllButtonClick}
             isExpanded={isExpanded}
