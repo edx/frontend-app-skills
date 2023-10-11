@@ -38,7 +38,7 @@ export const ONE_QUESTION_VISIBILITY_FLAGS = {
   showCategorizinator: true,
   sortSkillsByUniquePostings: false,
   filterSkillsWithResults: false,
-  showAllSkills: true,
-  isClickableSkills: true,
+  showAllSkills: false,
+  isClickableSkills: false,
   isClickableSkillsDevMode: false,
 };
