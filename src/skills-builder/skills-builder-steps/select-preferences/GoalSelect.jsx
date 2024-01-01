@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import {
   Form,
-} from '@edx/paragon';
+} from '@openedx/paragon';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { setGoal } from '../../skills-builder-context/data/actions';

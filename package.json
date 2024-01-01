@@ -36,7 +36,7 @@
     "@edx/brand": "npm:@edx/brand-edx.org@^2.1.2",
     "@edx/frontend-component-footer-edx": "^6.4.0",
     "@edx/frontend-platform": "4.6.3",
-    "@edx/paragon": "^20.20.0",
+    "@openedx/paragon": "^21.11.3",
     "@fortawesome/fontawesome-svg-core": "6.5.1",
     "@fortawesome/free-brands-svg-icons": "6.5.1",
     "@fortawesome/free-regular-svg-icons": "6.5.1",
@@ -56,7 +56,7 @@
   },
   "devDependencies": {
     "@edx/browserslist-config": "^1.1.1",
-    "@edx/frontend-build": "13.0.14",
+    "@openedx/frontend-build": "13.0.19",
     "@edx/reactifex": "^2.1.1",
     "@testing-library/react": "11.2.7",
     "@testing-library/react-hooks": "^8.0.1",

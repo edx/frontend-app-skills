@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   IconButton, Icon,
-} from '@edx/paragon';
+} from '@openedx/paragon';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
-import { Close } from '@edx/paragon/icons';
+import { Close } from '@openedx/paragon/icons';
 import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import { removeCareerInterest } from '../../skills-builder-context/data/actions';

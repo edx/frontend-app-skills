@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Button, Icon, Stack, useMediaQuery, breakpoints,
-} from '@edx/paragon';
-import { KeyboardArrowDown, KeyboardArrowUp } from '@edx/paragon/icons';
+} from '@openedx/paragon';
+import { KeyboardArrowDown, KeyboardArrowUp } from '@openedx/paragon/icons';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import messages from './messages';
 import {

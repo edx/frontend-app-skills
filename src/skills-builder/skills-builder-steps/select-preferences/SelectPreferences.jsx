@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import {
   Stack,
-} from '@edx/paragon';
+} from '@openedx/paragon';
 import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import GoalSelect from './GoalSelect';
 import JobTitleSelect from './JobTitleSelect';

@@ -3,11 +3,11 @@ import React, {
 } from 'react';
 import {
   Stack, Row, Alert, Spinner,
-} from '@edx/paragon';
+} from '@openedx/paragon';
 import { logError } from '@edx/frontend-platform/logging';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { useIntl } from '@edx/frontend-platform/i18n';
-import { ErrorOutline } from '@edx/paragon/icons';
+import { ErrorOutline } from '@openedx/paragon/icons';
 import { SkillsBuilderContext } from '../../skills-builder-context';
 import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import RelatedSkillsSelectableBoxSet from './RelatedSkillsSelectableBoxSet';

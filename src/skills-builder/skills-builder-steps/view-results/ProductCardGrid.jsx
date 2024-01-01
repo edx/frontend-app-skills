@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CardGrid } from '@edx/paragon';
+import { CardGrid } from '@openedx/paragon';
 import RecommendationCard from './RecommendationCard';
 
 const ProductCardGrid = ({
