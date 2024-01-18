@@ -67,10 +67,21 @@ Development Roadmap
   
 * `edX Skills Builder - Development Roadmap`_
 
+Contributions
+-------------
+
+This repo is not currently accepting contributions.
+
+Reporting Security Issues
+-------------------------
+
+Please do not report security issues in public. Please email security@edx.org.
+
+
 .. _edx-internal repo: https://github.com/edx/edx-internal
 .. _edX Skills Builder - Development Roadmap: https://openedx.atlassian.net/wiki/spaces/COMM/pages/3764944925/Skills+MFE+Development+Roadmap
 .. _Feature-based Application Organization: https://github.com/edx/frontend-app-skills/blob/main/docs/decisions/0002-feature-based-application-organization.rst
 .. |Build Status| image:: https://github.com/edx/frontend-app-skills/workflows/Default%20CI/badge.svg?branch=master
    :target: https://github.com/edx/frontend-app-skills/actions?query=workflow%3A%22Default+CI%22
 .. |license| image:: https://img.shields.io/badge/license-AGPL-informational
-   :target: https://github.com/openedx/frontend-app-skills/blob/master/LICENSE
+   :target: https://github.com/edx/frontend-app-skills/blob/master/LICENSE
