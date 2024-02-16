@@ -4,8 +4,9 @@ import 'regenerator-runtime/runtime';
 import {
   APP_INIT_ERROR, APP_READY, subscribe, initialize, mergeConfig,
 } from '@edx/frontend-platform';
-import { AppProvider, ErrorPage, PageRoute } from '@edx/frontend-platform/react';
+import { AppProvider, ErrorPage, PageWrap } from '@edx/frontend-platform/react';
 import ReactDOM from 'react-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Footer from '@edx/frontend-component-footer-edx';
 import { SkillsBuilder } from './skills-builder';
@@ -17,7 +18,9 @@ subscribe(APP_READY, () => {
   ReactDOM.render(
     <AppProvider>
       <main>
-        <PageRoute path="/" component={SkillsBuilder} />
+        <Routes>
+          <Route path="/" element={<PageWrap><SkillsBuilder /></PageWrap>} />
+        </Routes>
       </main>
       <Footer />
     </AppProvider>,
