@@ -3,8 +3,8 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import {
   Stack, Row, Col, Form, Icon,
-} from '@edx/paragon';
-import { Verified } from '@edx/paragon/icons';
+} from '@openedx/paragon';
+import { Verified } from '@openedx/paragon/icons';
 import CareerInterestCard from './CareerInterestCard';
 import { addCareerInterest, clearAllCareerInterests, setExpandedList } from '../../skills-builder-context/data/actions';
 import { SkillsBuilderContext } from '../../skills-builder-context';

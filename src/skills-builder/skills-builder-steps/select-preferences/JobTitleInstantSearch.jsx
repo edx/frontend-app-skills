@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Form, Icon,
-} from '@edx/paragon';
+} from '@openedx/paragon';
 import { useSearchBox, useInstantSearch } from 'react-instantsearch';
-import { Search } from '@edx/paragon/icons';
+import { Search } from '@openedx/paragon/icons';
 
 const JobTitleInstantSearch = (props) => {
   const { refine } = useSearchBox(props);

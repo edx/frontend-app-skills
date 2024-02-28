@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Card, Chip, Hyperlink,
-} from '@edx/paragon';
+} from '@openedx/paragon';
 import PropTypes from 'prop-types';
 import cardImageCapFallbackSrc from '../../images/card-imagecap-fallback.png';
 

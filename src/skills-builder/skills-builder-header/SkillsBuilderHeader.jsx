@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from '@edx/frontend-platform/i18n';
-import { Container } from '@edx/paragon';
+import { Container } from '@openedx/paragon';
 import edXLogo from '../images/edX-logo.svg';
 import { VisibilityFlagsContext } from '../visibility-flags-context';
 import messages from './messages';

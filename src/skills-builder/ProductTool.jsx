@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import {
   Container, Stack, Form, Button,
-} from '@edx/paragon';
+} from '@openedx/paragon';
 import { VisibilityFlagsContext } from './visibility-flags-context';
 import { setAllFlags } from './visibility-flags-context/data/actions';
 

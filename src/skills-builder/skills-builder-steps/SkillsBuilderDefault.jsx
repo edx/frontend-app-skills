@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import {
   Button, Container, Stepper, Form, Hyperlink, useMediaQuery, breakpoints,
-} from '@edx/paragon';
+} from '@openedx/paragon';
 import { getConfig } from '@edx/frontend-platform';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';

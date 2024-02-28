@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Stack } from '@edx/paragon';
+import { Stack } from '@openedx/paragon';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import ProductCardGrid from './ProductCardGrid';
 import ProductTypeBanner from './ProductTypeBanner';

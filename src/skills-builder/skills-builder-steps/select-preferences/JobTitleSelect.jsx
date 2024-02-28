@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { getConfig } from '@edx/frontend-platform';
 import {
   Form, Stack,
-} from '@edx/paragon';
+} from '@openedx/paragon';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { InstantSearch } from 'react-instantsearch';

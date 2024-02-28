@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   Chip, Card, Button,
-} from '@edx/paragon';
+} from '@openedx/paragon';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { VisibilityFlagsContext } from '../../visibility-flags-context';
 import messages from './messages';
