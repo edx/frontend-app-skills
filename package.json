@@ -57,7 +57,7 @@
   "devDependencies": {
     "@edx/browserslist-config": "^1.1.1",
     "@edx/reactifex": "^2.1.1",
-    "@openedx/frontend-build": "13.0.28",
+    "@openedx/frontend-build": "13.0.29",
     "@testing-library/react": "12.1.5",
     "@testing-library/react-hooks": "^8.0.1",
     "glob": "10.3.10",
