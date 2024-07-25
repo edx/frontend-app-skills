@@ -6,15 +6,20 @@ import {
 import { useSearchBox, useInstantSearch } from 'react-instantsearch';
 import { Search } from '@openedx/paragon/icons';
 
-const JobTitleInstantSearch = (props) => {
+const JobTitleInstantSearch = ({ onSelected, ...props }) => {
   const { refine } = useSearchBox(props);
   const { results, status } = useInstantSearch();
   const { hits } = results;
 
+  const [inputValue, setInputValue] = useState({});
   const [jobInput, setJobInput] = useState('');
 
   const handleAutosuggestChange = (value) => {
-    setJobInput(value);
+    setInputValue(value);
+    setJobInput(value.userProvidedText);
+    if (value.selectionValue) {
+      onSelected(value.selectionValue);
+    }
   };
 
   useEffect(() => {
@@ -23,8 +28,8 @@ const JobTitleInstantSearch = (props) => {
 
   return (
     <Form.Autosuggest
-      value={jobInput}
-      onChange={handleAutosuggestChange}
+      value={inputValue}
+      onChange={(v) => handleAutosuggestChange(v)}
       name="job-title-suggest"
       autoComplete="off"
       isLoading={status === 'loading' || status === 'stalled'}
