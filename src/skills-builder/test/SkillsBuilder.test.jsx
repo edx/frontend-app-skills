@@ -17,6 +17,10 @@ jest.mock('@edx/frontend-platform/analytics', () => ({
   sendTrackEvent: jest.fn(),
 }));
 
+jest.mock('react-instantsearch', () => ({
+  InstantSearch: jest.fn(() => (null)),
+}));
+
 describe('skills-builder', () => {
   beforeAll(() => {
     useVisibilityFlags.mockImplementation(() => (DEFAULT_VISIBILITY_FLAGS));
