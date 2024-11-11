@@ -48,8 +48,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-instantsearch": "^7.0.2",
-    "react-router": "6.27.0",
-    "react-router-dom": "6.27.0",
+    "react-router": "6.28.0",
+    "react-router-dom": "6.28.0",
     "regenerator-runtime": "0.14.1"
   },
   "devDependencies": {
