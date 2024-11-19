@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { getConfig } from '@edx/frontend-platform';
 import { logError } from '@edx/frontend-platform/logging';
 
-import algoliasearch from 'algoliasearch';
+import { algoliasearch } from 'algoliasearch';
 
 /*
  * Utility function to create and return an Algolia client, as well as Index objects for our product and job data.
@@ -20,45 +20,20 @@ import algoliasearch from 'algoliasearch';
 export const useAlgoliaSearch = () => {
   const config = getConfig();
 
-  const [searchClient, productSearchIndex, jobSearchIndex] = useMemo(
+  const [searchClient] = useMemo(
     () => {
       const client = algoliasearch(
         config.ALGOLIA_APP_ID,
         config.ALGOLIA_SEARCH_API_KEY,
       );
-      const searchNotEmptyClient = {
-        ...client,
-        search(requests) {
-          if (requests.every(({ params }) => !params.query)) {
-            return Promise.resolve({
-              results: requests.map(() => ({
-                hits: [],
-                nbHits: 0,
-                nbPages: 0,
-                page: 0,
-                processingTimeMS: 0,
-                hitsPerPage: 0,
-                exhaustiveNbHits: false,
-                query: '',
-                params: '',
-              })),
-            });
-          }
-          return client.search(requests);
-        },
-      };
-      const productIndex = client.initIndex(config.ALGOLIA_PRODUCT_INDEX_NAME);
-      const jobIndex = client.initIndex(config.ALGOLIA_JOBS_INDEX_NAME);
-      return [searchNotEmptyClient, productIndex, jobIndex];
+      return [client];
     },
     [
       config.ALGOLIA_APP_ID,
-      config.ALGOLIA_PRODUCT_INDEX_NAME,
-      config.ALGOLIA_JOBS_INDEX_NAME,
       config.ALGOLIA_SEARCH_API_KEY,
     ],
   );
-  return [searchClient, productSearchIndex, jobSearchIndex];
+  return [searchClient];
 };
 
 /*
@@ -81,19 +56,21 @@ export function formatFacetFilterData(facetFilterType, data) {
 /*
  * Utility function responsible for querying and returning job information based on input received from a learner.
  *
- * @param {SearchIndex} jobIndex - An Algolia index of taxonomy connector data used to retrieve job information a
- *  learner is interested in
+ * @param {SearchClient} searchClient - An instantiated Algolia client
  * @param {Array[String]} jobNames - A list of job names a learner is interested in
  *
  * @return {Array[Object]} results - Job information retrieved from Algolia
  */
-export const searchJobs = async (jobIndex, jobNames) => {
+export const searchJobs = async (searchClient, jobNames) => {
   const formattedJobNames = formatFacetFilterData('name', jobNames);
   try {
-    const { hits } = await jobIndex.search('', {
-      facetFilters: [
-        formattedJobNames,
-      ],
+    const { hits } = await searchClient.searchSingleIndex({
+      indexName: getConfig().ALGOLIA_JOBS_INDEX_NAME,
+      searchParams: {
+        facetFilters: [
+          formattedJobNames,
+        ],
+      },
     });
     return hits;
   } catch (error) {
@@ -107,20 +84,23 @@ export const searchJobs = async (jobIndex, jobNames) => {
  * Utility function responsible for returning recommendations on products based on the skills of a job a learner is
  * interested in.
  *
- * @param {SearchIndex} productIndex - An Algolia index of product data used to retrieve recommendations for learners.
+ * @param {SearchClient} searchClient - An instantiated Algolia client
  * @param {String} productType - The type of product information you are trying to retrieve (e.g. `course` or `program`)
  * @param {Array[String]} skills - An array of skill names related to a job/career a learner expressed interest in
  *
  * @return {Array[Object]} results - Product information retrieved from Algolia
  */
-export const getProductRecommendations = async (productIndex, productType, skills) => {
+export const getProductRecommendations = async (searchClient, productType, skills) => {
   const formattedSkillNames = formatFacetFilterData('skills.skill', skills);
   try {
-    const { hits } = await productIndex.search('', {
-      filters: `product: "${productType}" AND language: "English"`,
-      facetFilters: [
-        formattedSkillNames,
-      ],
+    const { hits } = await searchClient.searchSingleIndex({
+      indexName: getConfig().ALGOLIA_PRODUCT_INDEX_NAME,
+      searchParams: {
+        filters: `product: "${productType}" AND language: "English"`,
+        facetFilters: [
+          formattedSkillNames,
+        ],
+      },
     });
     return hits;
   } catch (error) {

@@ -8,7 +8,7 @@ import { Search } from '@openedx/paragon/icons';
 
 const JobTitleInstantSearch = ({ onSelected, ...props }) => {
   const { refine } = useSearchBox(props);
-  const { results, status } = useInstantSearch();
+  const { results, status, indexUiState } = useInstantSearch();
   const { hits } = results;
 
   const [inputValue, setInputValue] = useState({});
@@ -41,7 +41,7 @@ const JobTitleInstantSearch = ({ onSelected, ...props }) => {
         )}
       {...props}
     >
-      {hits.map(job => (
+      {!indexUiState.query ? [] : hits.map(job => (
         <Form.AutosuggestOption key={job.id} id={job.name.replaceAll(' ', '-').toLowerCase()}>
           {job.name}
         </Form.AutosuggestOption>

@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import { searchJobs, getProductRecommendations } from '../../../utils/search';
 
-export async function getRecommendations(jobSearchIndex, productSearchIndex, careerInterests, productTypes) {
-  const jobInfo = await searchJobs(jobSearchIndex, careerInterests);
+export async function getRecommendations(searchClient, careerInterests, productTypes) {
+  const jobInfo = await searchJobs(searchClient, careerInterests);
 
   const results = await Promise.all(jobInfo.map(async (job) => {
     const formattedSkills = job.skills.map(skill => skill.name);
@@ -19,7 +19,7 @@ export async function getRecommendations(jobSearchIndex, productSearchIndex, car
 
     await Promise.all(productTypes.map(async (productType) => {
       const formattedProductType = productType.replace('_', ' ');
-      const response = await getProductRecommendations(productSearchIndex, formattedProductType, formattedSkills);
+      const response = await getProductRecommendations(searchClient, formattedProductType, formattedSkills);
 
       // add a new key to the recommendations object and set the value to the response
       data.recommendations[productType] = response;

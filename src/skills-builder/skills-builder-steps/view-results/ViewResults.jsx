@@ -23,7 +23,7 @@ import { setExpandedList } from '../../skills-builder-context/data/actions';
 const ViewResults = () => {
   const { formatMessage } = useIntl();
   const { algolia, state, dispatch } = useContext(SkillsBuilderContext);
-  const { jobSearchIndex, productSearchIndex } = algolia;
+  const { searchClient } = algolia;
   const { careerInterests } = state;
   const [selectedJobTitle, setSelectedJobTitle] = useState('');
   const [jobSkillsList, setJobSkillsList] = useState([]);
@@ -42,7 +42,7 @@ const ViewResults = () => {
     const getAllRecommendations = async () => {
       setIsLoading(true);
       // eslint-disable-next-line max-len
-      const { jobInfo, results } = await getRecommendations(jobSearchIndex, productSearchIndex, careerInterests, productTypes.current);
+      const { jobInfo, results } = await getRecommendations(searchClient, careerInterests, productTypes.current);
       if (results[0]) {
         setFetchError(false);
         setJobSkillsList(jobInfo);
@@ -91,7 +91,7 @@ const ViewResults = () => {
         setIsLoading(false);
       });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [careerInterests, jobSearchIndex, productSearchIndex]);
+  }, [careerInterests, searchClient]);
 
   useEffect(() => {
     setSelectedRecommendations(productRecommendations.find(rec => rec.name === selectedJobTitle));
