@@ -1,3 +1,4 @@
+import { mergeConfig } from '@edx/frontend-platform';
 import {
   formatFacetFilterData,
   getProductRecommendations,
@@ -21,11 +22,20 @@ const mockAlgoliaResult = {
   ],
 };
 
-const mockIndex = {
-  search: jest.fn().mockImplementation(() => mockAlgoliaResult),
+const mockClient = {
+  searchSingleIndex: jest.fn().mockImplementation(() => mockAlgoliaResult),
 };
 
+const mockAlgoliaJobsIndexName = 'jobs-index';
+const mockAlgoliaProductIndexName = 'product-index';
+
 describe('Algolias utility function', () => {
+  beforeAll(async () => {
+    mergeConfig({
+      ALGOLIA_JOBS_INDEX_NAME: mockAlgoliaJobsIndexName,
+      ALGOLIA_PRODUCT_INDEX_NAME: mockAlgoliaProductIndexName,
+    });
+  });
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -42,9 +52,12 @@ describe('Algolias utility function', () => {
       ],
     };
 
-    const results = await searchJobs(mockIndex, ['Enchanter']);
-    expect(mockIndex.search).toHaveBeenCalledTimes(1);
-    expect(mockIndex.search).toHaveBeenCalledWith('', expectedSearchParameters);
+    const results = await searchJobs(mockClient, ['Enchanter']);
+    expect(mockClient.searchSingleIndex).toHaveBeenCalledTimes(1);
+    expect(mockClient.searchSingleIndex).toHaveBeenCalledWith({
+      indexName: mockAlgoliaJobsIndexName,
+      searchParams: expectedSearchParameters,
+    });
     expect(results).toEqual(mockAlgoliaResult.hits);
   });
 
@@ -61,9 +74,12 @@ describe('Algolias utility function', () => {
       ],
     };
 
-    const results = await getProductRecommendations(mockIndex, 'Course', ['Sword Lobbing']);
-    expect(mockIndex.search).toHaveBeenCalledTimes(1);
-    expect(mockIndex.search).toHaveBeenCalledWith('', expectedSearchParameters);
+    const results = await getProductRecommendations(mockClient, 'Course', ['Sword Lobbing']);
+    expect(mockClient.searchSingleIndex).toHaveBeenCalledTimes(1);
+    expect(mockClient.searchSingleIndex).toHaveBeenCalledWith({
+      indexName: mockAlgoliaProductIndexName,
+      searchParams: expectedSearchParameters,
+    });
     expect(results).toEqual(mockAlgoliaResult.hits);
   });
 

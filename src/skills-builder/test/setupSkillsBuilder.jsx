@@ -19,7 +19,10 @@ jest.mock('react-instantsearch', () => ({
   InstantSearch: ({ children }) => (<div>{children}</div>),
   Configure: jest.fn(() => (null)),
   useSearchBox: jest.fn(() => ({ refine: jest.fn() })),
-  useInstantSearch: jest.fn(() => ({ results: { hits: mockData.hits } })),
+  useInstantSearch: jest.fn(() => ({
+    results: { hits: mockData.hits },
+    indexUiState: { query: true },
+  })),
 }));
 
 jest.mock('react-router-dom', () => ({
@@ -47,8 +50,8 @@ export const contextValue = {
   algolia: {
     // Without this, tests would fail to destructure `searchClient` in the <JobTitleSelect> component
     searchClient: {},
-    productSearchIndex: {},
-    jobSearchIndex: {},
+    productSearchIndex: '',
+    jobSearchIndex: '',
   },
 };
 

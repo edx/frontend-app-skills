@@ -21,6 +21,10 @@ jest.mock('react-instantsearch', () => ({
   InstantSearch: jest.fn(() => (null)),
 }));
 
+jest.mock('algoliasearch', () => ({
+  algoliasearch: jest.fn(),
+}));
+
 describe('skills-builder', () => {
   beforeAll(() => {
     useVisibilityFlags.mockImplementation(() => (DEFAULT_VISIBILITY_FLAGS));
