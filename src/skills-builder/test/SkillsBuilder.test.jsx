@@ -1,7 +1,7 @@
 import { IntlProvider } from '@edx/frontend-platform/i18n';
 import React from 'react';
 import {
-  screen, render, act,
+  screen, render,
 } from '@testing-library/react';
 import { SkillsBuilder } from '..';
 import { SkillsBuilderProvider } from '../skills-builder-context';
@@ -35,15 +35,13 @@ describe('skills-builder', () => {
   });
 
   it('should render a Skills Builder with a prompt for the user', () => {
-    act(() => {
-      render(
-        <IntlProvider locale="en">
-          <SkillsBuilderProvider>
-            <SkillsBuilder />
-          </SkillsBuilderProvider>
-        </IntlProvider>,
-      );
-    });
+    render(
+      <IntlProvider locale="en">
+        <SkillsBuilderProvider>
+          <SkillsBuilder />
+        </SkillsBuilderProvider>
+      </IntlProvider>,
+    );
     expect(screen.getByText(messages.skillsBuilderHeaderTitle.defaultMessage)).toBeTruthy();
     expect(screen.getByText(messages.learningGoalPrompt.defaultMessage)).toBeTruthy();
   });

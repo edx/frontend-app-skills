@@ -77,7 +77,7 @@ describe('select-preferences', () => {
       });
     });
 
-    it('should render the third prompt if a current job title is selected', () => {
+    it('should render the third prompt if a current job title is selected', async () => {
       render(
         SkillsBuilderWrapperWithContext(
           {
@@ -90,7 +90,7 @@ describe('select-preferences', () => {
           },
         ),
       );
-      expect(screen.getByText(messages.careerInterestPrompt.defaultMessage)).toBeTruthy();
+      expect(await screen.findByText(messages.careerInterestPrompt.defaultMessage)).toBeTruthy();
     });
 
     it('should render a <CareerInterestCard> for each career interest', () => {
