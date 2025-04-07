@@ -5,8 +5,9 @@ import {
   APP_INIT_ERROR, APP_READY, subscribe, initialize, mergeConfig,
 } from '@edx/frontend-platform';
 import { AppProvider, ErrorPage, PageWrap } from '@edx/frontend-platform/react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Routes, Route } from 'react-router-dom';
+import { StrictMode } from 'react';
 
 import Footer from '@edx/frontend-component-footer-edx';
 import { SkillsBuilder } from './skills-builder';
@@ -14,22 +15,24 @@ import messages from './i18n';
 
 import './index.scss';
 
+const rootNode = createRoot(document.getElementById('root'));
 subscribe(APP_READY, () => {
-  ReactDOM.render(
-    <AppProvider>
-      <main>
-        <Routes>
-          <Route path="/" element={<PageWrap><SkillsBuilder /></PageWrap>} />
-        </Routes>
-      </main>
-      <Footer />
-    </AppProvider>,
-    document.getElementById('root'),
+  rootNode.render(
+    <StrictMode>
+      <AppProvider>
+        <main>
+          <Routes>
+            <Route path="/" element={<PageWrap><SkillsBuilder /></PageWrap>} />
+          </Routes>
+        </main>
+        <Footer />
+      </AppProvider>
+    </StrictMode>,
   );
 });
 
 subscribe(APP_INIT_ERROR, (error) => {
-  ReactDOM.render(<ErrorPage message={error.message} />, document.getElementById('root'));
+  rootNode.render(<ErrorPage message={error.message} />);
 });
 
 initialize({
