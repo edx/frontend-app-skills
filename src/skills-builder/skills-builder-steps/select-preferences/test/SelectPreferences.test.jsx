@@ -90,7 +90,7 @@ describe('select-preferences', () => {
           },
         ),
       );
-      expect(screen.getByText(messages.careerInterestPrompt.defaultMessage)).toBeTruthy();
+      expect(screen.findByText(messages.careerInterestPrompt.defaultMessage)).toBeTruthy();
     });
 
     it('should render a <CareerInterestCard> for each career interest', () => {
@@ -107,7 +107,7 @@ describe('select-preferences', () => {
           },
         ),
       );
-      expect(screen.getByText('Prospector')).toBeTruthy();
+      expect(screen.findByText('Prospector')).toBeTruthy();
 
       act(async () => {
         const careerInterestInput = await screen.findByTestId('career-interest-select');
