@@ -41,7 +41,7 @@
     "@fortawesome/free-regular-svg-icons": "6.7.2",
     "@fortawesome/free-solid-svg-icons": "6.7.2",
     "@fortawesome/react-fontawesome": "0.2.2",
-    "@openedx/paragon": "^22.17.0",
+    "@openedx/paragon": "^23.0.0",
     "algoliasearch": "^5.14.2",
     "core-js": "3.41.0",
     "prop-types": "15.8.1",
