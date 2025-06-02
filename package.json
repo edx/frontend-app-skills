@@ -35,7 +35,7 @@
   "dependencies": {
     "@edx/brand": "npm:@edx/brand-edx.org@^2.1.2",
     "@edx/frontend-component-footer-edx": "7.3.0",
-    "@edx/frontend-platform": "8.3.7",
+    "@edx/frontend-platform": "8.3.8",
     "@fortawesome/fontawesome-svg-core": "6.7.2",
     "@fortawesome/free-brands-svg-icons": "6.7.2",
     "@fortawesome/free-regular-svg-icons": "6.7.2",
