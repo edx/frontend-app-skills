@@ -16,7 +16,7 @@
 $breakpoint-medium: 992px;
 @media (max-width: $breakpoint-medium) {
   .med-min-height {
-    min-height: map-get($spacers, 6);
+    min-height: var(--pgn-spacing-spacer-6)
   }
   .overflow-scroll-medium {
     overflow: scroll;

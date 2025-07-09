@@ -33,15 +33,15 @@
     "url": "https://github.com/openedx/frontend-app-skills/issues"
   },
   "dependencies": {
-    "@edx/brand": "npm:@edx/brand-edx.org@^2.1.2",
-    "@edx/frontend-component-footer-edx": "7.3.0",
+    "@edx/brand": "npm:@edx/elm-theme@^1.11.0",
+    "@edx/frontend-component-footer-edx": "^8.0.0",
     "@edx/frontend-platform": "8.4.0",
     "@fortawesome/fontawesome-svg-core": "6.7.2",
     "@fortawesome/free-brands-svg-icons": "6.7.2",
     "@fortawesome/free-regular-svg-icons": "6.7.2",
     "@fortawesome/free-solid-svg-icons": "6.7.2",
     "@fortawesome/react-fontawesome": "0.2.2",
-    "@openedx/paragon": "^22.17.0",
+    "@openedx/paragon": "^23.14.0",
     "algoliasearch": "^5.14.2",
     "core-js": "3.44.0",
     "prop-types": "15.8.1",
