@@ -49,7 +49,7 @@ const SkillsBuilderDefault = () => {
   };
 
   return (
-    <div className="min-vh-100 bg-light-200">
+    <div className="min-vh-100">
       <SkillsBuilderHeader isMedium={isMedium} />
       <Stepper activeKey={currentStep}>
 
