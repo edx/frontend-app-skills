@@ -55,7 +55,7 @@
   "devDependencies": {
     "@edx/browserslist-config": "^1.1.1",
     "@edx/reactifex": "^2.1.1",
-    "@openedx/frontend-build": "14.6.1",
+    "@openedx/frontend-build": "14.6.2",
     "@testing-library/react": "^16.2.0",
     "husky": "9.1.7",
     "jest": "29.7.0"
